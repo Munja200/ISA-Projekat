@@ -37,7 +37,7 @@ public class QuestionForm {
 	@JoinTable(name = "answering", joinColumns = @JoinColumn(name = "answer_question_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "question_form_id", referencedColumnName = "id"))
 	private Set<AnswerQuestion> questions = new HashSet<AnswerQuestion>();
 
-	
+	public QuestionForm() {}
 	
 	public QuestionForm(int id, boolean deleted, RegisteredUser registeredUser, Date date) {
 		super();

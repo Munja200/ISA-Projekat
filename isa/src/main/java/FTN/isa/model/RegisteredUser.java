@@ -31,6 +31,7 @@ public class RegisteredUser {
 	private Set<QuestionForm> questionForms = new HashSet<QuestionForm>();
 
 	
+	public RegisteredUser() {}
 	
 	public RegisteredUser(long id, boolean deleted, Person person) {
 		super();

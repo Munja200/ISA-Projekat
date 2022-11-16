@@ -18,6 +18,8 @@ public class Question {
 	@Column(name = "exactValue", nullable = false)
 	private boolean exactValue;
 	
+	public Question() {}
+	
 	public Question(int id, String question, boolean exactValue) {
 		super();
 		Id = id;

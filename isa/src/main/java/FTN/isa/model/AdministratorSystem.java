@@ -18,6 +18,7 @@ public class AdministratorSystem {
 	@JoinColumn(name = "person_id", referencedColumnName = "id")
 	private Person person;
 	
+	public AdministratorSystem() {}
 
 	public AdministratorSystem(long id, Person person) {
 		super();

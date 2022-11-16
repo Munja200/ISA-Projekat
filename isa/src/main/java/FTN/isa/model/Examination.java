@@ -22,6 +22,8 @@ public class Examination {
 	@Column(name = "deleted")
 	private boolean deleted;
 
+	public Examination() {}
+	
 	public Examination(long id, AdministratorCenter administratorCenter) {
 		super();
 		Id = id;

@@ -34,7 +34,9 @@ public class AdministratorCenter {
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "center_id", referencedColumnName = "id")
 	private Center center;
-	
+
+	public AdministratorCenter() {}
+
 	public AdministratorCenter(long id, boolean deleted, Person person, Center center) {
 		super();
 		Id = id;

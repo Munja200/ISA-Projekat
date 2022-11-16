@@ -57,6 +57,8 @@ public class Person {
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 	
+	public Person() {}
+	
 	public Person(long id, String name, String surname, String email, String password, String phonNumber, String jmbg,
 			String gender, String occupation, String informationAboutCompany, Date dateOfBirth, Role role,
 			String bloodType, Address address) {

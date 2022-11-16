@@ -32,6 +32,7 @@ public class AnswerQuestion {
 	@JoinColumn(name = "question_id")
 	private Question question;
 	
+	public AnswerQuestion() {}
 	
 	public AnswerQuestion(int id, boolean answer, Question question) {
 		super();

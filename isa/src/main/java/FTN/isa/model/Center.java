@@ -42,7 +42,7 @@ public class Center {
 	//private Set<Blood> bloods = new HashSet<>();
 
 	
-
+	public Center() {}
 	
 	public Center(long id, String name, Address address, String description, float averageRating, boolean deleted) {
 		super();
