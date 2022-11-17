@@ -1,0 +1,49 @@
+<div class="container">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [(ngModel)]="person.name">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Surname</mat-label>
+            <input type="text" matInput [(ngModel)]="person.surname">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [(ngModel)]="person.email">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput [(ngModel)]="person.password">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input type="password" matInput [(ngModel)]="password.password">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Phon number</mat-label>
+            <input type="text" matInput [(ngModel)]="person.phonNumber">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>JMBG</mat-label>
+            <input type="text" matInput [(ngModel)]="person.jmbg">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Date of Birth</mat-label>
+            <input type="datetime-local" matInput [(ngModel)]="person.dateOfBirth" name="dateOfBirth">
+        </mat-form-field><br>
+        <button mat-stroked-button (click)="registePerson()">
+            Submit
+        </button>
+    </div>
+</div>
+
+    
+   
+    
+    jmbg: string = '';
+    gender: string = '';
+    occupation: string='';
+    informationAboutCompany: string = '';
+    bloodType: string = '';
+    address: Address;
