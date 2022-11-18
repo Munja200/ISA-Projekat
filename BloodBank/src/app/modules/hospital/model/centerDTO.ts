@@ -1,16 +1,23 @@
-export class Address {
-    id: number = 0;
-    deleted: boolean = false;
-    name: string = '';
-    address: Address;
-    description: string = '';
-    averageRating: number = 0.0;
+import { Address } from "./address";
 
-    public constructor(obj?:any ) {
-        this.id = obj.id;
-        this.name = obj.name;
-        this.description = obj.description;
-        this.averageRating = obj.averageRating;
-        this.address = obj.address;
+export class CenterDTO {
+    id: number ;
+    deleted: boolean=false;
+    name: string ;
+    address: Address;
+    description: string ;
+    averageRating: Float32Array;
+
+    public constructor(id: any,
+        deleted: any,
+        name: any,
+        address: any,
+        description: any,
+        averageRating: any ) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.averageRating = averageRating;
+        this.address = address;
     }
 }

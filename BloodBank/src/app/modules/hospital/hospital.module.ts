@@ -8,15 +8,20 @@ import { MatTableModule } from "@angular/material/table";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/app/material/material.module";
 import { RegisterPersonComponent } from "./register-person/register-person.component";
+import { QuestionFormComponent } from './question-form/question-form.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 const routes: Routes = [
   { path: 'register', component: RegisterPersonComponent },
+  { path: 'questionForm', component: QuestionFormComponent },
+
 ];
 
 @NgModule({
   declarations: [
-    RegisterPersonComponent
+    RegisterPersonComponent,
+    QuestionFormComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MatTableModule,
     MatPaginatorModule,
+    MatRadioModule,
     MatSortModule,
     MatSelectModule
   ],

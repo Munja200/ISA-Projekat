@@ -3,6 +3,8 @@ import { Address } from '../model/address';
 import { Router } from '@angular/router'
 import { Person } from '../model/person';
 import { RegisterPersonService } from '../services/register-person.service';
+import { CenterService } from '../../pages/home/service/center.service';
+import { CenterDTO } from '../model/centerDTO';
 
 @Component({
   selector: 'app-register-person',
@@ -17,8 +19,10 @@ export class RegisterPersonComponent implements OnInit {
   public bloodTypes: String[] = ['O-','O+','A-','A+','B-','B+','AB-','AB+']
 
   constructor(private registerPersonService: RegisterPersonService,private router: Router) { }
+ 
 
   ngOnInit(): void {
+   
   }
 
   public registePerson() {
