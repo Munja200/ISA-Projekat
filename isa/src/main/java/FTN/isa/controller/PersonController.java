@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
+@CrossOrigin(origins = "*") 
 @RequestMapping(value = "api/persons")
 public class PersonController {
 	@Autowired
@@ -69,7 +71,7 @@ public class PersonController {
 					content = @Content)
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Person> createGreeting(@RequestBody Person person)  {
+	public ResponseEntity<Person> registerPerson(@RequestBody Person person)  {
 		Person savedPerson= null;
 		try {
 			savedPerson = personService.create(person);

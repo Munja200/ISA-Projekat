@@ -7,7 +7,7 @@ import { Person } from '../model/person';
   providedIn: 'root'
 })
 export class RegisterPersonService {
-  apiHost: string = 'http://localhost:16177/';
+  apiHost: string = 'http://localhost:8080/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
