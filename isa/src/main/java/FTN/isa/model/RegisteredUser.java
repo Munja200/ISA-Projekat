@@ -33,6 +33,13 @@ public class RegisteredUser {
 	
 	public RegisteredUser() {}
 	
+	public RegisteredUser(boolean deleted, Person person, Set<QuestionForm> questionForms) {
+		super();
+		this.deleted = deleted;
+		this.person = person;
+		this.questionForms = questionForms;
+	}
+
 	public RegisteredUser(long id, boolean deleted, Person person) {
 		super();
 		Id = id;

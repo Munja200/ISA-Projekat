@@ -34,6 +34,15 @@ public class Address {
 	
 	public Address() {}
 	
+	public Address(int latitude, int longitude, String street, String number, String city, String country) {
+		super();
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.street = street;
+		this.number = number;
+		this.city = city;
+		this.country = country;
+	}
 
 	public Address(long id, int latitude, int longitude, String street, String number, String city, String country) {
 		super();
