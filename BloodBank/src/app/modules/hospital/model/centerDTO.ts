@@ -6,7 +6,7 @@ export class CenterDTO {
     name: string ;
     address: Address;
     description: string ;
-    averageRating: Float32Array;
+    averageRating: string;
 
     public constructor(id: any,
         deleted: any,

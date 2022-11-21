@@ -58,7 +58,9 @@ export class QuestionFormComponent implements OnInit {
   }
   public registePerson() {
       this.qf.answers = this.answers;
-      this.router.navigate(['/home']);
+      this.questionService.registerPerson(this.qf).subscribe(res => {
+        this.router.navigate(['/home']);
+      });
       console.log(this.answers);
   }
 

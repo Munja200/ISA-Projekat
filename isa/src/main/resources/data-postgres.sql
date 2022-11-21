@@ -9,4 +9,40 @@ insert into question (question, exact_value) values ('Da li ste pod terapijom  v
 insert into question (question, exact_value) values ('Da li proslo vise od 6 meseci od probadanja tela i koze (pirsing), tetoviranja ili transfuzije krvi', true);
 insert into question (question, exact_value) values ('Da li proslo manje od  7 dana od vadjenja zuba i manjih stomatoloskih intervencija', false);
 
-insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1)
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);
+
+insert into center (average_rating,deleted,description,name,address_id) values (5.5,'false','Prva bolnica','BKrv',1);

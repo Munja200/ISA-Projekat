@@ -15,4 +15,35 @@ export class CenterService {
   getAll(): Observable<CenterDTO[]> {
     return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers', {headers: this.headers});
   }
+
+  getCentersbyPage(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/' + id, {headers: this.headers});
+  }
+
+  getCentersSortedbyName(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/name/' + id, {headers: this.headers});
+  }
+
+
+  getCentersSortedbyNameDes(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/nameDes/' + id, {headers: this.headers});
+  }
+
+  getCentersSortedbyCity(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/city/' + id, {headers: this.headers});
+  }
+
+  getCentersSortedbyCityDes(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/cityDes/' + id, {headers: this.headers});
+  }
+
+
+  getCentersSortedbyAverageRating(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/averageRating/' + id, {headers: this.headers});
+  }
+
+  getCentersSortedbyAverageRatingDes(id: number): Observable<any> {
+    return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/averageRatingDes/' + id, {headers: this.headers});
+  }
+
 }

@@ -16,4 +16,7 @@ export class QuestionService {
   getAll(): Observable<Question[]> {
     return this.http.get<Question[]>(this.apiHost + 'api/questions', {headers: this.headers});
   }
+  registerPerson(person: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'api/questionForms', person, {headers: this.headers});
+  }
 }
