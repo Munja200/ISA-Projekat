@@ -28,7 +28,7 @@ public class QuestionForm {
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "registered_user_id", referencedColumnName = "id")
-	private RegisteredUser registeredUser;
+	private Person registeredUser;
 	
 	@Column(name = "date", nullable = false)
 	private Date date;
@@ -39,7 +39,7 @@ public class QuestionForm {
 
 	public QuestionForm() {}
 	
-	public QuestionForm(int id, boolean deleted, RegisteredUser registeredUser, Date date) {
+	public QuestionForm(int id, boolean deleted, Person registeredUser, Date date) {
 		super();
 		Id = id;
 		this.deleted = deleted;
@@ -63,11 +63,11 @@ public class QuestionForm {
 		this.deleted = deleted;
 	}
 
-	public RegisteredUser getRegisteredUser() {
+	public Person getRegisteredUser() {
 		return registeredUser;
 	}
 
-	public void setRegisteredUser(RegisteredUser registeredUser) {
+	public void setRegisteredUser(Person registeredUser) {
 		this.registeredUser = registeredUser;
 	}
 

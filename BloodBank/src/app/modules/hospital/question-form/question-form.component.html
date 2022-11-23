@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="table-header">
+        <p class="table-title">Question Form</p>
+       
+    </div>
+    <table mat-table [dataSource]="dataSource">
+       
+        <ng-container matColumnDef="question">
+            <th mat-header-cell *matHeaderCellDef class="cell-center"> Question </th>
+          
+            <td mat-cell *matCellDef="let room" class="cell-center">{{room.question}}</td>
+        </ng-container>
+
+
+          <ng-container matColumnDef="questionAnswer">
+            <th mat-header-cell *matHeaderCellDef class="cell-center"> Question Answer </th>
+          
+            <td mat-cell *matCellDef="let room"  class="cell-center"> 
+            <mat-radio-group aria-label="Select an option">
+            <mat-radio-button (click)="radioButtonChange(room,'True')"   value="True">YES</mat-radio-button>
+            <mat-radio-button (click)="radioButtonChange(room,'False')" value="False">NO</mat-radio-button>
+          </mat-radio-group></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <button mat-stroked-button (click)="registePerson()">
+        Submit
+    </button>
+</div>

@@ -42,7 +42,7 @@ public class RegisteredUser {
 
 	public void addQuestionForm(QuestionForm exam) {
 		questionForms.add(exam);
-		exam.setRegisteredUser(this);
+		exam.setRegisteredUser(this.person);
 	}
 
 	public void removeQuestionForm(QuestionForm exam) {
