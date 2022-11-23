@@ -7,21 +7,26 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/app/material/material.module";
+import { RegisterCenterComponent } from "./register-center/register-center.component";
+import { RegisterCenterAdministratorComponent } from "./register-centerAdministrator/register-centerAdministrator.component";
 import { RegisterPersonComponent } from "./register-person/register-person.component";
 import { QuestionFormComponent } from './question-form/question-form.component';
 import {MatRadioModule} from '@angular/material/radio';
 
 
 const routes: Routes = [
+  { path: 'registerCenter', component: RegisterCenterComponent },
   { path: 'register', component: RegisterPersonComponent },
   { path: 'questionForm', component: QuestionFormComponent },
-
+  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent}
 ];
 
 @NgModule({
   declarations: [
     RegisterPersonComponent,
-    QuestionFormComponent
+    QuestionFormComponent,
+    RegisterCenterComponent,
+    RegisterCenterAdministratorComponent
   ],
   imports: [
     CommonModule,

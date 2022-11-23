@@ -1,23 +1,19 @@
 import { Address } from "./address";
 
 export class CenterDTO {
-    id: number ;
-    deleted: boolean=false;
-    name: string ;
+    id: number = 0;
+    name: string;
     address: Address;
-    description: string ;
-    averageRating: string;
+    description: string;
+    averageRating: number;
+    deleted: boolean = false;
 
-    public constructor(id: any,
-        deleted: any,
-        name: any,
-        address: any,
-        description: any,
-        averageRating: any ) {
+    public constructor(id: number, name: string, address: Address, description: string, averageRating: number, deleted: boolean) {
         this.id = id;
         this.name = name;
+        this.address = address;
         this.description = description;
         this.averageRating = averageRating;
-        this.address = address;
+        this.deleted = deleted;
     }
 }

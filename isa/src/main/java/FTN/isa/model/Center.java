@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import FTN.isa.model.DTOs.CenterDTO;
+
 @Entity
 public class Center {
 	@Id
@@ -43,6 +45,15 @@ public class Center {
 
 	
 	public Center() {}
+	
+	public Center(CenterDTO centerDTO) {
+		Id = centerDTO.getId();
+		this.name = centerDTO.getName();
+		this.address = centerDTO.getAddress();
+		this.description = centerDTO.getDescription();
+		this.averageRating = centerDTO.getAverageRating();
+		this.deleted = centerDTO.isDeleted();
+	}
 	
 	public Center(long id, String name, Address address, String description, float averageRating, boolean deleted) {
 		super();

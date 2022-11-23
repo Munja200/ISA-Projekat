@@ -21,8 +21,8 @@ export class QuestionFormComponent implements OnInit {
   public displayedColumns = ['question','questionAnswer'];
   public rooms: Question[] = [];
   public answers: AnswerQuestion[]=[];
-  public address: Address = new Address(0,0,0,'','','','');
-  public person: Person= new Person(0,'','','','','','','',0,'','','',0,this.address);
+  public address: Address = new Address();
+  public person: Person= new Person(0,'','','','','','','',0,new Date,'','','',this.address);
   public dataSource = new MatTableDataSource<Question>();
   private date: Date = new Date();
   public qf : QuestionForm = new QuestionForm(0, this.person,this.date, this.answers);

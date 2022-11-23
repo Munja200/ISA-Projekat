@@ -18,4 +18,16 @@ public class CenterService {
 	public Page<Center> findAll(Pageable pageable) {
 		return centerRepository.findAll(pageable);
 	}
+	
+	public List<Center> findAll() {
+		return centerRepository.findAll();
+	}
+	
+	public Center findById(String centerId) {
+		return centerRepository.findById(Integer.parseInt(centerId));
+	}
+	
+	public Center create(Center center) {
+		return centerRepository.save(center);
+	}
 }
