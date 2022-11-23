@@ -7,16 +7,22 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/app/material/material.module";
+import { RegisterCenterComponent } from "./register-center/register-center.component";
+import { RegisterCenterAdministratorComponent } from "./register-centerAdministrator/register-centerAdministrator.component";
 import { RegisterPersonComponent } from "./register-person/register-person.component";
 
 
 const routes: Routes = [
+  { path: 'register-center', component: RegisterCenterComponent },
   { path: 'register', component: RegisterPersonComponent },
+  { path: 'register-centerAdministrator', component: RegisterCenterAdministratorComponent}
 ];
 
 @NgModule({
   declarations: [
-    RegisterPersonComponent
+    RegisterPersonComponent,
+    RegisterCenterComponent,
+    RegisterCenterAdministratorComponent
   ],
   imports: [
     CommonModule,

@@ -18,20 +18,21 @@ export class Person {
     bloodType: string ;
     address: Address;
 
-    public constructor(id: any,
-        name: any,
-        surname: any,
-        email: any,
-        password: any,
-        phonNumber: any,
-        jmbg: any,
-        gender: any,
-        role: any,
-        dateOfBirth: any,
-        occupation: any,
-        informationAboutCompany: any,
-        bloodType: any,
-        address: any
+    public constructor(
+        id: number = 0,
+        name: string = "",
+        surname: string = "",
+        email: string = "",
+        password: string = "",
+        phonNumber: string = "",
+        jmbg: string = "",
+        gender: string = "",
+        role: Role = 0,
+        dateOfBirth: Date = new Date(),
+        occupation: string = "",
+        informationAboutCompany: string = "",
+        bloodType: string = "",
+        address: Address = new Address()
     ) {
         this.id = id;
         this.dateOfBirth = dateOfBirth;

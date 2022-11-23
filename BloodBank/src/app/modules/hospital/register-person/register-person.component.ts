@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Address } from '../model/address';
-import { Router } from '@angular/router'
 import { Person } from '../model/person';
+import { Role } from '../model/role';
 import { RegisterPersonService } from '../services/register-person.service';
 
 @Component({
@@ -10,13 +11,13 @@ import { RegisterPersonService } from '../services/register-person.service';
   styleUrls: ['./register-person.component.css']
 })
 export class RegisterPersonComponent implements OnInit {
-  public address: Address = new Address(0,0,0,'','','','');
-  public person: Person = new Person(0,'','','','','','','',0,'','','',0,this.address);
-  public password:String= this.person.password;
+  public address: Address = new Address();
+  public person: Person = new Person(0,'','','','','','','',0,new Date(),'','','',this.address);
+  public password: String= this.person.password;
   public genders: String[] = ['Male',' Female'];
   public bloodTypes: String[] = ['O-','O+','A-','A+','B-','B+','AB-','AB+']
 
-  constructor(private registerPersonService: RegisterPersonService,private router: Router) { }
+  constructor(private registerPersonService: RegisterPersonService, private router: Router) { }
 
   ngOnInit(): void {
   }

@@ -16,4 +16,12 @@ public class CenterService {
 	public List<Center> findAll() {
 		return centerRepository.findAll();
 	}
+	
+	public Center findById(String centerId) {
+		return centerRepository.findById(Integer.parseInt(centerId));
+	}
+	
+	public Center create(Center center) {
+		return centerRepository.save(center);
+	}
 }

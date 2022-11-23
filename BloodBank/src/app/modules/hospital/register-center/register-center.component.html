@@ -1,0 +1,40 @@
+<div class="container">
+    <div>
+        <br>
+        <h1>Center Registration</h1><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [(ngModel)]="center.name">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input type="text" matInput [(ngModel)]="center.description">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Average Rating</mat-label>
+            <input type="number" matInput [(ngModel)]="center.averageRating">
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input type="text" matInput [(ngModel)]="address.city">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Street</mat-label>
+            <input type="text" matInput [(ngModel)]="address.street">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Address number</mat-label>
+            <input type="text" matInput [(ngModel)]="address.number">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <input type="text" matInput [(ngModel)]="address.country">
+        </mat-form-field><br>
+
+        <button mat-stroked-button (click)="registeCenter()">
+            Submit
+        </button>
+        <br><br><br>
+    </div>
+</div>
