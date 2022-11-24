@@ -145,7 +145,7 @@ public class CenterController {
 	})
 	@GetMapping(value = "/city/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CenterDTO>> getAllbyCity(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("id") int id) {
-		Pageable sortedByCity =  PageRequest.of(id, 10, Sort.by("city"));	
+		Pageable sortedByCity =  PageRequest.of(id, 10, Sort.by("address.city"));	
 	
 		Page<Center> questions = centerService.findAll(sortedByCity);
 		List<CenterDTO> centers = new ArrayList<CenterDTO>();
@@ -164,7 +164,7 @@ public class CenterController {
 	})
 	@GetMapping(value = "/cityDes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CenterDTO>> getAllbyCityDes(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("id") int id) {		
-		Pageable sortedByCityDes = PageRequest.of(id, 10, Sort.by("city").descending());
+		Pageable sortedByCityDes = PageRequest.of(id, 10, Sort.by("address.city").descending());
 
 		Page<Center> questions = centerService.findAll(sortedByCityDes);
 		List<CenterDTO> centers = new ArrayList<CenterDTO>();
