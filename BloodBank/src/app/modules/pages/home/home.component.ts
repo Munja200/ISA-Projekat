@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   public nameSort: boolean = false;
   public citySort: boolean = false;
 
-  constructor(private centerService: CenterService,private router: Router) { }
+  constructor(private centerService: CenterService, private router: Router) { }
   ngOnInit(): void {
     this.averageSort = false;
     this.nameSort = false;
@@ -34,131 +34,139 @@ export class HomeComponent implements OnInit {
     
     this.router.navigate(['/register']);
   
-}
+  }
 
-public questionForms() {
+  public questionForms() {
+      
+    this.router.navigate(['/questionForm']);
+
+  }
+
+  public registerCenter(){
+    this.router.navigate(['/registerCenter']);
+  }
+
+  public registerCenterAdministrator(){
+    this.router.navigate(['/registerCenterAdministrator']);
+  }
+
+  public nextButton(){
+    if(this.rooms.length >= 10 ){
+      this.page =this.page + 1;
     
-  this.router.navigate(['/questionForm']);
+      if(this.averageSort == true){
+        this.sort = (!this.sort);
 
-}
+        this.sortByAverageRating();
+      }else if(this.nameSort == true){
+        this.sort = (!this.sort);
 
-public nextButton(){
-  if(this.rooms.length >= 10 ){
-    this.page =this.page + 1;
-   
-    if(this.averageSort == true){
-      this.sort = (!this.sort);
+        this.sortByName();
+      }else if(this.citySort == true){
+        this.sort = (!this.sort);
 
-      this.sortByAverageRating();
-    }else if(this.nameSort == true){
-      this.sort = (!this.sort);
-
-      this.sortByName();
-    }else if(this.citySort == true){
-      this.sort = (!this.sort);
-
-      this.sortByCity();
-    }else{
-      this.centerService.getCentersbyPage(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
-      })
+        this.sortByCity();
+      }else{
+        this.centerService.getCentersbyPage(this.page).subscribe(res => {
+          this.rooms = res;
+          this.dataSource.data = this.rooms;
+        })
+      }
     }
   }
-}
 
-public previousButton(){
-  if(this.page - 1 >=0 ){
-    this.page =this.page - 1;
-    if(this.averageSort == true){
-      this.sort = (!this.sort)
+  public previousButton(){
+    if(this.page - 1 >=0 ){
+      this.page =this.page - 1;
+      if(this.averageSort == true){
+        this.sort = (!this.sort)
 
-      this.sortByAverageRating();
-    }else if(this.nameSort == true){
-      this.sort = (!this.sort)
+        this.sortByAverageRating();
+      }else if(this.nameSort == true){
+        this.sort = (!this.sort)
 
-      this.sortByName();
-    }else if(this.citySort == true){
-      this.sort = (!this.sort)
+        this.sortByName();
+      }else if(this.citySort == true){
+        this.sort = (!this.sort)
 
-      this.sortByCity();
-    }else{
-      this.centerService.getCentersbyPage(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
-      })
+        this.sortByCity();
+      }else{
+        this.centerService.getCentersbyPage(this.page).subscribe(res => {
+          this.rooms = res;
+          this.dataSource.data = this.rooms;
+        })
+      }
     }
   }
-}
 
-public sortByName() {
+  public sortByName() {
+      this.averageSort = false;
+      this.nameSort = true;
+      this.citySort = false;
+
+      if(this.sort == false){
+        this.centerService.getCentersSortedbyName(this.page).subscribe(res => {
+          this.rooms = res;
+          this.dataSource.data = this.rooms;
+        })
+    
+        this.sort = true;
+      }else{
+        this.centerService.getCentersSortedbyNameDes(this.page).subscribe(res => {
+          this.rooms = res;
+          this.dataSource.data = this.rooms;
+        })
+    
+        this.sort = false;
+      }
+    
+  }
+
+
+  public sortByCity() {
     this.averageSort = false;
-    this.nameSort = true;
+    this.nameSort = false;
+    this.citySort = true;
+    
+    if(this.sort == false){
+      this.centerService.getCentersSortedbyCity(this.page).subscribe(res => {
+        this.rooms = res;
+        this.dataSource.data = this.rooms;
+      })
+
+      this.sort = true;
+    }else{
+      this.centerService.getCentersSortedbyCityDes(this.page).subscribe(res => {
+        this.rooms = res;
+        this.dataSource.data = this.rooms;
+      })
+
+      this.sort = false;
+    }   
+    
+  }
+
+  public sortByAverageRating() {
+    this.averageSort = true;
+    this.nameSort = false;
     this.citySort = false;
 
     if(this.sort == false){
-      this.centerService.getCentersSortedbyName(this.page).subscribe(res => {
+      this.centerService.getCentersSortedbyAverageRating(this.page).subscribe(res => {
         this.rooms = res;
         this.dataSource.data = this.rooms;
       })
-  
+
       this.sort = true;
     }else{
-      this.centerService.getCentersSortedbyNameDes(this.page).subscribe(res => {
+      this.centerService.getCentersSortedbyAverageRatingDes(this.page).subscribe(res => {
         this.rooms = res;
         this.dataSource.data = this.rooms;
       })
-  
+
       this.sort = false;
     }
-  
-}
-
-
-public sortByCity() {
-  this.averageSort = false;
-  this.nameSort = false;
-  this.citySort = true;
-  
-  if(this.sort == false){
-    this.centerService.getCentersSortedbyCity(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
-    })
-
-    this.sort = true;
-  }else{
-    this.centerService.getCentersSortedbyCityDes(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
-    })
-
-    this.sort = false;
-  }   
-  
-}
-
-public sortByAverageRating() {
-  this.averageSort = true;
-  this.nameSort = false;
-  this.citySort = false;
-
-  if(this.sort == false){
-    this.centerService.getCentersSortedbyAverageRating(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
-    })
-
-    this.sort = true;
-  }else{
-    this.centerService.getCentersSortedbyAverageRatingDes(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
-    })
-
-    this.sort = false;
   }
-}
 
 
 }

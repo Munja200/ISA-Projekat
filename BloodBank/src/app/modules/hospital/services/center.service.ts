@@ -18,28 +18,4 @@ export class CenterService {
   getAllForAdministratorRegistration(): Observable<CenterDTO[]> {
     return this.http.get<CenterDTO[]>('api/centers/allForAdministratorRegistration', {headers: this.headers});
   }
-  
-  getAllCentersSortedDescByName(page: number): Observable<CenterDTO[]> {
-    return this.http.get<CenterDTO[]>('api/centers/nameDes/' + page, {headers: this.headers});
-  }
-
-  getAllCentersSortedByName(page: number): Observable<CenterDTO[]> {
-    return this.http.get<CenterDTO[]>('api/centers/name/' + page, {headers: this.headers});
-  } 
-
-  getAllCentersSortedDescByCity(page: number): Observable<CenterDTO[]> {
-    return this.http.get<CenterDTO[]>('api/centers/cityDes/' + page, {headers: this.headers});
-  }
-
-  getAllCentersSortedByCity(page: number): Observable<CenterDTO[]> {
-    return this.http.get<CenterDTO[]>('api/centers/city/' + page, {headers: this.headers});
-  } 
-
-  getAllCentersSortedDescByAverageRating(page: number): Observable<CenterDTO[]> {
-    return this.http.get<CenterDTO[]>('api/centers/averageRatingDes/' + page, {headers: this.headers});
-  }
-
-  getAllCentersSortedByAverageRating(page: number): Observable<CenterDTO[]> {
-    return this.http.get<CenterDTO[]>('api/centers/averageRating/' + page, {headers: this.headers});
-  } 
 }
