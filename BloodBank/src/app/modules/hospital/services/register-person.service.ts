@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Person } from '../model/person';
+import { RegisteredPerson } from '../model/registeredPerson';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class RegisterPersonService {
 
   getPerson(id: number): Observable<Person> {
     return this.http.get<Person>(this.apiHost + 'api/persons/' + id, {headers: this.headers});
+  }
+
+  getRegisteredPerson(id: number): Observable<RegisteredPerson> {
+    return this.http.get<RegisteredPerson>(this.apiHost + 'api/registeredUser/oneRegisteredUser/' + id, {headers: this.headers});
   }
 
   registerPerson(person: any): Observable<any> {

@@ -3,6 +3,7 @@ package FTN.isa.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Center;
@@ -22,12 +25,14 @@ import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.model.DTOs.RegisteredUserDTO;
+import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.service.CenterService;
 import FTN.isa.service.RegisteredUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
@@ -37,6 +42,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class RegisteredUserController {
 	@Autowired
 	private RegisteredUserService registeredUserService;
+	
+	@Autowired
+    private ModelMapper modelMapper;
 
 	//"api/registeredUser/{id}"
 	@Operation(summary = "Get registered users", description = "Get registered users", method="GET")
@@ -87,4 +95,41 @@ public class RegisteredUserController {
 		
 		return new ResponseEntity<List<RegisteredUserDTO>>(registeredUserDTOs, HttpStatus.OK);
 	}
+	
+	
+	@Operation(summary = "Get registered person by id", description = "Get registered person by id", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found registered person by id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegisteredUser.class))),
+			@ApiResponse(responseCode = "404", description = "registered person not found", content = @Content)
+	})
+	@GetMapping(value = "/oneRegisteredUser/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RegisteredUser> getRegisteredPerson(@Parameter(name="id", description = "ID of a registered person to return", required = true) @PathVariable("id") Long id) {
+		RegisteredUser registeredUser = registeredUserService.getById(id);
+
+		if (registeredUser == null) {
+			return new ResponseEntity<RegisteredUser>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<RegisteredUser>(registeredUser, HttpStatus.OK);
+	}
+	
+	@Operation(summary = "Update registered person", description = "Update registered person", method="PUT")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "updated registered person",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegisteredUserUpdateDTO.class))),
+			@ApiResponse(responseCode = "404", description = "registered person not found", content = @Content)
+	})
+	@PutMapping(value = "/updateRegisteredUser/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	 public Boolean editUser(@PathVariable long id, @RequestBody RegisteredUserUpdateDTO registeredUserUpdateDTO) {
+		
+			RegisteredUser registerUser = new RegisteredUser(registeredUserUpdateDTO);
+	      //RegisteredUser registeredUserRequest = modelMapper.map(registeredUserUpdateDTO, RegisteredUser.class);
+	      return registeredUserService.updateRegisteredUser(id, registerUser);
+	 }
+	
+	
+	
+	
+	
 }

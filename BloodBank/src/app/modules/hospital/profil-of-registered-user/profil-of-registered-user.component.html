@@ -1,0 +1,84 @@
+<div class="container">
+    <span> </span>
+    <table>
+       
+        <td></td>
+            <td colspan="3">
+                <p>Profile</p>
+                <p>informations:</p>
+
+            </td>
+    <td colspan="2">
+        <mat-form-field>
+        <th> Name: </th>
+        <tr> {{registeredUser.person.name}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+        <th> Surname </th>
+        <tr> {{registeredUser.person.surname}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Email </th>
+            <tr> {{registeredUser.person.email}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Phone number </th>
+            <tr> {{registeredUser.person.phonNumber}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Jmbg </th>
+            <tr> {{registeredUser.person.jmbg}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            
+            <th> Address </th>
+            <tr> {{registeredUser.person.address.street}} {{registeredUser.person.address.number}} </tr>
+            <tr> {{registeredUser.person.address.city}}, {{registeredUser.person.address.country}}</tr>
+            <tr> {{registeredUser.person.address.latitude}}, {{registeredUser.person.address.longitude}} </tr>
+            
+        </mat-form-field>
+
+    </td>
+
+    <td>
+        <mat-form-field>
+        </mat-form-field>
+    </td>
+    <td>
+        <mat-form-field>
+            <th> Role </th>
+            <tr> {{registeredUser.person.role}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Date of Birth </th>
+            <tr> {{registeredUser.person.dateOfBirth}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Occupation </th>
+            <tr> {{registeredUser.person.occupation}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Information About Company </th>
+            <tr> {{registeredUser.person.informationAboutCompany}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Blood Type </th>
+            <tr> {{registeredUser.person.bloodType}}</tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <button (click)="editProfile()"><b>Edit Profile</b></button>   
+        </mat-form-field>
+    </td>
+    </table> 
+</div>
+<div>

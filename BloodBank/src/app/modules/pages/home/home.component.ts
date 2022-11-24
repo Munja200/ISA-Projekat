@@ -50,6 +50,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/registerCenterAdministrator']);
   }
 
+  public profileRegisteredUser(){
+    this.router.navigate(['/profilOfRegisteredUser']);
+  }
+
   public nextButton(){
     if(this.rooms.length >= 10 ){
       this.page =this.page + 1;

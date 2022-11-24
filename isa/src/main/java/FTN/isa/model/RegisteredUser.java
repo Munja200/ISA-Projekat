@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
+
 @Entity
 public class RegisteredUser {
 	@Id
@@ -37,7 +39,22 @@ public class RegisteredUser {
 		super();
 		Id = id;
 		this.deleted = deleted;
-		this.person = person;
+		this.person= person;
+	}
+	
+	public RegisteredUser(RegisteredUserUpdateDTO reg) {
+		super();
+		Id = reg.getId();
+		this.person.setName(reg.getName());
+		this.person.setSurname(reg.getSurname());
+		this.person.setPhonNumber(reg.getPhonNumber());
+		this.person.setJmbg(reg.getJmbg());
+		this.person.setGender(reg.getGender());
+		this.person.setOccupation(reg.getOccupation());
+		this.person.setInformationAboutCompany(reg.getInformationAboutCompany());
+		this.person.setDateOfBirth(reg.getDateOfBirth());
+		this.person.setBloodType(reg.getBloodType());
+		this.person.setAddress(reg.getAddress());
 	}
 
 	public void addQuestionForm(QuestionForm exam) {
