@@ -1,7 +1,6 @@
 package FTN.isa.model.DTOs;
 
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import FTN.isa.model.Address;
 
 public class RegisteredUserUpdateDTO {

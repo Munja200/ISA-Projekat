@@ -44,7 +44,8 @@ public class RegisteredUser {
 	
 	public RegisteredUser(RegisteredUserUpdateDTO reg) {
 		super();
-		Id = reg.getId();
+		this.Id = reg.getId();
+		this.person = new Person();
 		this.person.setName(reg.getName());
 		this.person.setSurname(reg.getSurname());
 		this.person.setPhonNumber(reg.getPhonNumber());
