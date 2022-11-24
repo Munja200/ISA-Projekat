@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Person {
@@ -18,23 +19,29 @@ public class Person {
 	private long Id;
 	
 	@Column(name = "name", nullable = false)
+	@Pattern(regexp="^\\w{3,20}$", message = "Person.name regex error")
 	private String name;
 	
+	@Pattern(regexp="^\\w{3,20}$")
 	@Column(name = "surname", nullable = false)
 	private String surname;
 	
+	@Pattern(regexp="^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
 	@Column(name = "password", unique = false, nullable = false)
 	private String password;
 	
+	@Pattern(regexp="^[\\+]{1}[\\(]{1}[0-9]{3}[\\)]{1}[0-9]{2}[\\/]{1}[0-9]{3}[\\-]{1}[0-9]{4,6}")
 	@Column(name = "phonNumber", unique = true, nullable = false)
 	private String phonNumber;
 	
+	@Pattern(regexp="[0-9]{13}")
 	@Column(name = "jmbg", unique = true, nullable = false)
 	private String jmbg;
 	
+	@Pattern(regexp="\\bMale\\b|\\bFemale\\b|\\bOther\\b")
 	@Column(name = "gender", nullable = false)
 	private String gender;
 	
@@ -50,6 +57,7 @@ public class Person {
 	@Column(name = "role", nullable = false)
 	private Role role;
 	
+	@Pattern(regexp="\\bA\\b(\\+|\\-){1}|\\bB\\b(\\+|\\-){1}|\\bO\\b(\\+|\\-){1}|\\bAB\\b(\\+|\\-){1}")
 	@Column(name = "bloodType", nullable = false)	
 	private String bloodType;
 	

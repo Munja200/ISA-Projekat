@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class IsaProjectApplication implements CommandLineRunner{
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(IsaProjectApplication.class, args);
 	}
