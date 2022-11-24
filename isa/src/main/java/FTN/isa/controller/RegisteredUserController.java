@@ -66,9 +66,9 @@ public class RegisteredUserController {
 	})
 	@GetMapping(value = "/{name}/{surname}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<RegisteredUserDTO>> getAllbyName(
-			@Parameter(name="name", description = "Name of user", required = false) @PathVariable("name") String name,
-			@Parameter(name="surname", description = "Surname of user", required = false) @PathVariable("surname") String surname,
-			@Parameter(name="id", description = "Number of a page to return", required = false) @PathVariable("id") int id) {
+			@Parameter(name="name", description = "Name of user (none to ignore)", required = false) @PathVariable("name") String name,
+			@Parameter(name="surname", description = "Surname of user (none to ignore)", required = false) @PathVariable("surname") String surname,
+			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
 		
 		List<RegisteredUser> questions = null;
 		List<RegisteredUserDTO> registeredUserDTOs = new ArrayList<RegisteredUserDTO>();
