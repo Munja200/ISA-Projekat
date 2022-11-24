@@ -22,22 +22,22 @@ export class QuestionFormComponent implements OnInit {
   public rooms: Question[] = [];
   public answers: AnswerQuestion[]=[];
   public address: Address = new Address();
-  public person: Person= new Person(0,'','','','','','','',0,new Date,'','','',this.address);
   public dataSource = new MatTableDataSource<Question>();
   private date: Date = new Date();
-  public qf : QuestionForm = new QuestionForm(0, this.person,this.date, this.answers);
+  public qf : QuestionForm = new QuestionForm(0, '',this.date, this.answers);
   constructor(private questionService: QuestionService,private personService:RegisterPersonService,private router: Router) { }
 
   ngOnInit(): void {
 
     this.personService.getPerson(1).subscribe(res => {
-      this.person = res;
+      console.log(res)
+      this.qf.person = res
     })
 
     this.questionService.getAll().subscribe(res => {
       this.rooms = res;
       res.forEach((element: any) => {
-        var app = new AnswerQuestion(element.id, element.question, element.answer);    
+        var app = new AnswerQuestion(0, element, false);    
         this.answers.push(app);
         
       });
@@ -57,7 +57,8 @@ export class QuestionFormComponent implements OnInit {
    } 
   }
   public registePerson() {
-      this.qf.answers = this.answers;
+      this.qf.questions = this.answers;
+      console.log(this.qf)
       this.questionService.registerPerson(this.qf).subscribe(res => {
         this.router.navigate(['/home']);
       });

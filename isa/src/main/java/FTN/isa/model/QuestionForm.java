@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class QuestionForm {
@@ -33,12 +34,20 @@ public class QuestionForm {
 	@Column(name = "date", nullable = false)
 	private Date date;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
-	@JoinTable(name = "answering", joinColumns = @JoinColumn(name = "answer_question_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "question_form_id", referencedColumnName = "id"))
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<AnswerQuestion> questions = new HashSet<AnswerQuestion>();
-
+	
 	public QuestionForm() {}
 	
+	public QuestionForm(int id, boolean deleted, Person registeredUser, Date date, Set<AnswerQuestion> questions) {
+		super();
+		Id = id;
+		this.deleted = deleted;
+		this.registeredUser = registeredUser;
+		this.date = date;
+		this.questions = questions;
+	}
+
 	public QuestionForm(int id, boolean deleted, Person registeredUser, Date date) {
 		super();
 		Id = id;

@@ -12,7 +12,7 @@
         </mat-form-field><br>
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="email" matInput [(ngModel)]="person.email">
+            <input type="email" email="true" matInput [(ngModel)]="person.email">
         </mat-form-field><br>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
@@ -22,6 +22,7 @@
             <mat-label>Confirm Password</mat-label>
             <input type="password" matInput [(ngModel)]="password">
         </mat-form-field><br>
+        <mat-label class="label" *ngIf="samePassword">Password is not the same </mat-label>
         <mat-form-field appearance="fill">
             <mat-label>Phon number</mat-label>
             <input type="text" matInput [(ngModel)]="person.phonNumber">
@@ -43,10 +44,6 @@
         <mat-form-field appearance="fill">
             <mat-label>Information about Company</mat-label>
             <input type="text" matInput [(ngModel)]="person.informationAboutCompany">
-        </mat-form-field><br>
-        <mat-form-field appearance="fill">
-            <mat-label>Blood Type</mat-label>
-            <input type="text" matInput [(ngModel)]="person.bloodType">
         </mat-form-field><br>
         <mat-form-field appearance="fill">
             <mat-label>Blood Type</mat-label>
@@ -76,6 +73,8 @@
             <mat-label>Date of Birth</mat-label>
             <input type="datetime-local" matInput [(ngModel)]="person.dateOfBirth" name="dateOfBirth">
         </mat-form-field><br>
+        <mat-label class="label" *ngIf="fillds">Fill in all the fields!</mat-label>
+        <br><br>
         <button mat-stroked-button (click)="registePerson()">
             Submit
         </button>

@@ -1,5 +1,6 @@
-<h1>Welcome to the home page</h1>
-<div>
+<h1 >Welcome to the home page</h1>
+
+<div   class="div">
     <button mat-stroked-button (click)="registePerson()">
         Registration
     </button>
@@ -26,23 +27,23 @@
     <table mat-table [dataSource]="dataSource">
      
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef class="cell-center"><button (click)="sortByName()"> Name </button></th>
+            <th mat-header-cell *matHeaderCellDef class="cell-center"><button mat-stroked-button (click)="sortByName()"> Name </button></th>
           
             <td mat-cell *matCellDef="let room" class="cell-center">{{room.name}}</td>
         </ng-container>
 
         <ng-container matColumnDef="city">
-            <th mat-header-cell *matHeaderCellDef class="cell-center"><button (click)="sortByCity()"> City </button></th>
+            <th mat-header-cell *matHeaderCellDef class="cell-center"><button mat-stroked-button  (click)="sortByCity()"> City </button></th>
             <td mat-cell *matCellDef="let room" class="cell-center">{{room.address.city}}</td>
         </ng-container>
 
         <ng-container matColumnDef="average_rating">
-            <th mat-header-cell *matHeaderCellDef class="cell-center"> <button (click)="sortByAverageRating()"> Average rating </button> </th>
+            <th mat-header-cell *matHeaderCellDef class="cell-center"> <button mat-stroked-button (click)="sortByAverageRating()"> Average rating </button> </th>
            
             <td mat-cell *matCellDef="let room" class="cell-center">{{room.averageRating}}</td>
         </ng-container>
         <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef class="cell-center"> <button> Description </button> </th>
+            <th mat-header-cell *matHeaderCellDef class="cell-center"> <button mat-stroked-button> Description </button> </th>
            
             <td mat-cell *matCellDef="let room" class="cell-center">{{room.description}}</td>
         </ng-container>
@@ -50,8 +51,9 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <button (click)="nextButton()">Next</button>
-    <button (click)="previousButton()">Previous</button>
+    <button mat-stroked-button (click)="nextButton()">Next</button>
+    <button mat-stroked-button disabled >{{this.page+1}}</button> 
+    <button mat-stroked-button  (click)="previousButton()">Previous</button>
     
 </div>
 

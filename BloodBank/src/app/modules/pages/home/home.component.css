@@ -6,6 +6,20 @@
     border: #DCD6CC 1px solid;
     background-color: white;
 }
+.div {
+    width: 70%;
+   
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+}
+
+h1 {  
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+}
 
 table {
     width: 100%;
@@ -43,3 +57,4 @@ p {
     float: left;
     margin-right: auto;
 }
+
