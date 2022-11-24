@@ -14,14 +14,14 @@ public interface RegisteredUserRepository extends PagingAndSortingRepository<Reg
 
 	Page<RegisteredUser> findAll(Pageable pageable);
 	
-	@Query(value="SELECT * FROM registered_user INNER JOIN person ON registered_user.person_id = person.id WHERE (person.name LIKE CONCAT('%', :name ,'%') AND person.surname LIKE CONCAT('%', :surname ,'%'));",nativeQuery = true)
-	List<RegisteredUser> findAllByNameSurname(@Param(value = "name") String name, @Param(value = "surname") String surname);
+	@Query(value="SELECT * FROM registered_user r INNER JOIN person p ON r.person_id = p.id WHERE (p.name LIKE CONCAT('%', :name ,'%') AND p.surname LIKE CONCAT('%', :surname ,'%'))",nativeQuery = true)
+	Page<RegisteredUser> findAllByNameSurname(Pageable pageable, @Param(value = "name") String name, @Param(value = "surname") String surname);
 	
-	@Query(value="SELECT * FROM registered_user INNER JOIN person ON registered_user.person_id = person.id WHERE person.name LIKE CONCAT('%', :name ,'%');",nativeQuery = true)
-	List<RegisteredUser> findAllByName(@Param(value = "name") String name);
+	@Query(value="SELECT * FROM registered_user r INNER JOIN person p ON r.person_id = p.id WHERE p.name LIKE CONCAT('%', :name ,'%')",nativeQuery = true)
+	Page<RegisteredUser> findAllByName(Pageable pageable, @Param(value = "name") String name);
 	
-	@Query(value="SELECT * FROM registered_user INNER JOIN person ON registered_user.person_id = person.id WHERE person.surname LIKE CONCAT('%', :surname ,'%');",nativeQuery = true)
-	List<RegisteredUser> findAllBySurname(@Param(value = "surname") String surname);
+	@Query(value="SELECT * FROM registered_user r INNER JOIN person p ON r.person_id = p.id WHERE p.surname LIKE CONCAT('%', :surname ,'%')",nativeQuery = true)
+	Page<RegisteredUser> findAllBySurname(Pageable pageable, @Param(value = "surname") String surname);
 	
 	public List<RegisteredUser> findAll();
 	

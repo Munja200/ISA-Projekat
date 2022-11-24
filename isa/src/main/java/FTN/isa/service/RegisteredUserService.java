@@ -23,20 +23,20 @@ public class RegisteredUserService {
 		return registeredUserRepository.findAll();
 	}
 	
-	public List<RegisteredUser> findAllByNameSurname(String name, String surname) {
+	public Page<RegisteredUser> findAllByNameSurname(Pageable pageable, String name, String surname) {
 		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		surname = surname.substring(0, 1).toUpperCase() + surname.substring(1).toLowerCase();
-		return registeredUserRepository.findAllByNameSurname(name, surname);
+		return registeredUserRepository.findAllByNameSurname(pageable, name, surname);
 	}
 	
-	public List<RegisteredUser> findAllByName(String name) {
+	public Page<RegisteredUser> findAllByName(Pageable pageable, String name) {
 		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-		return registeredUserRepository.findAllByName(name);
+		return registeredUserRepository.findAllByName(pageable, name);
 	}
 	
-	public List<RegisteredUser> findAllBySurname(String surname) {
+	public Page<RegisteredUser> findAllBySurname(Pageable pageable, String surname) {
 		surname = surname.substring(0, 1).toUpperCase() + surname.substring(1).toLowerCase();
-		return registeredUserRepository.findAllBySurname(surname);
+		return registeredUserRepository.findAllBySurname(pageable, surname);
 	}
 	
 	public RegisteredUser create(RegisteredUser registeredUser) {
