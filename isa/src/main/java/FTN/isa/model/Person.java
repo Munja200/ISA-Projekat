@@ -59,6 +59,25 @@ public class Person {
 	
 	public Person() {}
 	
+	public Person(String name, String surname, String email, String password, String phonNumber, String jmbg,
+			String gender, String occupation, String informationAboutCompany, Date dateOfBirth, Role role,
+			String bloodType, Address address) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.phonNumber = phonNumber;
+		this.jmbg = jmbg;
+		this.gender = gender;
+		this.occupation = occupation;
+		this.informationAboutCompany = informationAboutCompany;
+		this.dateOfBirth = dateOfBirth;
+		this.role = role;
+		this.bloodType = bloodType;
+		this.address = address;
+	}
+	
 	public Person(long id, String name, String surname, String email, String password, String phonNumber, String jmbg,
 			String gender, String occupation, String informationAboutCompany, Date dateOfBirth, Role role,
 			String bloodType, Address address) {
