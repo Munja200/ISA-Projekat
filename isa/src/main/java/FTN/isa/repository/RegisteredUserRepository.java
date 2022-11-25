@@ -25,6 +25,9 @@ public interface RegisteredUserRepository extends PagingAndSortingRepository<Reg
 	
 	public List<RegisteredUser> findAll();
 	
+	 @Query(value="SELECT u FROM registered_user u WHERE u.verificationCode = ?1",nativeQuery = true)
+	 public RegisteredUser findByVerificationCode(String code);
+	
 	public RegisteredUser save(RegisteredUser registeredUser);
 	
 }

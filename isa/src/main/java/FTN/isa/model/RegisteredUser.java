@@ -29,8 +29,30 @@ public class RegisteredUser {
 	
 	@OneToMany(mappedBy = "registeredUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<QuestionForm> questionForms = new HashSet<QuestionForm>();
-
+	@Column(name = "verification_code", length = 64)
+	private String verificationCode;
+	     
+	private boolean enabled=false;
 	
+	
+	
+	
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public RegisteredUser() {}
 	
 	public RegisteredUser(long id, boolean deleted, Person person) {
