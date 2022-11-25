@@ -1,0 +1,97 @@
+<div class="container">
+    <span> </span>
+    <table>
+       
+        <td></td>
+            <td colspan="3">
+                <p>Profile</p>
+                <p>informations:</p>
+
+            </td>
+    <td colspan="2">
+        <mat-form-field>
+            <th> Name: </th>
+            <tr><input type="text" name="name" matInput [(ngModel)]="registeredUserDto.name"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Surname </th>
+            <tr><input type="text" name="surname" matInput [(ngModel)]="registeredUserDto.surname"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Phone number </th>
+            <tr><input type="text" name="phoneNumber" matInput [(ngModel)]="registeredUserDto.phonNumber"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Jmbg </th>
+            <tr><input type="text" name="jmbg" matInput [(ngModel)]="registeredUserDto.jmbg"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+        <mat-form-field>
+            <th> Address </th>
+            <tr> Street: <input type="text" name="city" matInput [(ngModel)]="registeredUserDto.address.street"></tr>
+        </mat-form-field>
+        <mat-form-field>
+            <tr> City: <input type="text" name="city" matInput [(ngModel)]="registeredUserDto.address.city"></tr>
+        </mat-form-field>
+        <mat-form-field>
+            <tr> Latitude: <input type="number" name="latitude" matInput [(ngModel)]="registeredUserDto.address.latitude"></tr>
+        </mat-form-field>
+            
+        </mat-form-field>
+
+        <mat-form-field>
+            <button (click)="editProfile()"><b>Edit Profile</b></button>   
+        </mat-form-field>
+
+    </td>
+
+    <td>
+        <mat-form-field>
+        </mat-form-field>
+    </td>
+    <td>
+        <mat-form-field>
+            <th> Gender </th>
+            <tr><input type="text" name="surname" matInput [(ngModel)]="registeredUserDto.gender"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Date of Birth </th>
+            <tr><input type="datetime-local" name="dateOfBirth" matInput [(ngModel)]="registeredUserDto.dateOfBirth"></tr>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <th> Occupation </th>
+            <tr><input type="text" name="occupation" matInput [(ngModel)]="registeredUserDto.occupation"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Information About Company </th>
+            <tr><input type="text" name="informationAboutCompany" matInput [(ngModel)]="registeredUserDto.informationAboutCompany"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <th> Blood Type </th>
+            <tr><input type="text" name="bloodType" matInput [(ngModel)]="registeredUserDto.bloodType"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+        <tr> Number: <input type="number" name="number" matInput [(ngModel)]="registeredUserDto.address.number"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <tr> Country: <input type="text" name="country" matInput [(ngModel)]="registeredUserDto.address.country"></tr>
+        </mat-form-field>
+
+        <mat-form-field>
+            <tr> Longitude: <input type="number" name="longitude" matInput [(ngModel)]="registeredUserDto.address.longitude"></tr>
+        </mat-form-field>
+
+    </td>
+    </table> 
+</div>
+<div>
