@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Address } from '../../hospital/model/address';
 import { CenterDTO } from '../../hospital/model/centerDTO';
 import { CenterService } from './service/center.service';
 
@@ -18,6 +19,15 @@ export class HomeComponent implements OnInit {
   public averageSort: boolean = false;
   public nameSort: boolean = false;
   public citySort: boolean = false;
+
+  public address: Address = new Address(0, false, 0, 0, '', '', '', '');
+  public centerDTO: CenterDTO = new CenterDTO(0,'', this.address, '', 0, false);
+
+  public ime: string = 'none';
+  public mesto: string = 'none';
+  public average: number = 0;
+  public street: string = 'none';
+  public searchs: CenterDTO[] = [];
 
   constructor(private centerService: CenterService, private router: Router) { }
   ngOnInit(): void {
@@ -170,6 +180,34 @@ export class HomeComponent implements OnInit {
 
       this.sort = false;
     }
+  }
+
+  public reset(){
+    this.averageSort = false;
+    this.nameSort = false;
+    this.citySort = false;
+    this.centerService.getCentersbyPage(this.page).subscribe(res => {
+      this.rooms = res;
+      this.dataSource.data = this.rooms;
+    })
+  }
+
+  public searchCenterByNameAndCity() {
+    this.page = 0;
+    this.centerService.getAllbyNameCity(this.ime, this.mesto, this.page).subscribe(res => {
+      this.rooms = res;
+      this.searchs = this.rooms;
+      this.dataSource.data = this.rooms;
+    })
+  }
+
+  public filterCenterByStreet() {
+    this.page = 0;
+    this.centerService.getAllbyStreet(this.street, this.page).subscribe(res => {
+      //ovde kako uzeti samo one iz pretrageeeeee
+      this.searchs = res;
+      this.dataSource.data = this.searchs;
+    })
   }
 
 

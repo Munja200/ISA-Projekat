@@ -16,12 +16,12 @@ export class EditProfilRegisteredUserComponent implements OnInit {
   public address: Address = new Address(0, false, 0, 0, '', '', '', '');
   public person: Person = new Person(0,'','','','','','','',0,new Date(),'','','',this.address);
   public registeredUser: RegisteredPerson = new RegisteredPerson(0, false, this.person);
-  public registeredUserDto: RegisteredUserUpdateDTO = new RegisteredUserUpdateDTO(2, '', '', '', '', '', '', '', new Date(), '', this.address);
+  public registeredUserDto: RegisteredUserUpdateDTO = new RegisteredUserUpdateDTO(4, '', '', '', '', '', '', '', new Date(), '', this.address);
 
   constructor(private registerPersonService: RegisterPersonService,private router: Router) { }
 
   ngOnInit(): void {
-    this.registerPersonService.getRegisteredPerson(2).subscribe(res => {
+    this.registerPersonService.getRegisteredPerson(4).subscribe(res => {
       this.registeredUser = res;
       console.log(this.registeredUser);
   })

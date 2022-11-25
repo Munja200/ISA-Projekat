@@ -7,6 +7,7 @@ import { CenterDTO } from 'src/app/modules/hospital/model/centerDTO';
   providedIn: 'root'
 })
 export class CenterService {
+  
   apiHost: string = 'http://localhost:8080/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -44,6 +45,14 @@ export class CenterService {
 
   getCentersSortedbyAverageRatingDes(id: number): Observable<any> {
     return this.http.get<CenterDTO[]>(this.apiHost + 'api/centers/averageRatingDes/' + id, {headers: this.headers});
+  }
+
+  getAllbyNameCity(ime: string, mesto: string, page: number): Observable<CenterDTO[]> {
+    return this.http.get<CenterDTO[]>('api/centers/' + ime + '/' + mesto + '/' + page, {headers: this.headers});
+  }
+
+  getAllbyStreet(street: string, page: number): Observable<CenterDTO[]> {
+    return this.http.get<CenterDTO[]>('api/centers/'+ street +'/' + page, {headers: this.headers});
   }
 
 }
