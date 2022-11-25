@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Center;
+import FTN.isa.model.RegisteredUser;
 import FTN.isa.repository.CenterRepository;
 
 @Service
@@ -30,4 +31,35 @@ public class CenterService {
 	public Center create(Center center) {
 		return centerRepository.save(center);
 	}
+	
+	public Page<Center> findAllByNameCity(Pageable pageable, String name, String city) {
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+		city = city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
+		return centerRepository.findAllByNameCity(pageable, name, city);
+	}
+	
+	public Page<Center> findAllByName(Pageable pageable, String name) {
+		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+		return centerRepository.findAllByName(pageable, name);
+	}
+	
+	public Page<Center> findAllByCity(Pageable pageable, String city) {
+		city = city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
+		return centerRepository.findAllByCity(pageable, city);
+	}
+	
+	public Page<Center> findAllByAverageStreet(Pageable pageable, Float average, String street) {
+		street = street.substring(0, 1).toUpperCase() + street.substring(1).toLowerCase();
+		return centerRepository.findAllByAverageStreet(pageable, average, street);
+	}
+	
+	public Page<Center> findAllByAverage(Pageable pageable, float average) {
+		return centerRepository.findAllByAverage(pageable, average);
+	}
+	
+	public Page<Center> findAllByStreet(Pageable pageable, String street) {
+		street = street.substring(0, 1).toUpperCase() + street.substring(1).toLowerCase();
+		return centerRepository.findAllByStreet(pageable, street);
+	}
+	
 }

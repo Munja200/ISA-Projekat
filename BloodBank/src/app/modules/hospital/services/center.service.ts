@@ -18,4 +18,5 @@ export class CenterService {
   getAllForAdministratorRegistration(): Observable<CenterDTO[]> {
     return this.http.get<CenterDTO[]>('api/centers/allForAdministratorRegistration', {headers: this.headers});
   }
+
 }

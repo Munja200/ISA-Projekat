@@ -43,7 +43,7 @@ insert into address (city, country, latitude, longitude, number, street) values 
 insert into address (city, country, latitude, longitude, number, street) values ('Jacarezinho', 'Brazil', 19.66, 9.94, '2', 'Donald');
 insert into address (city, country, latitude, longitude, number, street) values ('Guozhai', 'China', 83.9, 86.69, '123', 'Marcy');
 insert into address (city, country, latitude, longitude, number, street) values ('Chvaletice', 'Czech Republic', 17.23, 7.29, '8533', 'Eastwood');
-insert into address (city, country, latitude, longitude, number, street) values ('Koanara', 'Indonesia', 24.24, 88.9, '79188', 'Hermina');
+insert into address (city, country, latitude, longitude, number, street) values ('Zrenjanin', 'Indonesia', 24.24, 88.9, '79188', 'Hermina');
 insert into address (city, country, latitude, longitude, number, street) values ('Roma', 'Italy', 91.3, 65.54, '416', 'Utah');
 insert into address (city, country, latitude, longitude, number, street) values ('Saint-Priest', 'France', 89.88, 44.34, '9928', 'Old Shore');
 insert into address (city, country, latitude, longitude, number, street) values ('Pensacola', 'United States', 8.41, 25.49, '4764', 'Kinsman');
@@ -54,7 +54,7 @@ insert into address (city, country, latitude, longitude, number, street) values 
 insert into address (city, country, latitude, longitude, number, street) values ('Toila', 'Estonia', 83.07, 8.85, '8', 'Toban');
 insert into address (city, country, latitude, longitude, number, street) values ('Värnamo', 'Sweden', 7.99, 82.75, '11', 'Bultman');
 insert into address (city, country, latitude, longitude, number, street) values ('Zhaitou', 'China', 86.97, 42.97, '9273', 'Emmet');
-insert into address (city, country, latitude, longitude, number, street) values ('Ushumun', 'Russia', 22.01, 61.58, '4702', 'Commercial');
+insert into address (city, country, latitude, longitude, number, street) values ('Zrenjanin', 'Russia', 22.01, 61.58, '4702', 'Commercial');
 insert into address (city, country, latitude, longitude, number, street) values ('Pregrada', 'Croatia', 0.76, 51.08, '0', 'Carioca');
 insert into address (city, country, latitude, longitude, number, street) values ('Nyanza', 'Rwanda', 34.19, 42.55, '95', 'Thackeray');
 insert into address (city, country, latitude, longitude, number, street) values ('Randegan', 'Indonesia', 52.59, 48.66, '0', 'Gina');
@@ -63,11 +63,11 @@ insert into address (city, country, latitude, longitude, number, street) values 
 insert into address (city, country, latitude, longitude, number, street) values ('Baojia', 'China', 13.5, 20.0, '0', 'Farwell');
 insert into address (city, country, latitude, longitude, number, street) values ('Maguling', 'Philippines', 59.48, 40.27, '06', 'Dorton');
 insert into address (city, country, latitude, longitude, number, street) values ('Bemposta', 'Portugal', 39.6, 31.98, '36', 'Porter');
-insert into address (city, country, latitude, longitude, number, street) values ('Asaka', 'Japan', 30.68, 97.19, '62', 'Westport');
+insert into address (city, country, latitude, longitude, number, street) values ('Zrenjanin', 'Japan', 30.68, 97.19, '62', 'Westport');
 insert into address (city, country, latitude, longitude, number, street) values ('Mosquera', 'Colombia', 12.18, 94.33, '5', 'Goodland');
 insert into address (city, country, latitude, longitude, number, street) values ('Xintaimen', 'China', 61.3, 62.11, '894', 'Stone Corner');
 insert into address (city, country, latitude, longitude, number, street) values ('Niños Heroes', 'Mexico', 23.38, 32.13, '895', 'Cardinal');
-insert into address (city, country, latitude, longitude, number, street) values ('Igbaras', 'Philippines', 72.79, 84.43, '32', 'West');
+insert into address (city, country, latitude, longitude, number, street) values ('Zrenjanin', 'Philippines', 72.79, 84.43, '32', 'West');
 insert into address (city, country, latitude, longitude, number, street) values ('Cikujang', 'Russia', 31.29, 34.43, '323', 'Dorton');
 
 ----------------------PERSONS------------------------
