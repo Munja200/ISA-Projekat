@@ -15,6 +15,8 @@ export class RegisterPersonComponent implements OnInit {
   public password: String= this.person.password;
   public genders: String[] = ['Male',' Female'];
   public bloodTypes: String[] = ['O-','O+','A-','A+','B-','B+','AB-','AB+']
+  public fillds: boolean = false;
+  public samePassword: boolean =false;
 
   constructor(private registerPersonService: RegisterPersonService,private router: Router) { }
 
@@ -23,14 +25,32 @@ export class RegisterPersonComponent implements OnInit {
   }
 
   public registePerson() {
-    if (!this.isValidInput()) return;
+    this.person.address = this.address
+    if (!this.isValidInput()){
+      this.fillds = true;
+       return;
+    }
+
+    if(this.password != this.person.password){
+        this.samePassword = true;
+        return;
+    }
+
     this.registerPersonService.registerPerson(this.person).subscribe(res => {
       this.router.navigate(['/home']);
     });
   }
 
   private isValidInput(): boolean {
-    return this.person?.dateOfBirth.toString() != ''  && this.person?.bloodType != '' && this.person?.surname != '';
+    return this.person?.dateOfBirth.toString() != ''  && this.person?.bloodType != '' && this.person?.surname != '' 
+    && this.person?.name != ''
+    && this.person?.email != ''
+    && this.person?.password != ''
+    && this.person?.jmbg != ''
+    && this.person?.phonNumber != ''
+    && this.person?.gender != ''
+    && this.person?.address.city != ''
+    && this.password != '';
   }
 
 }
