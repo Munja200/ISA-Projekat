@@ -8,11 +8,14 @@
                 <p>informations:</p>
 
             </td>
+
     <td colspan="2">
+        
         <mat-form-field>
         <th> Name: </th>
         <tr> {{registeredUser.person.name}}</tr>
         </mat-form-field>
+
 
         <mat-form-field>
         <th> Surname </th>
@@ -31,16 +34,20 @@
 
         <mat-form-field>
             <th> Jmbg </th>
-            <tr> {{registeredUser.person.jmbg}}</tr>
+            <tr > {{registeredUser.person.jmbg}}</tr>
         </mat-form-field>
 
         <mat-form-field>
             
             <th> Address </th>
-            <tr> {{registeredUser.person.address.street}} {{registeredUser.person.address.number}} </tr>
-            <tr> {{registeredUser.person.address.city}}, {{registeredUser.person.address.country}}</tr>
-            <tr> {{registeredUser.person.address.latitude}}, {{registeredUser.person.address.longitude}} </tr>
+            <tr > {{registeredUser.person.address.street}} {{registeredUser.person.address.number}} </tr>
+            <tr > {{registeredUser.person.address.city}}, {{registeredUser.person.address.country}}</tr>
+            <tr > {{registeredUser.person.address.latitude}}, {{registeredUser.person.address.longitude}} </tr>
             
+        </mat-form-field>
+
+        <mat-form-field>
+            <button (click)="editProfile()"><b>Edit Profile</b></button>   
         </mat-form-field>
 
     </td>
@@ -76,7 +83,8 @@
         </mat-form-field>
 
         <mat-form-field>
-            <button (click)="editProfile()"><b>Edit Profile</b></button>   
+            <th> Gender </th>
+            <tr> {{registeredUser.person.gender}}</tr>
         </mat-form-field>
     </td>
     </table> 

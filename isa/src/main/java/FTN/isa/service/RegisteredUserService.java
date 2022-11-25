@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.repository.PersonRepository;
 import FTN.isa.repository.RegisteredUserRepository;
 
 @Service
 public class RegisteredUserService {
 	@Autowired
 	private RegisteredUserRepository registeredUserRepository;
+	private PersonRepository personRepository;
 	
 	public Page<RegisteredUser> findAll(Pageable pageable) {
 		return registeredUserRepository.findAll(pageable);
@@ -52,7 +54,8 @@ public class RegisteredUserService {
 	        var ru = registeredUserRepository.findById(id).get();
 	        if(ru != null) {
 	        	
-	        	Person person = new Person();
+	        	Person person = ru.getPerson();
+	        	
 	        	person.setName(registeredUser.getPerson().getName());
 	        	person.setSurname(registeredUser.getPerson().getSurname());
 	        	person.setPhonNumber(registeredUser.getPerson().getPhonNumber());

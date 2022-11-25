@@ -115,7 +115,7 @@ public class RegisteredUserController {
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value = "/updateRegisteredUser/{id}", method = RequestMethod.POST)
-	public boolean getAllbyAverageRatingasdasd(@PathVariable("id") long id, @RequestBody RegisteredUserUpdateDTO registeredUserUpdateDTO) {
+	public boolean updateRegisteredUser(@PathVariable("id") long id, @RequestBody RegisteredUserUpdateDTO registeredUserUpdateDTO) {
 		RegisteredUser registerUser = new RegisteredUser(registeredUserUpdateDTO);
 	    return registeredUserService.updateRegisteredUser(id, registerUser);
 	}
