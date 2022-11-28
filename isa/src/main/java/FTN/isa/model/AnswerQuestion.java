@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 @Entity
 public class AnswerQuestion {
@@ -26,10 +27,12 @@ public class AnswerQuestion {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
 	@JoinTable(name = "answering", joinColumns = @JoinColumn(name = "answer_question_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "question_form_id", referencedColumnName = "id"))
+	@Valid
 	private Set<QuestionForm> questions = new HashSet<QuestionForm>();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "question_id")
+	@Valid
 	private Question question;
 	
 	public AnswerQuestion() {}

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 
 @Entity
 public class AdministratorSystem {
@@ -16,6 +17,7 @@ public class AdministratorSystem {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id", referencedColumnName = "id")
+	@Valid
 	private Person person;
 	
 	public AdministratorSystem() {}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { CenterDTO } from '../../hospital/model/centerDTO';
-import { CenterService } from './service/center.service';
+import { CenterDTO } from '../../hospital/model/centerDTO'
+import { CenterService } from '../service/center.service';
 
 @Component({
   selector: 'app-home',
@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit {
 
   public registerCenterAdministrator(){
     this.router.navigate(['/registerCenterAdministrator']);
+  }
+
+  public registeredPersons(){
+    this.router.navigate(['/registeredPersons']);
   }
 
   public nextButton(){

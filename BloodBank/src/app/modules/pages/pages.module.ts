@@ -8,6 +8,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from 'src/app/material/material.module';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: 'home', component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +27,9 @@ import { MaterialModule } from 'src/app/material/material.module';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    RouterModule.forChild(routes),
+  ],
+  exports: [ RouterModule ]
 })
 export class PagesModule { }

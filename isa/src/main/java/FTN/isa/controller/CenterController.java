@@ -3,6 +3,8 @@ package FTN.isa.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -125,7 +127,7 @@ public class CenterController {
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity<CenterDTO> registerPerson(@RequestBody CenterDTO centerDTO)  {
+	public ResponseEntity<CenterDTO> registerPerson(@RequestBody @Valid CenterDTO centerDTO)  {
 		Center center = new Center(centerDTO);
 		try {
 			centerService.create(center);

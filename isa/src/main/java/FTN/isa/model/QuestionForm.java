@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 @Entity
 public class QuestionForm {
@@ -24,10 +25,10 @@ public class QuestionForm {
 	
 	@Column(name = "deleted")
 	private boolean deleted;
-
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "registered_user_id", referencedColumnName = "id")
+	@Valid
 	private Person registeredUser;
 	
 	@Column(name = "date", nullable = false)
@@ -35,6 +36,7 @@ public class QuestionForm {
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
 	@JoinTable(name = "answering", joinColumns = @JoinColumn(name = "answer_question_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "question_form_id", referencedColumnName = "id"))
+	@Valid
 	private Set<AnswerQuestion> questions = new HashSet<AnswerQuestion>();
 
 	public QuestionForm() {}

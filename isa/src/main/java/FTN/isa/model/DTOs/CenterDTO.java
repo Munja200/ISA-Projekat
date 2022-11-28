@@ -1,5 +1,10 @@
 package FTN.isa.model.DTOs;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 import FTN.isa.model.Address;
 import FTN.isa.model.Center;
 
@@ -7,12 +12,16 @@ public class CenterDTO {
 	
 	private long id;
 	
+	@Pattern(regexp="^[A-Z]{1}[a-z]{0,29}$")
 	private String name;
 	
+	@Valid
 	private Address address;
 	
 	private String description;
 	
+	@Min(0)
+	@Max(10)
 	private float averageRating;
 	
 	private boolean deleted;

@@ -1,6 +1,7 @@
 package FTN.isa.model.DTOs;
 
-import FTN.isa.model.Center;
+import javax.validation.Valid;
+
 import FTN.isa.model.Person;
 
 public class AdministratorCenterDTO {
@@ -9,6 +10,7 @@ public class AdministratorCenterDTO {
 	
 	private boolean deleted;
 	
+	@Valid
 	private Person person;
 	
 	private String centerId;

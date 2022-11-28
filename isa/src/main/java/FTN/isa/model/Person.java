@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -19,7 +22,7 @@ public class Person {
 	private long Id;
 	
 	@Column(name = "name", nullable = false)
-	@Pattern(regexp="^\\w{3,20}$", message = "Person.name regex error")
+	@Pattern(regexp="^\\w{3,20}$")
 	private String name;
 	
 	@Pattern(regexp="^\\w{3,20}$")
@@ -63,6 +66,7 @@ public class Person {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@Valid
 	private Address address;
 	
 	public Person() {}

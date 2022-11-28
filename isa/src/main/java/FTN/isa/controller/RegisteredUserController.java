@@ -65,21 +65,25 @@ public class RegisteredUserController {
 			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
 	})
 	@GetMapping(value = "/{name}/{surname}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<RegisteredUserDTO>> getAllbyName(
+	public ResponseEntity<List<RegisteredUserDTO>> getAllByNameSurname(
 			@Parameter(name="name", description = "Name of user (none to ignore)", required = false) @PathVariable("name") String name,
 			@Parameter(name="surname", description = "Surname of user (none to ignore)", required = false) @PathVariable("surname") String surname,
 			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
 		Pageable pageable =  PageRequest.of(id, 10);	
 		Page<RegisteredUser> questions = null;
 		List<RegisteredUserDTO> registeredUserDTOs = new ArrayList<RegisteredUserDTO>();
+		
 		if(!name.equals("none") && !surname.equals("none"))
 			questions = registeredUserService.findAllByNameSurname(pageable, name, surname);
-		else {
+		else if(name.equals("none") && surname.equals("none")){
+			questions = registeredUserService.findAll(pageable);
+		}else{
 			if(!name.equals("none"))
 				questions = registeredUserService.findAllByName(pageable, name);
 			if (!surname.equals("none"))
 				questions = registeredUserService.findAllBySurname(pageable, surname);
 		}
+		
 		if(questions != null)
 			for(RegisteredUser u : questions){
 				registeredUserDTOs.add(new RegisteredUserDTO(u));

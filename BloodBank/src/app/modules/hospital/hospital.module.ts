@@ -12,13 +12,15 @@ import { RegisterCenterAdministratorComponent } from "./register-centerAdministr
 import { RegisterPersonComponent } from "./register-person/register-person.component";
 import { QuestionFormComponent } from './question-form/question-form.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { SearchRegisteredPersons } from "./search-RegisteredPersons/search-RegisteredPersons.component";
 
 
 const routes: Routes = [
   { path: 'registerCenter', component: RegisterCenterComponent },
   { path: 'register', component: RegisterPersonComponent },
   { path: 'questionForm', component: QuestionFormComponent },
-  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent}
+  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
+  { path: 'registeredPersons', component: SearchRegisteredPersons}
 ];
 
 @NgModule({
@@ -26,7 +28,8 @@ const routes: Routes = [
     RegisterPersonComponent,
     QuestionFormComponent,
     RegisterCenterComponent,
-    RegisterCenterAdministratorComponent
+    RegisterCenterAdministratorComponent,
+    SearchRegisteredPersons
   ],
   imports: [
     CommonModule,

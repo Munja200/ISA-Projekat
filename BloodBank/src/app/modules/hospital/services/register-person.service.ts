@@ -23,4 +23,8 @@ export class RegisterPersonService {
   registerPerson(person: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'api/persons', person, {headers: this.headers});
   }
+
+  getAllByNameSurname(name: string, surname: string, id: number){
+    return this.http.get<any>('api/registeredUser/' + name + '/' + surname + '/' + id, {headers: this.headers});
+  }
 }
