@@ -2,6 +2,8 @@ package FTN.isa.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.AdministratorCenter;
-import FTN.isa.model.Center;
 import FTN.isa.model.DTOs.AdministratorCenterDTO;
-import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.service.AdministratorCenterService;
 import FTN.isa.service.CenterService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,7 +59,7 @@ public class AdministratorCenterController {
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseEntity<AdministratorCenterDTO> registerPerson(@RequestBody AdministratorCenterDTO administratorCenterDTO)  {
+	public ResponseEntity<AdministratorCenterDTO> registerPerson(@RequestBody @Valid AdministratorCenterDTO administratorCenterDTO)  {
 		AdministratorCenter administratorCenter = new AdministratorCenter(
 				administratorCenterDTO.getId(),
 				administratorCenterDTO.isDeleted(),

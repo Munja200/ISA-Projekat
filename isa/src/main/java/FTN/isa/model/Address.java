@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -14,21 +15,29 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
 	
+	@Min(0)
+	@Max(1000)
 	@Column(name = "latitude", nullable = false)
 	private int latitude;
-
+	
+	@Min(0)
+	@Max(1000)
 	@Column(name = "longitude", nullable = false)
 	private int longitude;
 	
+	@Pattern(regexp="^([A-Z]{1}[a-z]{0,20}\\s)*([A-Z]{1}[a-z]{0,20})$")
 	@Column(name = "street", nullable = false)
 	private String street;
 	
+	@Pattern(regexp="^[1-9A-Za-z\\/]+$")
 	@Column(name = "number", nullable = false)
 	private String number;
 	
+	@Pattern(regexp="^([A-Z]{1}[a-z]{0,20}\\s)*([A-Z]{1}[a-z]{0,20})$")
 	@Column(name = "city", nullable = false)
 	private String city;
 	
+	@Pattern(regexp="^([A-Z]{1}[a-z]{0,20}\\s)*([A-Z]{1}[a-z]{0,20})$")
 	@Column(name = "country", nullable = false)
 	private String country;
 	

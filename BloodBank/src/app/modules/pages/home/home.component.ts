@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Address } from '../../hospital/model/address';
 import { CenterDTO } from '../../hospital/model/centerDTO';
-import { CenterService } from './service/center.service';
+import { CenterService } from '../service/center.service';
 
 @Component({
   selector: 'app-home',
@@ -62,6 +62,10 @@ export class HomeComponent implements OnInit {
 
   public profileRegisteredUser(){
     this.router.navigate(['/profilOfRegisteredUser']);
+  }
+
+  public registeredPersons(){
+    this.router.navigate(['/registeredPersons']);
   }
 
   public nextButton(){
@@ -204,7 +208,7 @@ export class HomeComponent implements OnInit {
   public filterCenterByStreet() {
     this.page = 0;
     this.centerService.getAllbyStreet(this.street, this.page).subscribe(res => {
-      //ovde kako uzeti samo one iz pretrageeeeee
+      //ovde kako uzeti samo one iz pretrageeeeee MAGIJAAAAAAAAA by: Galic :D
       this.searchs = res;
       this.dataSource.data = this.searchs;
     })

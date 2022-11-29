@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 import FTN.isa.model.DTOs.CenterDTO;
 
@@ -23,6 +27,7 @@ public class Center {
 	private long Id;
 	
 	@Column(name = "name", nullable = false)
+	@Pattern(regexp="^[A-Z]{1}[a-z]{0,29}$")
 	private String name;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -32,13 +37,15 @@ public class Center {
 	@Column(name = "description", nullable = false)
 	private String description;
 	
+	@Min(0)
+	@Max(10)
 	@Column(name = "averageRating", nullable = false)
 	private float averageRating;
 	
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Valid
 	private Set<AdministratorCenter> administratorCenters = new HashSet<AdministratorCenter>();
 	
-
 	@Column(name = "deleted")
 	private boolean deleted;
 	//private Set<Blood> bloods = new HashSet<>();

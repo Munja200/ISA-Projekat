@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.jpa.repository.Query;
 
 import FTN.isa.model.Center;
-import FTN.isa.model.RegisteredUser;
 
 public interface CenterRepository extends PagingAndSortingRepository<Center, Long>{
 	
@@ -17,6 +16,7 @@ public interface CenterRepository extends PagingAndSortingRepository<Center, Lon
 
 	public List<Center> findAll();
 	
+	@SuppressWarnings("unchecked")
 	public Center save(Center center);
 	
 	@Query(value="select * from center c where c.id = ?1",nativeQuery = true)

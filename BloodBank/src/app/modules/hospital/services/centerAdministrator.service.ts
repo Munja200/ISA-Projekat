@@ -7,13 +7,12 @@ import { CenterAdministratorDTO } from '../model/centerAdministratorDTO';
   providedIn: 'root'
 })
 export class CenterAdministratorService {
-  apiHost: string = 'http://localhost:8080/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
   registerCenterAdministrator(administratorCenterDTO: CenterAdministratorDTO): Observable<any> {
-    return this.http.post<any>(this.apiHost + 'api/administratorCenters/add', administratorCenterDTO, {headers: this.headers});
+    return this.http.post<any>('api/administratorCenters/add', administratorCenterDTO, {headers: this.headers});
   }
   
 }

@@ -4,6 +4,8 @@ package FTN.isa.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.DTOs.RegisteredUserDTO;
 import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
@@ -33,7 +34,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "api/registeredUsers")
 public class RegisteredUserController {
 	@Autowired
@@ -66,21 +67,25 @@ public class RegisteredUserController {
 			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
 	})
 	@GetMapping(value = "/{name}/{surname}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<RegisteredUserDTO>> getAllbyName(
+	public ResponseEntity<List<RegisteredUserDTO>> getAllByNameSurname(
 			@Parameter(name="name", description = "Name of user (none to ignore)", required = false) @PathVariable("name") String name,
 			@Parameter(name="surname", description = "Surname of user (none to ignore)", required = false) @PathVariable("surname") String surname,
 			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
 		Pageable pageable =  PageRequest.of(id, 10);	
 		Page<RegisteredUser> questions = null;
 		List<RegisteredUserDTO> registeredUserDTOs = new ArrayList<RegisteredUserDTO>();
+		
 		if(!name.equals("none") && !surname.equals("none"))
 			questions = registeredUserService.findAllByNameSurname(pageable, name, surname);
-		else {
+		else if(name.equals("none") && surname.equals("none")){
+			questions = registeredUserService.findAll(pageable);
+		}else{
 			if(!name.equals("none"))
 				questions = registeredUserService.findAllByName(pageable, name);
 			if (!surname.equals("none"))
 				questions = registeredUserService.findAllBySurname(pageable, surname);
 		}
+		
 		if(questions != null)
 			for(RegisteredUser u : questions){
 				registeredUserDTOs.add(new RegisteredUserDTO(u));
@@ -115,7 +120,7 @@ public class RegisteredUserController {
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value = "/updateRegisteredUser/{id}", method = RequestMethod.POST)
-	public boolean updateRegisteredUser(@PathVariable("id") long id, @RequestBody RegisteredUserUpdateDTO registeredUserUpdateDTO) {
+	public boolean updateRegisteredUser(@PathVariable("id") long id, @RequestBody @Valid RegisteredUserUpdateDTO registeredUserUpdateDTO) {
 		RegisteredUser registerUser = new RegisteredUser(registeredUserUpdateDTO);
 	    return registeredUserService.updateRegisteredUser(id, registerUser);
 	}

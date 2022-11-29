@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 @Entity
 public class Examination {
@@ -17,6 +18,7 @@ public class Examination {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "administrator_center_id")
+	@Valid
 	private AdministratorCenter administratorCenter;
 	
 	@Column(name = "deleted")

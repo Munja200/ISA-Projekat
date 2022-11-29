@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Center;
-import FTN.isa.model.RegisteredUser;
 import FTN.isa.repository.CenterRepository;
 
 @Service

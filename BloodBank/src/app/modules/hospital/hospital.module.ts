@@ -11,9 +11,11 @@ import { RegisterCenterComponent } from "./register-center/register-center.compo
 import { RegisterCenterAdministratorComponent } from "./register-centerAdministrator/register-centerAdministrator.component";
 import { RegisterPersonComponent } from "./register-person/register-person.component";
 import { QuestionFormComponent } from './question-form/question-form.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { ProfilOfRegisteredUserComponent } from './profil-of-registered-user/profil-of-registered-user.component';
 import { EditProfilRegisteredUserComponent } from './edit-profil-registered-user/edit-profil-registered-user.component';
+import { SearchRegisteredPersons } from "./search-RegisteredPersons/search-RegisteredPersons.component";
+import { AppRoutingModule } from "src/app/app-routing.module";
 
 
 const routes: Routes = [
@@ -23,8 +25,8 @@ const routes: Routes = [
   { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
   { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
   { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent},
-  { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent}
-
+  { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent},
+  { path: 'registeredPersons', component: SearchRegisteredPersons}
 ];
 
 @NgModule({
@@ -34,7 +36,8 @@ const routes: Routes = [
     RegisterCenterComponent,
     RegisterCenterAdministratorComponent,
     ProfilOfRegisteredUserComponent,
-    EditProfilRegisteredUserComponent
+    EditProfilRegisteredUserComponent,
+    SearchRegisteredPersons
   ],
   imports: [
     CommonModule,
@@ -46,7 +49,8 @@ const routes: Routes = [
     MatPaginatorModule,
     MatRadioModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    AppRoutingModule
   ],
   exports: [ RouterModule ]
 })

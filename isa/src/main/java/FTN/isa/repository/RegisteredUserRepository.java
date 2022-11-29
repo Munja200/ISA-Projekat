@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 
 public interface RegisteredUserRepository extends PagingAndSortingRepository<RegisteredUser, Long>{
@@ -26,6 +25,7 @@ public interface RegisteredUserRepository extends PagingAndSortingRepository<Reg
 	
 	public List<RegisteredUser> findAll();
 	
+	@SuppressWarnings("unchecked")
 	public RegisteredUser save(RegisteredUser registeredUser);
 	
 	@Query(value="select * from registered_user ru ,person p where ru.person_id= p.id and  ru.id =?1",nativeQuery = true)

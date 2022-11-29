@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Question;
 import FTN.isa.repository.QuestionRepository;
-import io.swagger.v3.oas.models.security.SecurityScheme.In;
 
 @Service
 public class QuestionService {

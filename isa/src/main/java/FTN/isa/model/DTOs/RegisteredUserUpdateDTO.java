@@ -1,20 +1,41 @@
 package FTN.isa.model.DTOs;
 
 import java.util.Date;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+
 import FTN.isa.model.Address;
 
 public class RegisteredUserUpdateDTO {
     
 	private long Id;
+	@Pattern(regexp="^\\w{3,20}$")
+	
     private String name;
+	@Pattern(regexp="^\\w{3,20}$")
+	
     private String surname;
+	@Pattern(regexp="^[\\+]{1}[\\(]{1}[0-9]{3}[\\)]{1}[0-9]{2}[\\/]{1}[0-9]{3}[\\-]{1}[0-9]{4,6}")
+	
     private String phonNumber;
+	@Pattern(regexp="[0-9]{13}")
+	
     private String jmbg;
+	@Pattern(regexp="\\bMale\\b|\\bFemale\\b|\\bOther\\b")
+	
     private String gender;
+	
     private String occupation;
+    
     private String informationAboutCompany;
+    
     private Date dateOfBirth;
+    
+    @Pattern(regexp="\\bA\\b(\\+|\\-){1}|\\bB\\b(\\+|\\-){1}|\\bO\\b(\\+|\\-){1}|\\bAB\\b(\\+|\\-){1}")
     private String bloodType;
+    
+    @Valid
     private Address address;
     
     public RegisteredUserUpdateDTO() { }

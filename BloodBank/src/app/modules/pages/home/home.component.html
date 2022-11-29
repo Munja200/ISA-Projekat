@@ -1,6 +1,7 @@
 <h1 >Welcome to the home page</h1>
+<h1>ALAH SE UVALIH</h1> <!-- by: Radisa Stojkic -->
 
-<div   class="div">
+<div class="div">
     <button mat-stroked-button (click)="registePerson()">
         Registration
     </button>
@@ -21,6 +22,9 @@
         Profil information
     </button>
 
+    <button mat-stroked-button (click)="registeredPersons()">    
+        Registered Persons Search
+    </button>
 
 </div>
 
@@ -76,11 +80,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <button mat-stroked-button (click)="nextButton()">Next</button>
-    <button mat-stroked-button disabled >{{this.page+1}}</button> 
+    <button mat-stroked-button disabled > {{this.page + 1}}</button> 
     <button mat-stroked-button  (click)="previousButton()">Previous</button>
-    
-</div>
-
-<div>
     
 </div>

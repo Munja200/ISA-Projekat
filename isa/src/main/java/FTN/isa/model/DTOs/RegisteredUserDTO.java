@@ -1,5 +1,7 @@
 package FTN.isa.model.DTOs;
 
+import javax.validation.Valid;
+
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 
@@ -8,6 +10,7 @@ public class RegisteredUserDTO {
 	
 	private boolean deleted;
 	
+	@Valid
 	private Person person;
 	
 	public RegisteredUserDTO() {}

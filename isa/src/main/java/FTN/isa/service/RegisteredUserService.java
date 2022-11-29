@@ -16,7 +16,6 @@ import FTN.isa.repository.RegisteredUserRepository;
 public class RegisteredUserService {
 	@Autowired
 	private RegisteredUserRepository registeredUserRepository;
-	private PersonRepository personRepository;
 	
 	public Page<RegisteredUser> findAll(Pageable pageable) {
 		return registeredUserRepository.findAll(pageable);

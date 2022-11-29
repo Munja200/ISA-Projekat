@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 
 import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 
@@ -27,9 +28,11 @@ public class RegisteredUser {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id", referencedColumnName = "id")
+	@Valid
 	private Person person;
 	
 	@OneToMany(mappedBy = "registeredUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Valid
 	private Set<QuestionForm> questionForms = new HashSet<QuestionForm>();
 
 	

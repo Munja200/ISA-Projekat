@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 
 @Entity
 public class AdministratorCenter {
@@ -26,13 +27,16 @@ public class AdministratorCenter {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id", referencedColumnName = "id")
+	@Valid
 	private Person person;
 	
 	@OneToMany(mappedBy = "administratorCenter", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Valid
 	private Set<Examination> examinations = new HashSet<Examination>(); 
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "center_id", referencedColumnName = "id")
+	@Valid
 	private Center center;
 
 	public AdministratorCenter() {}
