@@ -61,7 +61,7 @@ public class PersonController {
 			@ApiResponse(responseCode = "404", description = "person not found", content = @Content)
 	})
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Person> getGreeting(@Parameter(name="id", description = "ID of a person to return", required = true) @PathVariable("id") Long id) {
+	public ResponseEntity<Person> getPersonById(@Parameter(name="id", description = "ID of a person to return", required = true) @PathVariable("id") Long id) {
 		Person greeting = personService.getById(id);
 
 		if (greeting == null) {
