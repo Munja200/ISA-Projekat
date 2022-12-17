@@ -68,6 +68,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/registeredPersons']);
   }
 
+  public answerComplaints(){
+    this.router.navigate(['/complaints']);
+  }
+
   public nextButton(){
     if(this.rooms.length >= 10 ){
       this.page =this.page + 1;

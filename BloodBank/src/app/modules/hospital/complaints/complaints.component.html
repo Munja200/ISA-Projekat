@@ -1,0 +1,90 @@
+<div class="w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <button class="btn btn-outline-light" (click)="backToHomePage()">Home Page</button>
+    <div class="d-flex">
+        <div class="w-70 d-flex justify-content-center">
+            <div class="d-flex justify-content-center align-items-center w-80 p-4 mt-5 rounded" style="background: #2125298e">
+                <div class="w-100">
+                    <table class="table table-light table-striped table-hover w-50 mx-auto mt-2 w-75">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col" class="text-center">Name</th>
+                                <th scope="col" class="text-center">Surname</th>
+                                <th scope="col" class="text-center">Complain</th>
+                                <th scope="col" class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let complaint of complaints;">
+                                <td class="text-center">{{complaint.id}}</td>
+                                <td class="text-center">{{complaint.person.name}}</td>
+                                <td class="text-center">{{complaint.person.surname}}</td>
+                                <td class="text-center">{{complaint.complaint}}</td>
+                                <td class="p-0">
+                                    <button type="button" class="btn btn-light" (click)="select(complaint.id)">Select</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-between w-50 mt-1 mx-auto">
+                        <button type="button" class="btn btn-outline-light" *ngIf="currentPageID > 0" (click)="previous()">Previous ({{currentPageID - 1}})</button>
+                        <button type="button" class="btn btn-outline-light" *ngIf="currentPageID <= 0" (click)="previous()">Previous ({{currentPageID}})</button>
+                        <label class="text-white">({{currentPageID}})</label>
+                        <button type="button" class="btn btn-outline-light" (click)="next()">Next ({{currentPageID + 1}})</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="w-30">
+            <div class="w-80 p-4 mt-5 rounded" style="background: #2125298e">
+                <label class="h4 text-white mb-4"> Complaint ID: {{selected.id}}</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Name</span>
+                    </div>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="selected.person.name" style="background: #ffffff8e" readonly>
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Surname</span>
+                    </div>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="selected.person.surname" style="background: #ffffff8e" readonly>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend w-100">
+                      <span class="input-group-text">Complaint</span>
+                    </div>
+                </div>
+                <div class="input-group mb-2" [formGroup]="buttonForm">
+                    <textarea class="form-control" [(ngModel)]="selected.complaint" formControlName="complaint"
+                    style="
+                        height:100px; 
+                        min-height:100px;  
+                        max-height:100px;
+                        background: #ffffff8e;
+                        " 
+                    readonly></textarea>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend w-100">
+                      <span class="input-group-text">Answer</span>
+                    </div>
+                </div>
+                <div class="input-group mb-2" [formGroup]="buttonForm">
+                    <textarea class="form-control" [(ngModel)]="selected.answer" formControlName="answer"
+                    style="
+                        height:100px; 
+                        min-height:100px;  
+                        max-height:100px;
+                        background: #ffffff8e;
+                        " 
+                    ></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-outline-light" (click)="save()" [disabled]="buttonForm.invalid">{{buttonText}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,3 +1,4 @@
+import { ComplaintsComponent } from './complaints/complaints.component';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
   { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent},
   { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent},
-  { path: 'registeredPersons', component: SearchRegisteredPersons}
+  { path: 'registeredPersons', component: SearchRegisteredPersons},
+  { path: 'complaints', component: ComplaintsComponent},
 ];
 
 @NgModule({
@@ -37,7 +39,8 @@ const routes: Routes = [
     RegisterCenterAdministratorComponent,
     ProfilOfRegisteredUserComponent,
     EditProfilRegisteredUserComponent,
-    SearchRegisteredPersons
+    SearchRegisteredPersons,
+    ComplaintsComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +53,7 @@ const routes: Routes = [
     MatRadioModule,
     MatSortModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [ RouterModule ]
 })

@@ -191,3 +191,17 @@ insert into administrator_center(deleted, center_id, person_id) values (false, 2
 insert into administrator_center(deleted, center_id, person_id) values (false, 35, 33);
 insert into administrator_center(deleted, center_id, person_id) values (false, 7, 34);
 insert into administrator_center(deleted, center_id, person_id) values (false, 17, 35);
+
+----------------------COMPLAINT----------------------
+insert into complaint(id, answer, complaint, person_id) values (1, null, 'Los objekat skroz na skroz', 5);
+insert into complaint(id, answer, complaint, person_id) values (2, null, 'Zalicu se koliko god treba', 5);
+insert into complaint(id, answer, complaint, person_id) values (3, null, 'Ne valja', 5);
+insert into complaint(id, answer, complaint, person_id) values (4, null, '123', 5);
+insert into complaint(id, answer, complaint, person_id) values (5, null, 'Da li radi', 5);
+insert into complaint(id, answer, complaint, person_id) values (6, null, 'Ne ne radi', 5);
+insert into complaint(id, answer, complaint, person_id) values (7, null, 'Nemam kola i bas me briga', 5);
+insert into complaint(id, answer, complaint, person_id) values (8, null, 'UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA UAAAA', 5);
+insert into complaint(id, answer, complaint, person_id) values (9, null, 'Ide gas', 5);
+insert into complaint(id, answer, complaint, person_id) values (10, null, 'Colonija ofc', 5);
+insert into complaint(id, answer, complaint, person_id) values (11, null, 'Pazi sad', 5);
+insert into complaint(id, answer, complaint, person_id) values (12, null, 'JAHS DIPSAH DOIASHHIOHDIO NUAHDIHN IOUASDHI JAHS DIPSAH DOIASH ODHHIO NUSAHUI DHNIOU SHIDHNU IOASHIDH INASHIDH IONASHID HINOASHIDHI NUOASHNI UDHNIUDH SINOAHI ODHIO HIOHDIO NUAHDIHN IOUASDHI', 5);
