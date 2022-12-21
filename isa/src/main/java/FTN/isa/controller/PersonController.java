@@ -3,10 +3,8 @@ package FTN.isa.controller;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import javax.validation.Valid;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

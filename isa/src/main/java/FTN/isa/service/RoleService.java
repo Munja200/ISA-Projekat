@@ -15,15 +15,12 @@ public class RoleService {
   private RoleRepository roleRepository;
 
   public Role findById(Long id) {
-    Role auth = this.roleRepository.getOne(id);
+	Role auth = roleRepository.getOne(id);
     return auth;
   }
 
-  
   public List<Role> findByName(String name) {
-	List<Role> roles = this.roleRepository.findByName(name);
+	List<Role> roles = roleRepository.findByName(name);
     return roles;
   }
-
-
 }

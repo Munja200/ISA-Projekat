@@ -1,6 +1,5 @@
 package FTN.isa.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.MailException;
@@ -9,7 +8,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 
 @Service
@@ -38,7 +36,4 @@ public class EmailService {
 
 		System.out.println("Email poslat!");
 	}
-
-
-
 }

@@ -15,7 +15,6 @@ import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.Role;
 import FTN.isa.repository.PersonRepository;
 import FTN.isa.repository.RegisteredUserRepository;
-import net.bytebuddy.utility.RandomString;
 
 @Service
 public class PersonService {
