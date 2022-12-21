@@ -73,40 +73,17 @@ insert into address (city, country, latitude, longitude, number, street) values 
 INSERT INTO ROLE (name) VALUES ('ROLE_USER');
 INSERT INTO ROLE (name) VALUES ('ROLE_ADMIN');
 
+----------------------PERSONS------------------------
+insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'rade@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Bullar', 'rade@gmail.com', 1);
+insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'sto@gmail.com', true, 'Male', 'Ftn', 780876578633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42134368672', 'Bullar', 'sto@gmail.com', 1);
+
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 1); -- admin-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu ADMIN
 
-
-----------------------PERSONS------------------------
-insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'rade@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Bullar', 'rade@gmail.com', 1);
-insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'sto@gmail.com', true, 'Male', 'Ftn', 7808765sa78633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42134368672', 'Bullar', 'sto@gmail.com', 1);
-
 ----------------------REGISTERED_USERS------------------------
-insert into registered_user(deleted, person_id) values (false, 1);
-insert into registered_user(deleted, person_id) values (false, 2);
-insert into registered_user(deleted, person_id) values (false, 3);
-insert into registered_user(deleted, person_id) values (false, 4);
-insert into registered_user(deleted, person_id) values (false, 5);
-insert into registered_user(deleted, person_id) values (false, 6);
-insert into registered_user(deleted, person_id) values (false, 7);
-insert into registered_user(deleted, person_id) values (false, 8);
-insert into registered_user(deleted, person_id) values (false, 9);
-insert into registered_user(deleted, person_id) values (false, 10);
-insert into registered_user(deleted, person_id) values (false, 11);
-insert into registered_user(deleted, person_id) values (false, 12);
-insert into registered_user(deleted, person_id) values (false, 13);
-insert into registered_user(deleted, person_id) values (false, 14);
-insert into registered_user(deleted, person_id) values (false, 15);
-insert into registered_user(deleted, person_id) values (false, 16);
-insert into registered_user(deleted, person_id) values (false, 17);
-insert into registered_user(deleted, person_id) values (false, 18);
-insert into registered_user(deleted, person_id) values (false, 19);
-insert into registered_user(deleted, person_id) values (false, 20);
-insert into registered_user(deleted, person_id) values (false, 21);
-insert into registered_user(deleted, person_id) values (false, 22);
-insert into registered_user(deleted, person_id) values (false, 23);
-insert into registered_user(deleted, person_id) values (false, 24);
+insert into registered_user(deleted, person_id, enabled) values (false, 1, false);
+insert into registered_user(deleted, person_id, enabled) values (false, 2, false);
 
 ----------------------QUESTION------------------------
 insert into question (question, exact_value) values ('Da li imate vise od 50 kg', true);
@@ -155,14 +132,5 @@ insert into center (average_rating, deleted, description, name, address_id) valu
 insert into center (average_rating, deleted, description, name, address_id) values (3.61, false, 'Mauris sit amet eros.', 'Oyoloo', 70);
 
 ----------------------CENTER_ADMINISTRATOR------------------------
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 25);
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 26);
-insert into administrator_center(deleted, center_id, person_id) values (false, 2, 27);
-insert into administrator_center(deleted, center_id, person_id) values (false, 2, 28);
-insert into administrator_center(deleted, center_id, person_id) values (false, 3, 29);
-insert into administrator_center(deleted, center_id, person_id) values (false, 14, 30);
-insert into administrator_center(deleted, center_id, person_id) values (false, 15, 31);
-insert into administrator_center(deleted, center_id, person_id) values (false, 22, 32);
-insert into administrator_center(deleted, center_id, person_id) values (false, 35, 33);
-insert into administrator_center(deleted, center_id, person_id) values (false, 7, 34);
-insert into administrator_center(deleted, center_id, person_id) values (false, 17, 35);
+insert into administrator_center(deleted, center_id, person_id) values (false, 1, 1);
+insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);
