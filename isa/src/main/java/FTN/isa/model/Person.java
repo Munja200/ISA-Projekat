@@ -135,9 +135,7 @@ public class Person implements UserDetails{
 	public String getPassword() {
 		return password;
 	}
-
 	
-
     public Timestamp getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }
@@ -146,7 +144,6 @@ public class Person implements UserDetails{
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-	
 	public void setPassword(String password) {
 		Timestamp now = new Timestamp(new Date().getTime());
         this.setLastPasswordResetDate(now);
@@ -216,9 +213,16 @@ public class Person implements UserDetails{
     }
     
     public List<Role> getRoles() {
+       return this.roles;
+    }
+    
+    public String getRolesString() {
+    	String roles = "";
+    	for (Role role : this.roles) {
+			roles += role.getName() + " ";
+		}
        return roles;
     }
-
 
 	public String getBloodType() {
 		return bloodType;

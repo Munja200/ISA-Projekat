@@ -1,3 +1,4 @@
+import { Role } from './../model/role';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ApiService } from './api.service';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs';
 import { RegisterPersonService } from './register-person.service';
+import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
@@ -22,7 +24,7 @@ export class AuthService {
 
   private access_token = null;
 
-  login(user:any) {
+  login(user: any) {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -39,11 +41,14 @@ export class AuthService {
       .pipe(map((res) => {
         console.log('Login success');
         this.access_token = res.body.accessToken;
+
         localStorage.setItem("jwt", res.body.accessToken)
+        const tokenInfo = this.getDecodedAccessToken(res.body.accessToken);
+        localStorage.setItem('userRoles', tokenInfo.userRole);
+        
       }));
       
   }
-
   
   signup(user:any) {
     const signupHeaders = new HttpHeaders({
@@ -69,6 +74,14 @@ export class AuthService {
 
   getToken() {
     return this.access_token;
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
   }
 
 }
