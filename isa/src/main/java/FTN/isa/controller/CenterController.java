@@ -216,97 +216,94 @@ public class CenterController {
 	}
 	
 	//"api/centers/{name}/{city}/{id}"
-		@Operation(summary = "Get centers by name and city", description = "Get centers by name and city", method="GET")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "found centers by page number",
-						content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
-				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
-		})
-		@GetMapping(value = "/{name}/{city}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<List<CenterDTO>> getAllbyNameCity(
-				@Parameter(name="name", description = "Name of center (none to ignore)", required = false) @PathVariable("name") String name,
-				@Parameter(name="city", description = "City of center (none to ignore)", required = false) @PathVariable("city") String city,
-				@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
-			Pageable pageable =  PageRequest.of(id, 10);	
-			
-			Page<Center> questions = null;
-			List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
-			if(!name.equals("none") && !city.equals("none"))
-				questions = centerService.findAllByNameCity(pageable, name, city);
-			else {
-				if(!name.equals("none"))
-					questions = centerService.findAllByName(pageable, name);
-				if (!city.equals("none"))
-					questions = centerService.findAllByCity(pageable, city);
-			}
-			if(questions != null)
-				for(Center c : questions){
-					centerDTOs.add(new CenterDTO(c));
-				}
-			
-			return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
+	@Operation(summary = "Get centers by name and city", description = "Get centers by name and city", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@GetMapping(value = "/{name}/{city}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CenterDTO>> getAllbyNameCity(
+			@Parameter(name="name", description = "Name of center (none to ignore)", required = false) @PathVariable("name") String name,
+			@Parameter(name="city", description = "City of center (none to ignore)", required = false) @PathVariable("city") String city,
+			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
+		Pageable pageable =  PageRequest.of(id, 10);	
+		
+		Page<Center> questions = null;
+		List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
+		if(!name.equals("none") && !city.equals("none"))
+			questions = centerService.findAllByNameCity(pageable, name, city);
+		else {
+			if(!name.equals("none"))
+				questions = centerService.findAllByName(pageable, name);
+			if (!city.equals("none"))
+				questions = centerService.findAllByCity(pageable, city);
 		}
+		if(questions != null)
+			for(Center c : questions){
+				centerDTOs.add(new CenterDTO(c));
+			}
 		
-		
-		
-		
-		//"api/centers/{street}/{id}"
-		@Operation(summary = "Get centers by street", description = "Get centers by street", method="GET")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "found centers by page number",
-						content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
-				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
-		})
-		@GetMapping(value = "/{street}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<List<CenterDTO>> getAllbyStreet(
-				@Parameter(name="street", description = "Street of center (none to ignore)", required = false) @PathVariable("street") String street,
-				@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
-			Pageable pageable =  PageRequest.of(id, 10);	
-					
-					Page<Center> questions = null;
-					List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
-					
-					if (!street.equals("none")) {
-						questions = centerService.findAllByStreet(pageable, street);
-					}
-					if(questions != null)
-						for(Center c : questions){
-							centerDTOs.add(new CenterDTO(c));
-						}
-					
-					return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
+		return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
+	}
+	
+	//"api/centers/{street}/{id}"
+	@Operation(summary = "Get centers by street", description = "Get centers by street", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@GetMapping(value = "/{street}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CenterDTO>> getAllbyStreet(
+			@Parameter(name="street", description = "Street of center (none to ignore)", required = false) @PathVariable("street") String street,
+			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
+		Pageable pageable =  PageRequest.of(id, 10);	
+				
+				Page<Center> questions = null;
+				List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
+				
+				if (!street.equals("none")) {
+					questions = centerService.findAllByStreet(pageable, street);
 				}
-		
-		
-		
-		
-		/*
-		//"api/centers/{averageRating}/{id}"
-		@Operation(summary = "Get centers by average", description = "Get centers by average", method="GET")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "found centers by page number",
-						content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
-				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
-		})
-		@GetMapping(value = "/{averageRating}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<List<CenterDTO>> getAllbyAverage(
-				@Parameter(name="averageRating", description = "Average Rating of center (0 to ignore)", required = false) @PathVariable("averageRating") float averageRating,
-				@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
-			Pageable pageable =  PageRequest.of(id, 10);	
-					
-					Page<Center> questions = null;
-					List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
-					
-					if (!(averageRating == 0)) {
-						questions = centerService.findAllByAverage(pageable, averageRating);
+				if(questions != null)
+					for(Center c : questions){
+						centerDTOs.add(new CenterDTO(c));
 					}
-					if(questions != null)
-						for(Center c : questions){
-							centerDTOs.add(new CenterDTO(c));
-						}
-					
-					return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
+				
+				return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
+			}
+	
+	
+	
+	
+	/*
+	//"api/centers/{averageRating}/{id}"
+	@Operation(summary = "Get centers by average", description = "Get centers by average", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@GetMapping(value = "/{averageRating}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CenterDTO>> getAllbyAverage(
+			@Parameter(name="averageRating", description = "Average Rating of center (0 to ignore)", required = false) @PathVariable("averageRating") float averageRating,
+			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
+		Pageable pageable =  PageRequest.of(id, 10);	
+				
+				Page<Center> questions = null;
+				List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
+				
+				if (!(averageRating == 0)) {
+					questions = centerService.findAllByAverage(pageable, averageRating);
 				}
-		
-		*/
+				if(questions != null)
+					for(Center c : questions){
+						centerDTOs.add(new CenterDTO(c));
+					}
+				
+				return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
+			}
+	
+	*/
 }

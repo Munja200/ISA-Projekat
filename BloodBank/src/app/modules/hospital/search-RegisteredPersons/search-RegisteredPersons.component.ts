@@ -33,7 +33,7 @@ export class SearchRegisteredPersons implements OnInit {
   }
 
   search(){
-    this.chechValid()
+    this.checkValid()
     this.registerPersonService.getAllByNameSurname(this.nameSearch, this.surnameSearch, this.currentPageID).subscribe(res => {
       this.registeredPersons = res;
     })
@@ -41,7 +41,7 @@ export class SearchRegisteredPersons implements OnInit {
 
   previous(){
     this.pageID -= 1;
-    this.chechValid()
+    this.checkValid()
     this.registerPersonService.getAllByNameSurname(this.nameSearch, this.surnameSearch, this.currentPageID).subscribe(res => {
       this.registeredPersons = res;
     })
@@ -49,13 +49,13 @@ export class SearchRegisteredPersons implements OnInit {
 
   next(){
     this.pageID += 1;
-    this.chechValid()
+    this.checkValid()
     this.registerPersonService.getAllByNameSurname(this.nameSearch, this.surnameSearch, this.currentPageID).subscribe(res => {
       this.registeredPersons = res;
     })
   }
 
-  chechValid(){
+  checkValid(){
     if(this.pageID == null || this.pageID <= 0) this.pageID = 0
     this.currentPageID = this.pageID;
 
