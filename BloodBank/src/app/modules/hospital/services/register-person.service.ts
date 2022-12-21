@@ -35,5 +35,6 @@ export class RegisterPersonService {
 
   getAllByNameSurname(name: string, surname: string, id: number){
     return this.http.get<any>('api/registeredUsers/' + name + '/' + surname + '/' + id, {headers: this.headers});
+
   }
 }

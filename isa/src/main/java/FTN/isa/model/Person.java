@@ -1,20 +1,35 @@
 package FTN.isa.model;
 
+import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
-public class Person {
+public class Person implements UserDetails{
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
@@ -23,7 +38,11 @@ public class Person {
 	@Pattern(regexp="^\\w{3,20}$")
 	private String name;
 	
+
 	@Pattern(regexp="^\\w{3,20}$")
+    @Column(name = "username")
+    private String username;
+	
 	@Column(name = "surname", nullable = false)
 	private String surname;
 	
@@ -31,6 +50,7 @@ public class Person {
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
+ //   @JsonIgnore
 	@Column(name = "password", unique = false, nullable = false)
 	private String password;
 	
@@ -55,8 +75,17 @@ public class Person {
 	@Column(name = "dateOfBirth", nullable = false)
 	private Date dateOfBirth;
 	
-	@Column(name = "role", nullable = false)
-	private Role role;
+	@ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles;
+	
+    @Column(name = "enabled")
+    private boolean enabled=true;
+
+    @Column(name = "last_password_reset_date")
+    private Timestamp lastPasswordResetDate;
 	
 	@Pattern(regexp="\\bA\\b(\\+|\\-){1}|\\bB\\b(\\+|\\-){1}|\\bO\\b(\\+|\\-){1}|\\bAB\\b(\\+|\\-){1}")
 	@Column(name = "bloodType", nullable = false)	
@@ -69,25 +98,7 @@ public class Person {
 	
 	public Person() {}
 	
-	public Person(long id, String name, String surname, String email, String password, String phonNumber, String jmbg,
-			String gender, String occupation, String informationAboutCompany, Date dateOfBirth, Role role,
-			String bloodType, Address address) {
-		super();
-		Id = id;
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-		this.password = password;
-		this.phonNumber = phonNumber;
-		this.jmbg = jmbg;
-		this.gender = gender;
-		this.occupation = occupation;
-		this.informationAboutCompany = informationAboutCompany;
-		this.dateOfBirth = dateOfBirth;
-		this.role = role;
-		this.bloodType = bloodType;
-		this.address = address;
-	}
+	
 
 	public long getId() {
 		return Id;
@@ -125,8 +136,21 @@ public class Person {
 		return password;
 	}
 
+	
+
+    public Timestamp getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Timestamp lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+	
 	public void setPassword(String password) {
-		this.password = password;
+		Timestamp now = new Timestamp(new Date().getTime());
+        this.setLastPasswordResetDate(now);
+        this.password = password;
 	}
 
 	public String getPhonNumber() {
@@ -168,6 +192,16 @@ public class Person {
 	public void setInformationAboutCompany(String informationAboutCompany) {
 		this.informationAboutCompany = informationAboutCompany;
 	}
+	
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
@@ -177,13 +211,14 @@ public class Person {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Role getRole() {
-		return role;
-	}
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+    
+    public List<Role> getRoles() {
+       return roles;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
 	public String getBloodType() {
 		return bloodType;
@@ -201,5 +236,40 @@ public class Person {
 		this.address = address;
 	}
 
+    public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	@JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 	
 }

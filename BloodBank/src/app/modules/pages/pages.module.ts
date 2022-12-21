@@ -13,10 +13,16 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'home', component: HomeComponent }
 ];
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../hospital/interceptor/TokenInterceptor';
+import { ApiService } from '../hospital/services/api.service';
+import { AuthService } from '../hospital/services/auth.service';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

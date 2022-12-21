@@ -1,10 +1,17 @@
 package FTN.isa.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.validation.Valid;
+=======
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+>>>>>>> feature-email
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Person;
+import FTN.isa.model.RegisteredUser;
+import FTN.isa.service.EmailService;
 import FTN.isa.service.PersonService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -34,6 +43,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class PersonController {
 	@Autowired
 	private PersonService personService;
+	
+	@Autowired
+	private EmailService mailService;
 	
 	@Operation(summary = "Get all persons", description = "Get all persons", method="GET")
 	@ApiResponses(value = {
@@ -55,7 +67,7 @@ public class PersonController {
 			@ApiResponse(responseCode = "404", description = "person not found", content = @Content)
 	})
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Person> getGreeting(@Parameter(name="id", description = "ID of a person to return", required = true) @PathVariable("id") Long id) {
+	public ResponseEntity<Person> getPersonById(@Parameter(name="id", description = "ID of a person to return", required = true) @PathVariable("id") Long id) {
 		Person greeting = personService.getById(id);
 
 		if (greeting == null) {
@@ -75,15 +87,31 @@ public class PersonController {
 					content = @Content)
 	})
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Person> registerPerson(@RequestBody @Valid Person person)  {
-		Person savedPerson= null;
+	public ResponseEntity<Person> registerPerson(@RequestBody Person person,HttpServletRequest request) throws UnsupportedEncodingException, MessagingException  {
+		RegisteredUser savedPerson= null;
 		try {
 			savedPerson = personService.create(person);
-			return new ResponseEntity<Person>(savedPerson, HttpStatus.CREATED);
+			mailService.sendNotificaitionAsync(savedPerson,getSiteURL(request));
+			return new ResponseEntity<Person>(savedPerson.getPerson(), HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<Person>(savedPerson, HttpStatus.CONFLICT);
+			return new ResponseEntity<Person>(savedPerson.getPerson(), HttpStatus.CONFLICT);
 		}
 	}
+	
+	private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }  
 
+	
+	@GetMapping("/verify")
+	public String verifyUser(@Param("code") String code) {
+	    if (personService.verify(code)) {
+	        return "verify_success";
+	    } else {
+	        return "verify_fail";
+	    }
+	}
+	
 }

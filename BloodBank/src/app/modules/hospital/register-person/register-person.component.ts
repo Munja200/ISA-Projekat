@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from '../model/address';
 import { Person } from '../model/person';
+import { AuthService } from '../services/auth.service';
 import { RegisterPersonService } from '../services/register-person.service';
 
 @Component({
@@ -18,7 +20,10 @@ export class RegisterPersonComponent implements OnInit {
   public fillds: boolean = false;
   public samePassword: boolean =false;
 
-  constructor(private registerPersonService: RegisterPersonService,private router: Router) { }
+  constructor(private registerPersonService: RegisterPersonService,private router: Router,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
    
@@ -36,9 +41,23 @@ export class RegisterPersonComponent implements OnInit {
         return;
     }
 
-    this.registerPersonService.registerPerson(this.person).subscribe(res => {
+   // this.registerPersonService.registerPerson(this.person).subscribe(res => {
+    //  this.router.navigate(['/home']);
+      
+   // });
+console.log(this.person)
+    this.authService.signup(this.person)
+    .subscribe(data => {
+      console.log(data);
+      this.authService.login(this.person).subscribe(() => {
+      });
+
       this.router.navigate(['/home']);
-    });
+    },
+      error => {
+        console.log('Sign up error');
+      });
+
   }
 
   private isValidInput(): boolean {
