@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from 'src/app/app-routing.module'; 
-import { HomeComponent } from './home/home.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
@@ -11,7 +11,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent }
+  { path: '', component: WelcomeComponent }
 ];
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,7 +21,7 @@ import { AuthService } from '../hospital/services/auth.service';
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    WelcomeComponent,
     LoginComponent,
   ],
   imports: [

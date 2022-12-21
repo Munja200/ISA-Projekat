@@ -6,11 +6,11 @@ import { CenterDTO } from '../../hospital/model/centerDTO';
 import { CenterService } from '../service/center.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-welcome',
+  templateUrl: './welcome.component.html',
+  styleUrls: ['./welcome.component.css']
 })
-export class HomeComponent implements OnInit {
+export class WelcomeComponent implements OnInit {
   public displayedColumns = ['name', 'city', 'average_rating' ,'description'];
   public rooms: CenterDTO[] = [];
   public dataSource = new MatTableDataSource<CenterDTO>();

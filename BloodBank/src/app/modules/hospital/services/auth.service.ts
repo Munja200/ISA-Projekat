@@ -45,6 +45,7 @@ export class AuthService {
         localStorage.setItem("jwt", res.body.accessToken)
         const tokenInfo = this.getDecodedAccessToken(res.body.accessToken);
         localStorage.setItem('userRoles', tokenInfo.userRole);
+        localStorage.setItem('username', tokenInfo.username);
         
       }));
       
