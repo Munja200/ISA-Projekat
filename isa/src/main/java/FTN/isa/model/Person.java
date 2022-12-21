@@ -44,7 +44,7 @@ public class Person implements UserDetails{
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
-    @JsonIgnore
+ //   @JsonIgnore
 	@Column(name = "password", unique = false, nullable = false)
 	private String password;
 	
@@ -73,7 +73,7 @@ public class Person implements UserDetails{
     private List<Role> roles;
 	
     @Column(name = "enabled")
-    private boolean enabled;
+    private boolean enabled=true;
 
     @Column(name = "last_password_reset_date")
     private Timestamp lastPasswordResetDate;

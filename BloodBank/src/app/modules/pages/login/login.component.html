@@ -1,40 +1,28 @@
-<div class="container">
-    <div>
+<mat-card elevation="5" fxFlex class="content">
+
+    <mat-card-title>
+        <h2>{{title}}</h2>
+    </mat-card-title>
+
+    <mat-card-content>
+        <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
+
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+            <mat-form-field>
+                <input formControlName="username" matInput placeholder="user/admin" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="password" matInput placeholder="123" required type="password">
+            </mat-form-field>
+            <button [disabled]="!loginForm.form.valid" color="primary" mat-raised-button
+                type="submit">Login</button>
+            <br>
+            <button color="primary" mat-raised-button routerLink="/" >Go Back</button>
+        </form>
         <br>
-        <h1>Log in</h1><br>
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="email" email="true" matInput [ngModel]="this.email">
-        </mat-form-field><br>
-    
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input type="password" matInput >
-        </mat-form-field><br>
-    
 
-        <button mat-stroked-button >
-            Submit
-        </button>
-        <br><br><br>
-    </div>
-</div>
+        <br>
+        <hr>
+    </mat-card-content>
 
-
-<div class="container text-center">
-    <h3>Congratulations, your account has been verified.</h3>
-    <h4><a th:href="/@{/login}">Click here to Login</a></h4>
-</div>
-
-
-<div class="container text-center">
-    <h3>Sorry, we could not verify account. It maybe already verified,
-        or verification code is incorrect.</h3>
-</div>
-
-
-<div class="container text-center">
-        <h3>You have signed up successfully!</h3>
-        <p>Please check your email to verify your account.</p>     
-        <h4><a th:href="/@{/login}">Click here to Login</a></h4>
-    </div>
+</mat-card>

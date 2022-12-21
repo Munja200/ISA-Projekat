@@ -44,8 +44,8 @@ public class PersonService {
 	public RegisteredUser create(Person person)throws UnsupportedEncodingException, MessagingException {
 	    RegisteredUser user = new RegisteredUser(0,false,person);
 		 
-	    String randomCode = RandomString.make(64);
-	    user.setVerificationCode(randomCode);
+	   // String randomCode = RandomString.make(64);
+	   // user.setVerificationCode(randomCode);
 	    user.getPerson().setPassword(passwordEncoder.encode(person.getPassword()));
 	    user.getPerson().setUsername(person.getEmail());
 	    user.setEnabled(false);

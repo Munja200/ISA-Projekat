@@ -21,6 +21,7 @@ export class RegisterPersonService {
   }
 
   registerPerson(person: any): Observable<any> {
+    console.log(person);
     return this.http.post<any>(this.apiHost + 'api/persons', person, {headers: this.headers});
   }
 }

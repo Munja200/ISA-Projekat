@@ -80,7 +80,7 @@ INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo ro
 
 ----------------------PERSONS------------------------
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'rade@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Bullar', 'rade@gmail.com', 1);
-insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'sto@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Bullar', 'sto@gmail.com', 1);
+insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id)  values ('A-', '1999-07-07 09:47:39', 'sto@gmail.com', true, 'Male', 'Ftn', 7808765sa78633, '2017-10-01 21:58:58.508-07', 'Meryl', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42134368672', 'Bullar', 'sto@gmail.com', 1);
 
 ----------------------REGISTERED_USERS------------------------
 insert into registered_user(deleted, person_id) values (false, 1);

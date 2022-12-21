@@ -68,7 +68,7 @@ public class AuthenticationController {
 	// Endpoint za registraciju novog korisnika
 	@PostMapping("/signup")
 	public ResponseEntity<Person> addUser(@RequestBody Person userRequest, UriComponentsBuilder ucBuilder) throws UnsupportedEncodingException, MessagingException {
-		Person existUser = this.userService.findByUsername(userRequest.getUsername());
+		Person existUser = this.userService.findByUsername(userRequest.getEmail());
 
 		if (existUser != null) {
 			throw new ResourceConflictException(userRequest.getId(), "Username already exists");
