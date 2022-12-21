@@ -11,9 +11,8 @@ import { CenterService } from '../service/center.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  public displayedColumns = ['name', 'city', 'average_rating' ,'description'];
-  public rooms: CenterDTO[] = [];
-  public dataSource = new MatTableDataSource<CenterDTO>();
+  public centers: CenterDTO[] = [];
+
   public sort : boolean = false;
   public page: number = 0;
   public averageSort: boolean = false;
@@ -30,13 +29,13 @@ export class WelcomeComponent implements OnInit {
   public searchs: CenterDTO[] = [];
 
   constructor(private centerService: CenterService, private router: Router) { }
+
   ngOnInit(): void {
     this.averageSort = false;
     this.nameSort = false;
     this.citySort = false;
     this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
+      this.centers = res;
     })
   }
 
@@ -73,7 +72,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   public nextButton(){
-    if(this.rooms.length >= 10 ){
+    if(this.centers.length >= 10 ){
       this.page =this.page + 1;
     
       if(this.averageSort == true){
@@ -90,8 +89,7 @@ export class WelcomeComponent implements OnInit {
         this.sortByCity();
       }else{
         this.centerService.getCentersbyPage(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
       }
     }
@@ -114,8 +112,7 @@ export class WelcomeComponent implements OnInit {
         this.sortByCity();
       }else{
         this.centerService.getCentersbyPage(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
       }
     }
@@ -128,22 +125,17 @@ export class WelcomeComponent implements OnInit {
 
       if(this.sort == false){
         this.centerService.getCentersSortedbyName(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
     
         this.sort = true;
       }else{
         this.centerService.getCentersSortedbyNameDes(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
-    
         this.sort = false;
       }
-    
   }
-
 
   public sortByCity() {
     this.averageSort = false;
@@ -152,15 +144,13 @@ export class WelcomeComponent implements OnInit {
     
     if(this.sort == false){
       this.centerService.getCentersSortedbyCity(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = true;
     }else{
       this.centerService.getCentersSortedbyCityDes(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = false;
@@ -175,15 +165,13 @@ export class WelcomeComponent implements OnInit {
 
     if(this.sort == false){
       this.centerService.getCentersSortedbyAverageRating(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = true;
     }else{
       this.centerService.getCentersSortedbyAverageRatingDes(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = false;
@@ -195,17 +183,15 @@ export class WelcomeComponent implements OnInit {
     this.nameSort = false;
     this.citySort = false;
     this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
+      this.centers = res;
     })
   }
 
   public searchCenterByNameAndCity() {
     this.page = 0;
     this.centerService.getAllbyNameCity(this.ime, this.mesto, this.page).subscribe(res => {
-      this.rooms = res;
-      this.searchs = this.rooms;
-      this.dataSource.data = this.rooms;
+      this.centers = res;
+      this.searchs = this.centers;
     })
   }
 
@@ -214,9 +200,6 @@ export class WelcomeComponent implements OnInit {
     this.centerService.getAllbyStreet(this.street, this.page).subscribe(res => {
       //ovde kako uzeti samo one iz pretrageeeeee MAGIJAAAAAAAAA by: Galic :D
       this.searchs = res;
-      this.dataSource.data = this.searchs;
     })
   }
-
-
 }
