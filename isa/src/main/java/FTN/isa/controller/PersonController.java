@@ -3,12 +3,10 @@ package FTN.isa.controller;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-<<<<<<< HEAD
 import javax.validation.Valid;
-=======
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
->>>>>>> feature-email
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
