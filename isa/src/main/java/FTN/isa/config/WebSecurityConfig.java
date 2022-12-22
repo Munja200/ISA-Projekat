@@ -121,6 +121,7 @@ public class WebSecurityConfig {
     	return (web) -> web.ignoring()
     			.antMatchers(HttpMethod.POST, "/auth/login")
     			.antMatchers(HttpMethod.GET, "/api/centers/{id}")
+    			.antMatchers(HttpMethod.GET, "/api/appointment/**")
     			
     			
     			// Ovim smo dozvolili pristup statickim resursima aplikacije
