@@ -132,6 +132,7 @@ public class WebSecurityConfig {
     			.antMatchers(HttpMethod.GET, "/api/centers/averageRatingDes/{id}")
     			.antMatchers(HttpMethod.GET, "/api/centers/{name}/{city}/{id}")
     			.antMatchers(HttpMethod.GET, "/api/centers/{street}/{id}")
+    			.antMatchers(HttpMethod.GET, "/v3/**")
     			
     			// Ovim smo dozvolili pristup statickim resursima aplikacije
     			.antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "favicon.ico",
