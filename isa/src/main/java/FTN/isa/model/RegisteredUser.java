@@ -36,11 +36,21 @@ public class RegisteredUser {
 	private Set<QuestionForm> questionForms = new HashSet<QuestionForm>();
 	@Column(name = "verification_code", length = 64)
 	private String verificationCode;
-	     
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Appointment> appointments = new HashSet<Appointment>();
+	
 	private boolean enabled=false;
 	
+
 	
-	
+	public Set<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
+	}	
 	
 	public String getVerificationCode() {
 		return verificationCode;
