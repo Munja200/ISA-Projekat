@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class RegisteredUserController {
 	@Autowired
 	private RegisteredUserService registeredUserService;
 
-	//"api/registeredUser/{id}"
+	//"api/registeredUsers/{id}"
 	@Operation(summary = "Get registered users", description = "Get registered users", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",
@@ -59,7 +60,7 @@ public class RegisteredUserController {
 		return new ResponseEntity<List<RegisteredUserDTO>>(registeredUserDTOs, HttpStatus.OK);
 	}
 	
-	//"api/registeredUser/{name}/{surname}/{id}"
+	//"api/registeredUsers/{name}/{surname}/{id}"
 	@Operation(summary = "Get registered users by name and surname", description = "Get registered users by name and surname", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",
@@ -94,7 +95,8 @@ public class RegisteredUserController {
 		return new ResponseEntity<List<RegisteredUserDTO>>(registeredUserDTOs, HttpStatus.OK);
 	}
 	
-	
+	//"api/registeredUsers/oneRegisteredUser/{id}"
+	@PreAuthorize("hasRole('USER')")
 	@Operation(summary = "Get registered person by id", description = "Get registered person by id", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found registered person by id",
@@ -112,6 +114,8 @@ public class RegisteredUserController {
 		return new ResponseEntity<RegisteredUser>(registeredUser, HttpStatus.OK);
 	}
 	
+	//"api/registeredUsers/oneRegisteredUser/{id}"
+	@PreAuthorize("hasRole('USER')")
 	@Operation(summary = "Update registered person", description = "Update registered person", method="POST")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",

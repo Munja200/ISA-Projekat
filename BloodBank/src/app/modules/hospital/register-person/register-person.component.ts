@@ -72,4 +72,7 @@ console.log(this.person)
     && this.password != '';
   }
 
+  welcome(){
+    this.router.navigate(['']);
+  }
 }

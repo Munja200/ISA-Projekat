@@ -7,7 +7,7 @@ import { MaterialModule } from "./material/material.module";
 import { HospitalModule } from "./modules/hospital/hospital.module";
 import { PagesModule } from "./modules/pages/pages.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TokenInterceptor } from "./modules/hospital/interceptor/TokenInterceptor";
+import { JwtInterceptorService } from "./modules/hospital/interceptor/TokenInterceptor";
 import { ApiService } from "./modules/hospital/services/api.service";
 import { AuthService } from "./modules/hospital/services/auth.service";
 
@@ -27,7 +27,7 @@ import { AuthService } from "./modules/hospital/services/auth.service";
    providers: [ 
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: JwtInterceptorService,
       multi: true
     },
     AuthService,

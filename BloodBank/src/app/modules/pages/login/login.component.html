@@ -1,28 +1,36 @@
-<mat-card elevation="5" fxFlex class="content">
+<div class="w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <div class="d-flex justify-content-center vw-100 vh-100 text-white">
+        <form class="d-flex flex-column bg-dark m-auto p-5 rounded-3 shadow-lg" [formGroup]="form" style="width: 440px; min-height: 460px;">
+            <h2 class="mb-0 mx-auto">Welcome!</h2>
+            <h3 class="mb-4 mx-auto">Please fill out the form below to get started</h3>
+    
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="userPng">
+                        <img src="../../../../assets/images/user.png" width="24" height="24"/>
+                    </span>
+                    <input type="text" class="form-control" id="username" aria-describedby="userPng" formControlName="username">
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="passwordPng">        
+                        <img src="../../../../assets/images/password.png" width="24" height="24"/>
+                    </span>
+                    <input type="password" class="form-control" id="password" aria-describedby="passwordPng" formControlName="password">
+                </div>
+            </div>
+            <div id="ErrorDiv" *ngIf="notification" class="text-danger mt-1">
+                {{notification.msgBody}}
+            </div>
 
-    <mat-card-title>
-        <h2>{{title}}</h2>
-    </mat-card-title>
-
-    <mat-card-content>
-        <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
-
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
-            <mat-form-field>
-                <input formControlName="username" matInput placeholder="user/admin" required>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="password" matInput placeholder="123" required type="password">
-            </mat-form-field>
-            <button [disabled]="!loginForm.form.valid" color="primary" mat-raised-button
-                type="submit">Login</button>
-            <br>
-            <button color="primary" mat-raised-button routerLink="/" >Go Back</button>
+            <div class="d-flex justify-content-between mt-auto">
+                <span class="mt-2 fs-6">No account? <a href="/register">Signup</a></span>
+                <button id="submit" class="btn btn-primary" [disabled]="form.invalid" type="button" (click)="onSubmit()">Login</button>
+            </div>
         </form>
-        <br>
-
-        <br>
-        <hr>
-    </mat-card-content>
-
-</mat-card>
+    </div>
+</div>

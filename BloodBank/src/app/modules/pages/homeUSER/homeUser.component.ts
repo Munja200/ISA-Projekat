@@ -1,19 +1,18 @@
+import { AuthService } from './../../hospital/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Address } from '../../hospital/model/address';
 import { CenterDTO } from '../../hospital/model/centerDTO';
 import { CenterService } from '../service/center.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-homeUser',
+  templateUrl: './homeUser.component.html',
+  styleUrls: ['./homeUser.component.css']
 })
-export class HomeComponent implements OnInit {
-  public displayedColumns = ['name', 'city', 'average_rating' ,'description'];
-  public rooms: CenterDTO[] = [];
-  public dataSource = new MatTableDataSource<CenterDTO>();
+export class HomeUserComponent implements OnInit {
+  public centers: CenterDTO[] = [];
+
   public sort : boolean = false;
   public page: number = 0;
   public averageSort: boolean = false;
@@ -29,47 +28,23 @@ export class HomeComponent implements OnInit {
   public street: string = 'none';
   public searchs: CenterDTO[] = [];
 
-  constructor(private centerService: CenterService, private router: Router) { }
+  constructor(private centerService: CenterService, private router: Router, private authService: AuthService) { }
+
   ngOnInit(): void {
     this.averageSort = false;
     this.nameSort = false;
     this.citySort = false;
     this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
+      this.centers = res;
     })
   }
 
-  public registePerson() {
-    
-    this.router.navigate(['/register']);
-  
-  }
-
-  public questionForms() {
-      
-    this.router.navigate(['/questionForm']);
-
-  }
-
-  public registerCenter(){
-    this.router.navigate(['/registerCenter']);
-  }
-
-  public registerCenterAdministrator(){
-    this.router.navigate(['/registerCenterAdministrator']);
-  }
-
-  public profileRegisteredUser(){
-    this.router.navigate(['/profilOfRegisteredUser']);
-  }
-
-  public registeredPersons(){
-    this.router.navigate(['/registeredPersons']);
+  logout(){
+    this.authService.logout()
   }
 
   public nextButton(){
-    if(this.rooms.length >= 10 ){
+    if(this.centers.length >= 10 ){
       this.page =this.page + 1;
     
       if(this.averageSort == true){
@@ -86,8 +61,7 @@ export class HomeComponent implements OnInit {
         this.sortByCity();
       }else{
         this.centerService.getCentersbyPage(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
       }
     }
@@ -110,8 +84,7 @@ export class HomeComponent implements OnInit {
         this.sortByCity();
       }else{
         this.centerService.getCentersbyPage(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
       }
     }
@@ -124,22 +97,17 @@ export class HomeComponent implements OnInit {
 
       if(this.sort == false){
         this.centerService.getCentersSortedbyName(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
     
         this.sort = true;
       }else{
         this.centerService.getCentersSortedbyNameDes(this.page).subscribe(res => {
-          this.rooms = res;
-          this.dataSource.data = this.rooms;
+          this.centers = res;
         })
-    
         this.sort = false;
       }
-    
   }
-
 
   public sortByCity() {
     this.averageSort = false;
@@ -148,15 +116,13 @@ export class HomeComponent implements OnInit {
     
     if(this.sort == false){
       this.centerService.getCentersSortedbyCity(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = true;
     }else{
       this.centerService.getCentersSortedbyCityDes(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = false;
@@ -171,15 +137,13 @@ export class HomeComponent implements OnInit {
 
     if(this.sort == false){
       this.centerService.getCentersSortedbyAverageRating(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = true;
     }else{
       this.centerService.getCentersSortedbyAverageRatingDes(this.page).subscribe(res => {
-        this.rooms = res;
-        this.dataSource.data = this.rooms;
+        this.centers = res;
       })
 
       this.sort = false;
@@ -191,17 +155,15 @@ export class HomeComponent implements OnInit {
     this.nameSort = false;
     this.citySort = false;
     this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.rooms = res;
-      this.dataSource.data = this.rooms;
+      this.centers = res;
     })
   }
 
   public searchCenterByNameAndCity() {
     this.page = 0;
     this.centerService.getAllbyNameCity(this.ime, this.mesto, this.page).subscribe(res => {
-      this.rooms = res;
-      this.searchs = this.rooms;
-      this.dataSource.data = this.rooms;
+      this.centers = res;
+      this.searchs = this.centers;
     })
   }
 
@@ -210,9 +172,6 @@ export class HomeComponent implements OnInit {
     this.centerService.getAllbyStreet(this.street, this.page).subscribe(res => {
       //ovde kako uzeti samo one iz pretrageeeeee MAGIJAAAAAAAAA by: Galic :D
       this.searchs = res;
-      this.dataSource.data = this.searchs;
     })
   }
-
-
 }

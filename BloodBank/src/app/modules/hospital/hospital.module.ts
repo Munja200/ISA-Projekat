@@ -1,3 +1,4 @@
+import { ComplaintsComponent } from './complaints/complaints.component';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -16,6 +17,10 @@ import { ProfilOfRegisteredUserComponent } from './profil-of-registered-user/pro
 import { EditProfilRegisteredUserComponent } from './edit-profil-registered-user/edit-profil-registered-user.component';
 import { SearchRegisteredPersons } from "./search-RegisteredPersons/search-RegisteredPersons.component";
 import { AppRoutingModule } from "src/app/app-routing.module";
+import { CalendarComponent } from './calendar/calendar.component';
+import { BrowserModule } from "@angular/platform-browser";
+import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
+import { HttpClientModule } from "@angular/common/http";
 
 
 const routes: Routes = [
@@ -26,7 +31,9 @@ const routes: Routes = [
   { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
   { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent},
   { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent},
-  { path: 'registeredPersons', component: SearchRegisteredPersons}
+  { path: 'registeredPersons', component: SearchRegisteredPersons},
+  { path: 'complaints', component: ComplaintsComponent},
+  { path: 'calendar', component: CalendarComponent},
 ];
 
 @NgModule({
@@ -37,7 +44,9 @@ const routes: Routes = [
     RegisterCenterAdministratorComponent,
     ProfilOfRegisteredUserComponent,
     EditProfilRegisteredUserComponent,
-    SearchRegisteredPersons
+    SearchRegisteredPersons,
+    ComplaintsComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +59,10 @@ const routes: Routes = [
     MatRadioModule,
     MatSortModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DayPilotModule,
+    BrowserModule,
+    HttpClientModule,
   ],
   exports: [ RouterModule ]
 })

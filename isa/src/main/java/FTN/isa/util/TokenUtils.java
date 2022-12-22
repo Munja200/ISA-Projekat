@@ -61,6 +61,7 @@ public class TokenUtils {
 		return Jwts.builder()
 				.setIssuer(APP_NAME)
 				.setSubject(user.getUsername())
+				.claim("username", user.getUsername())
 				.claim("userRole", user.getRolesString())
 				.setAudience(generateAudience())
 				.setIssuedAt(new Date())
