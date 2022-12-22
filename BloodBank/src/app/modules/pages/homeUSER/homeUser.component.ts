@@ -1,3 +1,4 @@
+import { AuthService } from './../../hospital/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from '../../hospital/model/address';
@@ -5,11 +6,11 @@ import { CenterDTO } from '../../hospital/model/centerDTO';
 import { CenterService } from '../service/center.service';
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css']
+  selector: 'app-homeUser',
+  templateUrl: './homeUser.component.html',
+  styleUrls: ['./homeUser.component.css']
 })
-export class WelcomeComponent implements OnInit {
+export class HomeUserComponent implements OnInit {
   public centers: CenterDTO[] = [];
 
   public sort : boolean = false;
@@ -27,7 +28,7 @@ export class WelcomeComponent implements OnInit {
   public street: string = 'none';
   public searchs: CenterDTO[] = [];
 
-  constructor(private centerService: CenterService, private router: Router) { }
+  constructor(private centerService: CenterService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.averageSort = false;
@@ -36,6 +37,10 @@ export class WelcomeComponent implements OnInit {
     this.centerService.getCentersbyPage(this.page).subscribe(res => {
       this.centers = res;
     })
+  }
+
+  logout(){
+    this.authService.logout()
   }
 
   public nextButton(){

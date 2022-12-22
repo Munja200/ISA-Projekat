@@ -38,8 +38,6 @@ public class Person implements UserDetails{
 	@Pattern(regexp="^\\w{3,20}$")
 	private String name;
 	
-
-	@Pattern(regexp="^\\w{3,20}$")
     @Column(name = "username")
     private String username;
 	
@@ -97,8 +95,6 @@ public class Person implements UserDetails{
 	private Address address;
 	
 	public Person() {}
-	
-	
 
 	public long getId() {
 		return Id;
@@ -244,13 +240,9 @@ public class Person implements UserDetails{
 		return username;
 	}
 
-
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-
 
 	@JsonIgnore
     @Override

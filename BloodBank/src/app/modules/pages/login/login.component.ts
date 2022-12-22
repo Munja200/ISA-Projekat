@@ -73,8 +73,29 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.form.value)
       .subscribe(data => {
         console.log(data);
-         // this.userService.getMyInfo().subscribe();
-          this.router.navigate(['']);
+          let userRole = localStorage.getItem('userRoles');
+          let userRoles = userRole?.split(' ');
+          let isAdmin = false;
+          let isUser = false;
+          if(userRoles)
+            for(let i = 0; i < userRoles?.length; i ++){
+              if(userRoles[i] == 'ROLE_ADMIN'){
+                isAdmin = true;
+                break;
+              }
+            }
+          if(userRoles)
+            for(let i = 0; i < userRoles?.length; i ++){
+              if(userRoles[i] == 'ROLE_USER'){
+                isUser = true;
+                break;
+              } 
+            }
+          
+          if(isUser){
+            if(isAdmin) this.router.navigate(['/homeAdmin'])
+            else this.router.navigate(['/home'])
+          }
         },
         error => {
           console.log(error);

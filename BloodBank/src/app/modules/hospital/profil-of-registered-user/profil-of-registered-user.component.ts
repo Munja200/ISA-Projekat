@@ -24,7 +24,7 @@ export class ProfilOfRegisteredUserComponent implements OnInit {
   constructor(private registerPersonService: RegisterPersonService,private router: Router) { }
 
   ngOnInit(): void {
-    this.registerPersonService.getRegisteredPerson(4).subscribe(res => {
+    this.registerPersonService.getRegisteredPerson(1).subscribe(res => {
       this.registeredUser = res;
       console.log(this.registeredUser);
     })

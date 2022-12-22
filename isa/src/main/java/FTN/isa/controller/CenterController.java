@@ -99,7 +99,7 @@ public class CenterController {
 		return new ResponseEntity<List<CenterDTO>>(centers, HttpStatus.OK);
 	}
 	
-	//"api/centers/nameDes/allForAdministratorRegistration"
+	//"api/centers/allForAdministratorRegistration"
 	@Operation(summary = "Get all centers for managers", description = "Get all centers for managers", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
@@ -139,7 +139,7 @@ public class CenterController {
 		}
 	}
 
-	//"api/centers/nameDes/city/{id}"
+	//"api/centers/city/{id}"
 	@Operation(summary = "Get centers sorted by city", description = "Get centers sorted by city", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",
@@ -158,7 +158,7 @@ public class CenterController {
 		return new ResponseEntity<List<CenterDTO>>(centers, HttpStatus.OK);
 	}
 	
-	//"api/centers/nameDes/cityDes/{id}"
+	//"api/centers/cityDes/{id}"
 	@Operation(summary = "Get centers sorted desc by city", description = "Get centers sorted desc by city", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",
@@ -177,7 +177,7 @@ public class CenterController {
 		return new ResponseEntity<List<CenterDTO>>(centers, HttpStatus.OK);
 	}
 
-	//"api/centers/nameDes/averageRating/{id}"
+	//"api/centers/averageRating/{id}"
 	@Operation(summary = "Get centers sorted by averageRating", description = "Get centers sorted by averageRating", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",
@@ -196,7 +196,7 @@ public class CenterController {
 		return new ResponseEntity<List<CenterDTO>>(centers, HttpStatus.OK);
 	}
 	
-	//"api/centers/nameDes/averageRatingDes/{id}"
+	//"api/centers/averageRatingDes/{id}"
 	@Operation(summary = "Get centers sorted desc by averageRating", description = "Get centers sorted desc by averageRating", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",

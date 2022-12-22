@@ -29,6 +29,7 @@ public class AnswerQuestion {
 	private boolean deleted;
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@Valid
 	private QuestionForm questionForm;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
