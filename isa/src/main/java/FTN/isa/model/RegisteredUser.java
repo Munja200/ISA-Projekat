@@ -41,6 +41,18 @@ public class RegisteredUser {
 	@Column(name = "enabled")
 	private boolean enabled=false;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Appointment> appointments = new HashSet<Appointment>();
+
+	
+	public Set<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
+	}	
+	
 	public String getVerificationCode() {
 		return verificationCode;
 	}
