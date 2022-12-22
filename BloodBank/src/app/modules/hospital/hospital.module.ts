@@ -17,6 +17,10 @@ import { ProfilOfRegisteredUserComponent } from './profil-of-registered-user/pro
 import { EditProfilRegisteredUserComponent } from './edit-profil-registered-user/edit-profil-registered-user.component';
 import { SearchRegisteredPersons } from "./search-RegisteredPersons/search-RegisteredPersons.component";
 import { AppRoutingModule } from "src/app/app-routing.module";
+import { CalendarComponent } from './calendar/calendar.component';
+import { BrowserModule } from "@angular/platform-browser";
+import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
+import { HttpClientModule } from "@angular/common/http";
 
 
 const routes: Routes = [
@@ -29,6 +33,7 @@ const routes: Routes = [
   { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent},
   { path: 'registeredPersons', component: SearchRegisteredPersons},
   { path: 'complaints', component: ComplaintsComponent},
+  { path: 'calendar', component: CalendarComponent},
 ];
 
 @NgModule({
@@ -41,6 +46,7 @@ const routes: Routes = [
     EditProfilRegisteredUserComponent,
     SearchRegisteredPersons,
     ComplaintsComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +60,9 @@ const routes: Routes = [
     MatSortModule,
     MatSelectModule,
     AppRoutingModule,
+    DayPilotModule,
+    BrowserModule,
+    HttpClientModule,
   ],
   exports: [ RouterModule ]
 })
