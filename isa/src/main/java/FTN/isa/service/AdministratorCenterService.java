@@ -21,4 +21,8 @@ public class AdministratorCenterService {
 	public AdministratorCenter create(AdministratorCenter administratorCenter) {
 		return administratorCenterRepository.save(administratorCenter);
 	}
+	
+	public AdministratorCenter getAdministratorCenterByUsername(String username) {
+		return administratorCenterRepository.getAdministratorCenterByUsername(username);
+	}
 }

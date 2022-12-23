@@ -1,7 +1,5 @@
 package FTN.isa.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +17,8 @@ public class RoleService {
     return auth;
   }
 
-  public List<Role> findByName(String name) {
-	List<Role> roles = roleRepository.findByName(name);
-    return roles;
+  public Role findByName(String name) {
+	Role role = roleRepository.findByName(name);
+    return role;
   }
 }

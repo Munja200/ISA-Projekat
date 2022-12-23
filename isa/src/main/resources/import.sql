@@ -8,6 +8,7 @@ insert into address (city, country, latitude, longitude, number, street) values 
 ----------------------ROLE------------------------
 INSERT INTO ROLE (name) VALUES ('ROLE_USER');
 INSERT INTO ROLE (name) VALUES ('ROLE_ADMIN');
+INSERT INTO ROLE (name) VALUES ('ROLE_CENTER_ADMIN');
 
 ----------------------PERSONS------------------------
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A-', '1999-07-07 00:00:00', 'rade@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Radisa', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Bullar', 'rade@gmail.com', 1);
@@ -18,10 +19,13 @@ insert into person (blood_type, date_of_birth, email, enabled, gender, informati
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 1); -- admin-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu ADMIN
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 1); -- user-u dodeljujemo rolu CENTER_ADMIN
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu CENTER_ADMIN
 
 ----------------------REGISTERED_USERS------------------------
 insert into registered_user(deleted, person_id, enabled) values (false, 1, false);
 insert into registered_user(deleted, person_id, enabled) values (false, 2, false);
+insert into registered_user(deleted, person_id, enabled) values (false, 3, false);
 
 ----------------------QUESTION------------------------
 insert into question (question, exact_value) values ('Da li imate vise od 50 kg', true);
@@ -37,8 +41,7 @@ insert into center (average_rating, deleted, description, name, address_id) valu
 insert into center (average_rating, deleted, description, name, address_id) values (6.26, false, 'In eleifend quam a odio.', 'Thoughtstorm', 5);
 
 ----------------------CENTER_ADMINISTRATOR------------------------
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 1);
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);
+insert into administrator_center(deleted, center_id, person_id) values (false, 1, 3);
 
 ----------------------COMPLAINT----------------------
 insert into complaint(id, answer, complaint, person_id) values (1, null, 'Los objekat skroz na skroz', 1);
@@ -54,4 +57,8 @@ insert into complaint(id, answer, complaint, person_id) values (10, null, 'Colon
 insert into complaint(id, answer, complaint, person_id) values (11, null, 'Pazi sad', 1);
 insert into complaint(id, answer, complaint, person_id) values (12, null, 'JAHS DIPSAH DOIASHHIOHDIO NUAHDIHN IOUASDHI JAHS DIPSAH DOIASH ODHHIO NUSAHUI DHNIOU SHIDHNU IOASHIDH INASHIDH IONASHID HINOASHIDHI NUOASHNI UDHNIUDH SINOAHI ODHIO HIOHDIO NUAHDIHN IOUASDHI', 1);
 
-
+----------------------APPINTMENTS----------------------
+insert into appointment(id, enabled, end_time, start_time, text, center_id, registered_user_id) values (1, false, '2022-12-23 21:00:00.00000', '2022-12-23 20:00:00.00000', 'Prvi appointment', 1, 1);
+insert into appointment(id, enabled, end_time, start_time, text, center_id, registered_user_id) values (2, false, '2022-12-23 21:30:00.00000', '2022-12-23 21:00:00.00000', 'Drugi appointment', 1, 1);
+insert into appointment(id, enabled, end_time, start_time, text, center_id, registered_user_id) values (3, false, '2022-12-23 22:30:00.00000', '2022-12-23 21:30:00.00000', 'Treci appointment', 1, null);
+insert into appointment(id, enabled, end_time, start_time, text, center_id, registered_user_id) values (4, false, '2023-02-25 00:00:00.00000', '2023-02-24 00:00:00.00000', 'Ceo dan appointment', 1, 2);

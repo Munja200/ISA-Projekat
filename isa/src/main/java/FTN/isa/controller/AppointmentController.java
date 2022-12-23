@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import FTN.isa.model.AdministratorCenter;
 import FTN.isa.model.Appointment;
+import FTN.isa.model.Center;
 import FTN.isa.model.DTOs.AppointmentDTO;
+import FTN.isa.service.AdministratorCenterService;
 import FTN.isa.service.AppointmentService;
+import FTN.isa.service.CenterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,6 +38,12 @@ public class AppointmentController {
 
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private AdministratorCenterService administratorCenterService;
+	
+	@Autowired
+	private CenterService centerService;
 
 	@Operation(summary = "Get free appointment by page", description = "Get free appointment by page", method="GET")
 	@ApiResponses(value = {
@@ -128,6 +138,24 @@ public class AppointmentController {
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
-
+	
+	//"/api/appointment/center/{id}"
+	@Operation(summary = "Get all appointments by centerAdministratorID", description = "Get all appointments by centerAdministratorID", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Get all appointments by centerAdministratorID",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = AppointmentDTO.class))),
+			@ApiResponse(responseCode = "404", description = "appointments not found", content = @Content)
+	})
+	@GetMapping(value = "/center/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AppointmentDTO>> getAllAppointmentsByCenterAdministrator(@PathVariable("username") String username) {	
+		AdministratorCenter administratorCenter = administratorCenterService.getAdministratorCenterByUsername(username);
+		Center center = centerService.findById(Long.toString(administratorCenter.getCenter().getId()));
+		List<Appointment> appointments = appointmentService.getAllAppointmentsByCenter(center.getId());
+		List<AppointmentDTO> appointmentDTOs = new ArrayList<AppointmentDTO>();
+		for (Appointment appointment : appointments) {
+			appointmentDTOs.add(new AppointmentDTO(appointment));
+		}
+		return new ResponseEntity<List<AppointmentDTO>>(appointmentDTOs, HttpStatus.OK);
+	}
 	
 }

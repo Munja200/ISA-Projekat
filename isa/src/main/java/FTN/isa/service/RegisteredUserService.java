@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.DTOs.AdminDTO;
 import FTN.isa.repository.RegisteredUserRepository;
 
 @Service

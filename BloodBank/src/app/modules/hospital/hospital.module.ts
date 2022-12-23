@@ -21,19 +21,23 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthUserGuard } from './services/authUser.guard';
+import { AuthCenterAdminGuard } from './services/authCenterAdmin.guard';
+import { AuthAdminGuard } from './services/authAdmin.guard';
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
 
 
 const routes: Routes = [
-  { path: 'registerCenter', component: RegisterCenterComponent },
+  { path: 'registerCenter', component: RegisterCenterComponent , canActivate: [ AuthAdminGuard ] },
   { path: 'register', component: RegisterPersonComponent },
   { path: 'questionForm', component: QuestionFormComponent },
   { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
-  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
-  { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent},
-  { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent},
+  { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent, canActivate: [ AuthUserGuard ] },
+  { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent, canActivate: [ AuthUserGuard ]} ,
   { path: 'registeredPersons', component: SearchRegisteredPersons},
-  { path: 'complaints', component: ComplaintsComponent},
-  { path: 'calendar', component: CalendarComponent},
+  { path: 'complaints', component: ComplaintsComponent, canActivate: [ AuthAdminGuard ] },
+  { path: 'calendar', component: CalendarComponent, canActivate: [ AuthCenterAdminGuard ] },
+  { path: 'registerAdmin', component: RegisterAdminComponent, canActivate: [ AuthAdminGuard ] },
 ];
 
 @NgModule({
@@ -47,6 +51,7 @@ const routes: Routes = [
     SearchRegisteredPersons,
     ComplaintsComponent,
     CalendarComponent,
+    RegisterAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -64,6 +69,11 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [ 
+    AuthUserGuard,
+    AuthCenterAdminGuard,
+    AuthAdminGuard,
+  ], 
 })
 export class HospitalModule { }

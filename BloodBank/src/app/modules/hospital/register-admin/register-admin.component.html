@@ -1,0 +1,85 @@
+<div class="container">
+        <div>
+            <br>
+            <h1>Admin Registration</h1><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.name">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.surname">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [(ngModel)]="admin.email">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [(ngModel)]="admin.password">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Confirm Password</mat-label>
+                <input type="password" matInput [(ngModel)]="password">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Phon number</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.phonNumber">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>JMBG</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.jmbg">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select [(ngModel)]="admin.gender" >
+                    <mat-option *ngFor="let gender1 of genders" [value]="gender1">{{gender1}}</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Occupation</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.occupation">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Information about Company</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.informationAboutCompany">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Blood Type</mat-label>
+                <mat-select [(ngModel)]="admin.bloodType" >
+                    <mat-option *ngFor="let type of bloodTypes" [value]="type">{{type}}</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Date of Birth</mat-label>
+                <input type="datetime-local" matInput [(ngModel)]="admin.dateOfBirth" name="dateOfBirth">
+            </mat-form-field><br>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>City</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.address.city">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Street</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.address.street">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Address number</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.address.number">
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+                <mat-label>Country</mat-label>
+                <input type="text" matInput [(ngModel)]="admin.address.country">
+            </mat-form-field><br>
+        </div>
+
+        <button (click)="consoleLog()">
+            Test
+        </button>
+        <button (click)="registeAdmin()">
+            Send
+        </button>
+
+        <br><br><br>
+</div>

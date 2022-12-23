@@ -1,6 +1,7 @@
 package FTN.isa.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -48,7 +49,8 @@ public class PersonService {
 	    user.getPerson().setPassword(passwordEncoder.encode(person.getPassword()));
 	    user.getPerson().setUsername(person.getEmail());
 	    user.setEnabled(false);
-	    List<Role> roles = roleService.findByName("ROLE_USER");
+	    List<Role> roles = new ArrayList<Role>();
+	    roles.add(roleService.findByName("ROLE_USER"));
 		user.getPerson().setRoles(roles);
 		
 	    RegisteredUser users = registeredUserRepository.save(user); 	
@@ -59,7 +61,16 @@ public class PersonService {
 		return personRepository.getOne(id);
 	}
 	
-	
+	public RegisteredUser createAdmin(Person person) {
+		RegisteredUser user = new RegisteredUser(0, false, person);
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(roleService.findByName("ROLE_USER"));
+		roles.add(roleService.findByName("ROLE_ADMIN"));
+		user.getPerson().setPassword(passwordEncoder.encode(person.getPassword()));
+	    user.getPerson().setUsername(person.getEmail());
+		user.getPerson().setRoles(roles);
+		return registeredUserRepository.save(user);
+	}
 	
 	public boolean verify(String verificationCode) {
 	    RegisteredUser user = registeredUserRepository.findByVerificationCode(verificationCode);

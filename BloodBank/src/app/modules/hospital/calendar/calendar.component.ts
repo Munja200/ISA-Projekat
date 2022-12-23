@@ -1,3 +1,4 @@
+import { AppointmentDTO } from './../model/appointmentDTO';
 import {Component, ViewChild, AfterViewInit} from "@angular/core";
 import {
   DayPilot,
@@ -5,6 +6,7 @@ import {
   DayPilotMonthComponent,
   DayPilotNavigatorComponent
 } from "@daypilot/daypilot-lite-angular";
+import { AppointmentService } from "../services/appointment.service";
 
 @Component({
   selector: 'calendar-component',
@@ -64,7 +66,7 @@ export class CalendarComponent implements AfterViewInit {
 
   };
 
-  constructor() {
+  constructor(private appointmentService: AppointmentService) {
     this.viewWeek();
   }
 
@@ -75,14 +77,24 @@ export class CalendarComponent implements AfterViewInit {
   loadEvents(): void {
     const from = this.nav.control.visibleStart();
     const to = this.nav.control.visibleEnd();
-    this.events = [
-      {
-        id: "1",
-        start: DayPilot.Date.today().addHours(10),
-        end: DayPilot.Date.today().addHours(12),
-        text: "Event 1"
-      }
-    ];
+    this.events = []
+    let username = localStorage.getItem("username")
+    if(username)
+      this.appointmentService.getAllCentersByAdministratorCenterUsername(username).subscribe(res => {
+        res.forEach(appointment => {
+          let start = new Date(appointment.start);
+          let end = new Date(appointment.end);
+          this.events.push(
+            {
+              id: appointment.id,
+              start: new DayPilot.Date(start),
+              end: new DayPilot.Date(end),
+              text: appointment.text
+            }
+          )
+        });
+      })
+
   }
 
   viewDay():void {

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AdminDTO } from '../model/adminDTO';
 import { Person } from '../model/person';
 import { RegisteredPerson } from '../model/registeredPerson';
 import { RegisteredUserUpdateDTO } from '../model/registeredUserUpdateDTO';
@@ -35,6 +36,10 @@ export class RegisterPersonService {
 
   getAllByNameSurname(name: string, surname: string, id: number){
     return this.http.get<any>('api/registeredUsers/' + name + '/' + surname + '/' + id, {headers: this.headers});
-
   }
+
+  registerAdmin(admin: AdminDTO){
+    return this.http.post<any>('api/persons/addAdmin', admin, {headers: this.headers});
+  }
+
 }

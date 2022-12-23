@@ -24,6 +24,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import FTN.isa.model.DTOs.AdminDTO;
+
 
 @Entity
 public class Person implements UserDetails{
@@ -42,6 +44,7 @@ public class Person implements UserDetails{
     private String username;
 	
 	@Column(name = "surname", nullable = false)
+	@Pattern(regexp="^\\w{3,20}$")
 	private String surname;
 	
 	@Pattern(regexp="^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")
@@ -52,7 +55,7 @@ public class Person implements UserDetails{
 	@Column(name = "password", unique = false, nullable = false)
 	private String password;
 	
-	@Pattern(regexp="^[\\+]{1}[\\(]{1}[0-9]{3}[\\)]{1}[0-9]{2}[\\/]{1}[0-9]{3}[\\-]{1}[0-9]{4,6}")
+	@Pattern(regexp="^[\\+]{1}[\\(]{1}[0-9]{3}[\\)]{1}[0-9]{2}[\\/]{1}[0-9]{3}[\\-]{1}[0-9]{3,6}")
 	@Column(name = "phonNumber", unique = true, nullable = false)
 	private String phonNumber;
 	
@@ -94,7 +97,30 @@ public class Person implements UserDetails{
 	@Valid
 	private Address address;
 	
-	public Person() {}
+	public Person() {
+		super();
+	}
+	
+
+	public Person(AdminDTO admin) {
+		super();
+		this.name = admin.getName();
+		//this.username
+		this.surname = admin.getSurname();
+		this.email = admin.getEmail();
+		this.password = admin.getPassword();
+		this.phonNumber = admin.getPhonNumber();
+		this.jmbg = admin.getJmbg();
+		this.gender = admin.getGender();
+		this.occupation = admin.getOccupation();
+		this.informationAboutCompany = admin.getInformationAboutCompany();
+		this.dateOfBirth = admin.getDateOfBirth();
+		//this.roles
+		this.enabled = true;
+		this.lastPasswordResetDate = new Timestamp(new Date().getTime());
+		this.bloodType = admin.getBloodType();
+		this.address = admin.getAddress();
+	}
 
 	public long getId() {
 		return Id;

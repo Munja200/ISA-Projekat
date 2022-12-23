@@ -12,12 +12,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeAdminComponent } from './homeADMIN/homeAdmin.component';
 import { HomeUserComponent } from './homeUSER/homeUser.component';
+import { AuthUserGuard } from '../hospital/services/authUser.guard';
+import { AuthCenterAdminGuard } from '../hospital/services/authCenterAdmin.guard';
+import { AuthAdminGuard } from '../hospital/services/authAdmin.guard';
+import { HomeCenterAdminComponent } from './homeCENTER_ADMIN/homeCenterAdmin.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'homeAdmin', component: HomeAdminComponent },
-  { path: 'home', component: HomeUserComponent },
+  { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [ AuthAdminGuard ] },
+  { path: 'home', component: HomeUserComponent, canActivate: [ AuthUserGuard ] },
+  { path: 'homeCenterAdmin', component: HomeCenterAdminComponent, canActivate: [ AuthCenterAdminGuard ] },
 ];
 
 @NgModule({
@@ -39,6 +44,11 @@ const routes: Routes = [
     MatSelectModule,
     RouterModule.forChild(routes),
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [ 
+    AuthUserGuard,
+    AuthCenterAdminGuard,
+    AuthAdminGuard,
+  ], 
 })
 export class PagesModule { }

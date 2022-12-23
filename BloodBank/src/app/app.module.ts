@@ -32,8 +32,7 @@ import { AuthService } from "./modules/hospital/services/auth.service";
     },
     AuthService,
     ApiService,
-    
-  ],
+   ], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

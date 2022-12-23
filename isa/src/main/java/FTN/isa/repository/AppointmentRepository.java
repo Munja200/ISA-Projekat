@@ -24,15 +24,13 @@ public interface AppointmentRepository extends PagingAndSortingRepository<Appoin
 	@Query(value="select * from appointment a where a.registered_user_id = :registered_user_id AND a.start_time > :start_time ",nativeQuery = true)
 	Page<Appointment> findAllUsersAppointment(Pageable pageable, @Param(value = "registered_user_id") long registered_user_id, @Param(value = "start_time") LocalDateTime start_time);
 
-
-
 	@Query(value="select * from appointment a where a.registered_user_id = :registered_user_id AND a.start_time < :start_time order by a.start_time DESC ",nativeQuery = true)
 	List<Appointment> findAllOldUsersAppointment(@Param(value = "registered_user_id") long registered_user_id, @Param(value = "start_time") LocalDateTime start_time);
 
-	
-	
 	@SuppressWarnings("unchecked")
 	public Appointment save(Appointment registeredUser);
-
+	
+	@Query(value="select * from appointment a where a.center_id = :centerID AND a.enabled = false AND a.registered_user_id is not null",nativeQuery = true)
+	public List<Appointment> getAllAppointmentsByCenter(@Param(value = "centerID") long centerID);
 }
  

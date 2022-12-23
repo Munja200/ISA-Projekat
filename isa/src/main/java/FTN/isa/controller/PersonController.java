@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -18,10 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.DTOs.AdminDTO;
 import FTN.isa.service.EmailService;
 import FTN.isa.service.PersonService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -100,6 +103,20 @@ public class PersonController {
         return siteURL.replace(request.getServletPath(), "");
     }  
 
+	//"api/persons/addAdmin"
+	@Operation(summary = "Registered person admin", description = "Registered person admin", method="POST")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Registered admin",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = AdminDTO.class))),
+			@ApiResponse(responseCode = "404", description = "Failed registering admin", content = @Content)
+	})
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
+	public ResponseEntity<AdminDTO> addAdmin(@RequestBody @Valid AdminDTO adminDTO) {
+		Person admin = new Person(adminDTO);
+		personService.createAdmin(admin);
+	    return new ResponseEntity<AdminDTO>(adminDTO, HttpStatus.OK);
+	}
 	
 	@GetMapping("/verify")
 	public String verifyUser(@Param("code") String code) {

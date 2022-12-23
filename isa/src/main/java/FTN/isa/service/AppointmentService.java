@@ -86,5 +86,9 @@ public class AppointmentService {
 		      .atZone(ZoneId.systemDefault())
 		      .toLocalDateTime();
 		}
+		
+		public List<Appointment> getAllAppointmentsByCenter(long centerAdministratorID){
+			return appointmentRepository.getAllAppointmentsByCenter(centerAdministratorID);
+		}
 
 }

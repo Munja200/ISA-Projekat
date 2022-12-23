@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.DTOs.AdminDTO;
 import FTN.isa.model.DTOs.RegisteredUserDTO;
 import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.service.RegisteredUserService;
@@ -128,7 +130,5 @@ public class RegisteredUserController {
 		RegisteredUser registerUser = new RegisteredUser(registeredUserUpdateDTO);
 	    return registeredUserService.updateRegisteredUser(id, registerUser);
 	}
-	
-	
 	
 }

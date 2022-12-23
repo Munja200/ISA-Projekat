@@ -77,10 +77,18 @@ export class LoginComponent implements OnInit {
           let userRoles = userRole?.split(' ');
           let isAdmin = false;
           let isUser = false;
+          let isCenterAdmin = false;
           if(userRoles)
             for(let i = 0; i < userRoles?.length; i ++){
               if(userRoles[i] == 'ROLE_ADMIN'){
                 isAdmin = true;
+                break;
+              }
+            }
+          if(userRoles)
+            for(let i = 0; i < userRoles?.length; i ++){
+              if(userRoles[i] == 'ROLE_CENTER_ADMIN'){
+                isCenterAdmin = true;
                 break;
               }
             }
@@ -94,6 +102,7 @@ export class LoginComponent implements OnInit {
           
           if(isUser){
             if(isAdmin) this.router.navigate(['/homeAdmin'])
+            else if(isCenterAdmin) this.router.navigate(['/homeCenterAdmin'])
             else this.router.navigate(['/home'])
           }
         },
