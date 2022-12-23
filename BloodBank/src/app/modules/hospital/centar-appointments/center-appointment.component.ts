@@ -14,13 +14,13 @@ export class CenterAppointmentComponent implements OnInit {
   public sort : boolean = false;
   public page: number = 0;
   public dateSort: boolean = false;
-
+  public pom: any = localStorage.getItem('centar_id');
   
   constructor(private appointmentService: AppointmentService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.dateSort = false;
-    this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+    this.appointmentService.getAllFreeCentersAppointment(this.page,this.pom).subscribe(res => {
       this.centers = res;
     })
     console.log(this.centers)
@@ -44,7 +44,7 @@ export class CenterAppointmentComponent implements OnInit {
 
         this.sortByDate();
       }else{
-        this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+        this.appointmentService.getAllFreeCentersAppointment(this.page,this.pom).subscribe(res => {
           this.centers = res;
         })
       }
@@ -57,7 +57,7 @@ export class CenterAppointmentComponent implements OnInit {
     this.appointmentService.setFreebyUser(appointment.id, username).subscribe(res => {
       
       this.centers.splice(appointment);
-      this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+      this.appointmentService.getAllFreeCentersAppointment(this.page,this.pom).subscribe(res => {
         this.centers = res;
       })
     })}
@@ -72,7 +72,7 @@ export class CenterAppointmentComponent implements OnInit {
 
         this.sortByDate();
       }else{
-        this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+        this.appointmentService.getAllFreeCentersAppointment(this.page,this.pom).subscribe(res => {
           this.centers = res;
         })
       }
@@ -82,13 +82,13 @@ export class CenterAppointmentComponent implements OnInit {
   public sortByDate() {
     
     if(this.sort == false){
-      this.appointmentService.getAllFreeCentersAppointmentSorted(this.page,1).subscribe(res => {
+      this.appointmentService.getAllFreeCentersAppointmentSorted(this.page,this.pom).subscribe(res => {
         this.centers = res;
       })
   
       this.sort = true;
     }else{
-      this.appointmentService.getAllFreeCentersAppointmentSortedDesc(this.page,1).subscribe(res => {
+      this.appointmentService.getAllFreeCentersAppointmentSortedDesc(this.page,this.pom).subscribe(res => {
         this.centers = res;
       })
       this.sort = false;
