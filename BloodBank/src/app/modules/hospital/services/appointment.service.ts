@@ -32,5 +32,14 @@ export class AppointmentService {
   setAppointmentFree(id_appointment: number): Observable<any> {
     return this.http.get<AppointmentDTO[]>('api/appointment/setFree/' + id_appointment , {headers: this.headers});
   }
+  
+  getUserAppointment(page: number, username : string): Observable<any> {
+    return this.http.get<AppointmentDTO[]>('api/appointment/featureAppointment/' + page+'/'+ username , {headers: this.headers});
+  }
+
+  
+  getUserAppointmentSorted(page: number, username : string): Observable<any> {
+    return this.http.get<AppointmentDTO[]>('api/appointment/featureAppointmentSorted/' + page+'/'+ username , {headers: this.headers});
+  }
 
 }

@@ -4,11 +4,11 @@ import { AppointmentService } from '../services/appointment.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-center-appointment',
-  templateUrl: './center-appointment.component.html',
-  styleUrls: ['./center-appointment.component.css']
+  selector: 'app-user-appointments',
+  templateUrl: './user-appointments.component.html',
+  styleUrls: ['./user-appointments.component.css']
 })
-export class CenterAppointmentComponent implements OnInit {
+export class UserAppointmentsComponent implements OnInit {
   public centers: AppointmentDTO[] = [];
 
   public sort : boolean = false;
@@ -20,10 +20,13 @@ export class CenterAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateSort = false;
-    this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
-      this.centers = res;
-    })
-    console.log(this.centers)
+    let pom = localStorage.getItem('username');
+    if(pom != null){ 
+      this.appointmentService.getUserAppointment(this.page, pom).subscribe(res => {
+        this.centers = res;
+      })
+      console.log(this.centers)
+    } 
   }
 
   public converzion(vreme: any):any {
@@ -36,6 +39,9 @@ export class CenterAppointmentComponent implements OnInit {
   }
 
   public nextButton(){
+    let pom = localStorage.getItem('username');
+    if(pom != null){ 
+    
     if(this.centers.length >= 10 ){
       this.page =this.page + 1;
     
@@ -44,27 +50,32 @@ export class CenterAppointmentComponent implements OnInit {
 
         this.sortByDate();
       }else{
-        this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+        this.appointmentService.getUserAppointmentSorted(this.page,pom).subscribe(res => {
           this.centers = res;
         })
       }
     }
+    }
   }
   
-  public add(appointment: any){
-    let username = localStorage.getItem('username');
-    if(username!= null){
-    this.appointmentService.setFreebyUser(appointment.id, username).subscribe(res => {
-      
+  public refuse(appointment: any){
+    this.appointmentService.setAppointmentFree(appointment.id).subscribe(res => {
       this.centers.splice(appointment);
-      this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+      let pom = localStorage.getItem('username');
+    if(pom != null){ 
+      this.appointmentService.getUserAppointment(this.page, pom).subscribe(res => {
         this.centers = res;
       })
-    })}
+    }
+
+    })
     
   }
 
   public previousButton(){
+    let pom = localStorage.getItem('username');
+    if(pom != null){ 
+    
     if(this.page - 1 >=0 ){
       this.page =this.page - 1;
       if(this.dateSort == true){
@@ -72,26 +83,30 @@ export class CenterAppointmentComponent implements OnInit {
 
         this.sortByDate();
       }else{
-        this.appointmentService.getAllFreeCentersAppointment(this.page,1).subscribe(res => {
+        this.appointmentService.getUserAppointmentSorted(this.page,pom).subscribe(res => {
           this.centers = res;
         })
       }
     }
+    }
   }
 
   public sortByDate() {
+    let pom = localStorage.getItem('username');
+    if(pom != null){ 
     
     if(this.sort == false){
-      this.appointmentService.getAllFreeCentersAppointmentSorted(this.page,1).subscribe(res => {
+      this.appointmentService.getUserAppointmentSorted(this.page,pom).subscribe(res => {
         this.centers = res;
       })
   
       this.sort = true;
     }else{
-      this.appointmentService.getAllFreeCentersAppointmentSortedDesc(this.page,1).subscribe(res => {
+      this.appointmentService.getUserAppointment(this.page,pom).subscribe(res => {
         this.centers = res;
       })
       this.sort = false;
+    }
     }
   }
 

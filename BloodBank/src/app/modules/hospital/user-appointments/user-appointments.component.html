@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <div class="w-90 h-100" style="background: #212529d8">
+        
+        <div class="d-flex h-75">
+            <div class="d-flex justify-content-center w-70 pt-2">
+                <div class="w-90 pt-3 rounded" style="background: #212529d8">
+                    <div class="h4 d-flex justify-content-center text-white">
+                            User Appointment
+                    </div>
+                    <table class="table table-light table-striped table-hover mx-auto mt-2 w-90">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm"  (click)="sortByDate()" >
+                                        Date and Time
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm">
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let center of centers;">
+                                <td class="text-center">{{converzion(center.start)}}</td>
+                              
+                                <td class="text-center"><button type="button" class="btn btn-outline-light" (click)="refuse(center)">Add</button></td>
+                            </tr>
+                        </tbody>
+    
+                    </table>
+                    <div class="d-flex justify-content-between mx-auto w-80">
+                        <button type="button" class="btn btn-outline-light" (click)="previousButton()">Previous</button>
+                        <button type="button" class="btn btn-outline-light" disabled > {{this.page + 1}}</button> 
+                        <button type="button" class="btn btn-outline-light" (click)="nextButton()">Next</button>
+                    </div>
+                </div>
+            </div>      
+        </div>
+    </div>
+</div>

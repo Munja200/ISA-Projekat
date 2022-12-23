@@ -114,6 +114,27 @@ public class AppointmentController {
 		return new ResponseEntity<List<AppointmentDTO>>(appointmentDtos, HttpStatus.OK);
 	}
 
+
+	@Operation(summary = "Get feature appointment for user by page", description = "Get feature appointment for user by page", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Get feature appointment for user by page",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = AppointmentDTO.class))),
+			@ApiResponse(responseCode = "404", description = "appointments not found", content = @Content)
+	})
+	@GetMapping(value = "/featureAppointmentSorted/{page}/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AppointmentDTO>> getAllUsersSorted(@Parameter(name="page", description = "Number of a page to return", required = true) @PathVariable("page") int page,@Parameter(name="username", description = "username", required = true) @PathVariable("username") String username) {		
+		Pageable appointmentsPage =  PageRequest.of(page, 10, Sort.by("start_time"));	
+
+		Page<Appointment> appointments = appointmentService.findAllUsersAppointment(appointmentsPage,username);
+		List<AppointmentDTO> appointmentDtos = new ArrayList<AppointmentDTO>();
+		for(Appointment a : appointments){
+			appointmentDtos.add(new AppointmentDTO(a));
+		} 
+		
+		return new ResponseEntity<List<AppointmentDTO>>(appointmentDtos, HttpStatus.OK);
+	}
+
+	
 	
 	
 	@Operation(summary = "Set free appointment for user", description = "Set free appointment for user", method="GET")
