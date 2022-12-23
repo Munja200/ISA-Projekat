@@ -21,6 +21,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
 import { HttpClientModule } from "@angular/common/http";
+import { CenterAppointmentComponent } from './centar-appointments/center-appointment.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'registeredPersons', component: SearchRegisteredPersons},
   { path: 'complaints', component: ComplaintsComponent},
   { path: 'calendar', component: CalendarComponent},
+  { path: 'centerAppointments', component: CenterAppointmentComponent},
 ];
 
 @NgModule({
@@ -47,6 +49,7 @@ const routes: Routes = [
     SearchRegisteredPersons,
     ComplaintsComponent,
     CalendarComponent,
+    CenterAppointmentComponent,
   ],
   imports: [
     CommonModule,

@@ -17,8 +17,8 @@ public class AppointmentDTO {
 		super();
 		this.id = a.getId();
 		this.text = a.getText();
-		this.start = a.getStart();
-		this.end = a.getEnd();
+		this.start = new Date(a.getStart().getTime());
+		this.end = new Date(a.getEnd().getTime());
 		
 	}
 
