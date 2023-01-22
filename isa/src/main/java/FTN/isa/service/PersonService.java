@@ -15,6 +15,7 @@ import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.Role;
 import FTN.isa.repository.PersonRepository;
 import FTN.isa.repository.RegisteredUserRepository;
+import net.bytebuddy.utility.RandomString;
 
 @Service
 public class PersonService {
@@ -28,6 +29,8 @@ public class PersonService {
 	@Autowired
 	private RoleService roleService;
 
+
+	
 	
 	@Autowired
 	private RegisteredUserRepository registeredUserRepository;
@@ -43,10 +46,11 @@ public class PersonService {
 	public RegisteredUser create(Person person)throws UnsupportedEncodingException, MessagingException {
 	    RegisteredUser user = new RegisteredUser(0,false,person);
 		 
-	   // String randomCode = RandomString.make(64);
-	   // user.setVerificationCode(randomCode);
+	    String randomCode = RandomString.make(64);
+	    user.setVerificationCode(randomCode);
 	    user.getPerson().setPassword(passwordEncoder.encode(person.getPassword()));
 	    user.getPerson().setUsername(person.getEmail());
+	    user.getPerson().setEnabled(false);
 	    user.setEnabled(false);
 	    List<Role> roles = roleService.findByName("ROLE_USER");
 		user.getPerson().setRoles(roles);
@@ -61,17 +65,19 @@ public class PersonService {
 	
 	
 	
-	public boolean verify(String verificationCode) {
+	public Person verify(String verificationCode) {
 	    RegisteredUser user = registeredUserRepository.findByVerificationCode(verificationCode);
 	     
-	    if (user == null || user.isEnabled()) {
-	        return false;
+	    if (user == null || user.getPerson().isEnabled()) {
+	    	System.out.println("Ovde ulazi");
+	        return null;
 	    } else {
 	        user.setVerificationCode(null);
+	        user.getPerson().setEnabled(true);
 	        user.setEnabled(true);
 	        registeredUserRepository.save(user);
-	         
-	        return true;
+	        System.out.println("A sad ovde"); 
+	        return user.getPerson();
 	    }
 	}
 }

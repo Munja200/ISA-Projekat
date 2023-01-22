@@ -3,9 +3,11 @@ package FTN.isa.controller;
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,7 @@ import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.DTOs.JwtAuthenticationRequest;
 import FTN.isa.model.DTOs.UserTokenState;
+import FTN.isa.service.EmailService;
 import FTN.isa.service.PersonService;
 import FTN.isa.util.TokenUtils;
 
@@ -38,7 +42,10 @@ public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-
+	
+	@Autowired
+	private EmailService mailService;
+	
 	@Autowired
 	private PersonService userService;
 	
@@ -67,15 +74,32 @@ public class AuthenticationController {
 
 	// Endpoint za registraciju novog korisnika
 	@PostMapping("/signup")
-	public ResponseEntity<Person> addUser(@RequestBody Person userRequest, UriComponentsBuilder ucBuilder) throws UnsupportedEncodingException, MessagingException {
+	public ResponseEntity<Person> addUser(@RequestBody Person userRequest, HttpServletRequest request,UriComponentsBuilder ucBuilder) throws UnsupportedEncodingException, MessagingException {
 		Person existUser = this.userService.findByUsername(userRequest.getEmail());
 
 		if (existUser != null) {
 			throw new ResourceConflictException(userRequest.getId(), "Username already exists");
 		}
+		
 
 		RegisteredUser user = this.userService.create(userRequest);
-
-		return new ResponseEntity<>(user.getPerson(), HttpStatus.CREATED);
+		try {
+			
+			mailService.sendNotificaitionAsync(user,getSiteURL(request));
+			return new ResponseEntity<>(user.getPerson(), HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Person>(user.getPerson(), HttpStatus.CONFLICT);
+		}
+		
+		
+		//return new ResponseEntity<>(user.getPerson(), HttpStatus.CREATED);
 	}
+	
+	private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }  
+
+	
 }

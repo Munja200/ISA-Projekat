@@ -35,7 +35,16 @@ public class AppointmentService {
 			   LocalDateTime now = LocalDateTime.now();  
 			return appointmentRepository.findAllFree(pageable,id_centra, now);
 		}
+
+		public Page<Appointment> findAllUsersAppointment(Pageable pageable,String registerUserId) {
+			   LocalDateTime now = LocalDateTime.now();  
+				RegisteredUser user = userRepository.getByUsername(registerUserId);
+
+			   return appointmentRepository.findAllUsersAppointment(pageable,user.getId(), now);
+		}
+
 	
+		
 		public boolean setAppointmentFree(long appointmentId) {
 			Appointment appointment = appointmentRepository.findById(appointmentId);
 			LocalDateTime now = LocalDateTime.now(); 
@@ -50,13 +59,13 @@ public class AppointmentService {
 			return true;
 		}
 		
-		public boolean setAppointmentForUser(long appointmentId, long registerUserId) {
+		public boolean setAppointmentForUser(long appointmentId, String registerUserId) {
 			Appointment appointment = appointmentRepository.findById(appointmentId);
-			RegisteredUser user = userRepository.getOne(registerUserId);
+			RegisteredUser user = userRepository.getByUsername(registerUserId);
 			LocalDateTime now = LocalDateTime.now(); 
-			Set<QuestionForm> forms =  questionFormRepository.findAllForUser(registerUserId);
+			Set<QuestionForm> forms =  questionFormRepository.findAllForUser(user.getId());
 			
-			List<Appointment> appointments =  appointmentRepository.findAllOldUsersAppointment(registerUserId,now);
+			List<Appointment> appointments =  appointmentRepository.findAllOldUsersAppointment(user.getId(),now);
 			if(!appointments.isEmpty()) {
 				Appointment a = appointments.get(0);
 				LocalDateTime dat = LocalDateTime.now();

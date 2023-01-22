@@ -43,6 +43,11 @@ export class HomeUserComponent implements OnInit {
     this.authService.logout()
   }
 
+  public Appointments(id: any){
+    localStorage.setItem('centar_id', id);
+    this.router.navigate(['/centerAppointments']);
+  }
+
   public nextButton(){
     if(this.centers.length >= 10 ){
       this.page =this.page + 1;

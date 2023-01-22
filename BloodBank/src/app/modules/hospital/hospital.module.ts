@@ -21,6 +21,10 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { DayPilotModule } from "@daypilot/daypilot-lite-angular";
 import { HttpClientModule } from "@angular/common/http";
+import { CenterAppointmentComponent } from './centar-appointments/center-appointment.component';
+import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
+import { VerifyComponent } from './verify/verify.component';
+
 
 
 const routes: Routes = [
@@ -34,6 +38,10 @@ const routes: Routes = [
   { path: 'registeredPersons', component: SearchRegisteredPersons},
   { path: 'complaints', component: ComplaintsComponent},
   { path: 'calendar', component: CalendarComponent},
+  { path: 'centerAppointments', component: CenterAppointmentComponent},
+  { path: 'userAppointments', component: UserAppointmentsComponent},
+  { path: 'login/verify/:id', component: VerifyComponent},
+
 ];
 
 @NgModule({
@@ -47,6 +55,9 @@ const routes: Routes = [
     SearchRegisteredPersons,
     ComplaintsComponent,
     CalendarComponent,
+    CenterAppointmentComponent,
+    UserAppointmentsComponent,
+    VerifyComponent,
   ],
   imports: [
     CommonModule,

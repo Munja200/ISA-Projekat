@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -95,19 +96,27 @@ public class PersonController {
 		}
 	}
 	
+	
 	private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();
         return siteURL.replace(request.getServletPath(), "");
-    }  
-
+    } 
 	
-	@GetMapping("/verify")
-	public String verifyUser(@Param("code") String code) {
-	    if (personService.verify(code)) {
-	        return "verify_success";
-	    } else {
-	        return "verify_fail";
-	    }
-	}
+	@Operation(summary = "Get person by id", description = "Get person by id", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found person by id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Person.class))),
+			@ApiResponse(responseCode = "404", description = "person not found", content = @Content)
+	})
+	@GetMapping(value = "/verify/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Person> verifyUser(@Parameter(name="code", description = "ID of a person to return", required = true) @PathVariable("code") String code) { 
+		System.out.println("usao je"); 
+		Person pom = personService.verify(code);
+		return new ResponseEntity<Person>(pom, HttpStatus.OK);
+		//	return "verify_success";
+	//	} else {
+	//		return "templates/verify_fail";
+		
+	} 
 	
 }

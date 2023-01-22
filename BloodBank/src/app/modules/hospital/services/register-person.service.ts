@@ -37,4 +37,8 @@ export class RegisterPersonService {
     return this.http.get<any>('api/registeredUsers/' + name + '/' + surname + '/' + id, {headers: this.headers});
 
   }
+
+  verify(id: string){
+    return this.http.get<Person>('api/persons/verify/' + id, {headers: this.headers});
+  }
 }
