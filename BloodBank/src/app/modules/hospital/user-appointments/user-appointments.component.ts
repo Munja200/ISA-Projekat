@@ -72,6 +72,11 @@ export class UserAppointmentsComponent implements OnInit {
     
   }
 
+  logout(){
+    this.authService.logout()
+  }
+
+
   public previousButton(){
     let pom = localStorage.getItem('username');
     if(pom != null){ 

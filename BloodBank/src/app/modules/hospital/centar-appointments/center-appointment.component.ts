@@ -64,6 +64,11 @@ export class CenterAppointmentComponent implements OnInit {
     
   }
 
+  logout(){
+    this.authService.logout()
+  }
+
+
   public previousButton(){
     if(this.page - 1 >=0 ){
       this.page =this.page - 1;

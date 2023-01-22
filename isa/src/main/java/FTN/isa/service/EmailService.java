@@ -47,7 +47,7 @@ public class EmailService {
 		
 		content = content.replace("[[name]]", user.getPerson().getName());
 		String verifyURL = "http://localhost:4200/login/verify/" + user.getVerificationCode();
-		
+		 
 		content = content.replace("[[URL]]", verifyURL);
 		
 		helper.setText(content, true);
