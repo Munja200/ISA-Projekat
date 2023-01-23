@@ -148,7 +148,8 @@ public class AppointmentController {
 	public ResponseEntity<String> setFreebyUser(@Parameter(name="appointmentId", description = "Appointment id", required = true) @PathVariable("appointmentId") long appointmentId,@Parameter(name="username", description = "username", required = true) @PathVariable("registerUserId") String registerUserId) {		
 		//setAppointmentForUser(long appointmentId, long registerUserId) {
 		try{
-			if(appointmentService.setAppointmentForUser(appointmentId, registerUserId)) {
+			Appointment appointment =  appointmentService.findById(appointmentId);
+			if(appointmentService.setAppointmentForUser(appointment, registerUserId)) {
 				return new ResponseEntity<>(HttpStatus.OK);		
 			}		} catch(NoSuchElementException e) {
 			return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT); // :)
