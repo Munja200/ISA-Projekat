@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
 import javax.validation.Valid;
 
 
@@ -40,7 +41,18 @@ public class Appointment {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "center_id", referencedColumnName = "id")
 	private Center center;
+
+	@Version
+	private Integer version;
 	
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
 	public Appointment(long id, Date start, Date end, boolean enabled, String text, RegisteredUser user,
 			Center center) {

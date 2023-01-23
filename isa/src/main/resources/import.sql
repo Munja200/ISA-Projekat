@@ -55,3 +55,15 @@ insert into complaint(id, answer, complaint, person_id) values (11, null, 'Pazi 
 insert into complaint(id, answer, complaint, person_id) values (12, null, 'JAHS DIPSAH DOIASHHIOHDIO NUAHDIHN IOUASDHI JAHS DIPSAH DOIASH ODHHIO NUSAHUI DHNIOU SHIDHNU IOASHIDH INASHIDH IONASHID HINOASHIDHI NUOASHNI UDHNIUDH SINOAHI ODHIO HIOHDIO NUAHDIHN IOUASDHI', 1);
 
 
+
+----------------------APPOINTMENT------------------------
+insert into appointment(id, enabled, end_time, start_time, text, version, center_id, registered_user_id) values (1, false, '2023-01-29 12:00:00', '2023-01-29 11:30:00', ' ', 1, 1, null);
+insert into appointment(id, enabled, end_time, start_time, text, version, center_id, registered_user_id) values (2, false, '2023-01-29 10:00:00', '2023-01-29 09:30:00',' ', 1, 1, null);
+insert into appointment(id, enabled, end_time, start_time, text, version, center_id, registered_user_id) values (3, false, '2023-01-30 10:00:00', '2023-01-29 09:30:00',' ', 1, 1, null);
+insert into appointment(id, enabled, end_time, start_time, text, version, center_id, registered_user_id) values (4, false, '2023-01-30 12:00:00', '2023-01-29 11:30:00',' ', 1, 1, null);
+
+
+----------------------QUESTION_FORM----------------
+insert into question_form(id, date, deleted, registered_user_id) values (1, '2023-01-12', false, 1);
+insert into question_form(id, date, deleted, registered_user_id) values (2, '2023-01-12', false, 2);
+

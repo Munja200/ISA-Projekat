@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import FTN.isa.model.Appointment;
 import FTN.isa.model.QuestionForm;
@@ -20,6 +22,7 @@ import FTN.isa.repository.QuestionFormRepository;
 import FTN.isa.repository.RegisteredUserRepository;
 
 @Service
+@Transactional(readOnly = true)
 public class AppointmentService {
 	
 		@Autowired
@@ -44,7 +47,7 @@ public class AppointmentService {
 		}
 
 	
-		
+		@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)		
 		public boolean setAppointmentFree(long appointmentId) {
 			Appointment appointment = appointmentRepository.findById(appointmentId);
 			LocalDateTime now = LocalDateTime.now(); 
@@ -59,6 +62,7 @@ public class AppointmentService {
 			return true;
 		}
 		
+		@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 		public boolean setAppointmentForUser(long appointmentId, String registerUserId) {
 			Appointment appointment = appointmentRepository.findById(appointmentId);
 			RegisteredUser user = userRepository.getByUsername(registerUserId);

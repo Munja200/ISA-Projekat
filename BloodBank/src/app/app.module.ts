@@ -23,7 +23,7 @@ import { AuthService } from "./modules/hospital/services/auth.service";
     MaterialModule,
     PagesModule,
     HospitalModule
-  ],
+     ],
    providers: [ 
     {
       provide: HTTP_INTERCEPTORS,
