@@ -10,10 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptorService } from "./modules/hospital/interceptor/TokenInterceptor";
 import { ApiService } from "./modules/hospital/services/api.service";
 import { AuthService } from "./modules/hospital/services/auth.service";
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapsComponent } from './modules/maps/maps.component'
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,10 @@ import { AuthService } from "./modules/hospital/services/auth.service";
     HttpClientModule,
     MaterialModule,
     PagesModule,
-    HospitalModule
+    HospitalModule,
+    GoogleMapsModule
+
+
   ],
    providers: [ 
     {

@@ -1,0 +1,17 @@
+<google-map height="400px"
+            width="750px"
+            [center]="center"
+            [zoom]="zoom"
+          >
+    <map-marker #marker="mapMarker"
+        [position]="center"
+        [options]="markerOptions"
+        (mapClick)="openInfoWindow(marker,'Polaziste')">
+    </map-marker>
+    <map-marker icon="../maps/icon.png" #marker1="mapMarker"
+    [position]="center1"
+    [options]="markerOptions"
+    (mapClick)="openInfoWindow(marker1, 'Odrediste')">
+    </map-marker>
+    <map-info-window>{{text}} </map-info-window>
+   </google-map>

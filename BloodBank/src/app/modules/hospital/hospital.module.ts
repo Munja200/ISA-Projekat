@@ -24,6 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { CenterAppointmentComponent } from './centar-appointments/center-appointment.component';
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
 import { VerifyComponent } from './verify/verify.component';
+import { MapsComponent } from '../maps/maps.component';
 
 
 
@@ -41,7 +42,8 @@ const routes: Routes = [
   { path: 'centerAppointments', component: CenterAppointmentComponent},
   { path: 'userAppointments', component: UserAppointmentsComponent},
   { path: 'login/verify/:id', component: VerifyComponent},
-
+{ path: 'maps', component: MapsComponent},
+  
 ];
 
 @NgModule({
@@ -57,7 +59,7 @@ const routes: Routes = [
     CalendarComponent,
     CenterAppointmentComponent,
     UserAppointmentsComponent,
-    VerifyComponent,
+    VerifyComponent
   ],
   imports: [
     CommonModule,
