@@ -48,7 +48,7 @@ public class Person implements UserDetails{
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
- //   @JsonIgnore
+	//@JsonIgnore
 	@Column(name = "password", unique = false, nullable = false)
 	private String password;
 	

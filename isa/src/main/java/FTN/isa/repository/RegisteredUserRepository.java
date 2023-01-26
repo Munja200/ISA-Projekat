@@ -25,7 +25,7 @@ public interface RegisteredUserRepository extends PagingAndSortingRepository<Reg
 	
 	public List<RegisteredUser> findAll();
 	
-	@Query(value="SELECT u FROM registered_user u WHERE u.verification_code = ?1",nativeQuery = true)
+	@Query(value="SELECT * FROM registered_user u WHERE u.verification_code = ?1",nativeQuery = true)
 	public RegisteredUser findByVerificationCode(String code);
 	
 	@SuppressWarnings("unchecked")
@@ -33,5 +33,8 @@ public interface RegisteredUserRepository extends PagingAndSortingRepository<Reg
 	
 	@Query(value="select * from registered_user ru ,person p where ru.person_id= p.id and  ru.id =?1",nativeQuery = true)
 	public RegisteredUser getOne(Long id);
-	
+
+	@Query(value="select * from registered_user ru ,person p where ru.person_id= p.id and  p.username =?1",nativeQuery = true)
+	public RegisteredUser getByUsername(String id);
+
 }

@@ -52,8 +52,8 @@ console.log(this.person)
       this.authService.login(this.person).subscribe(() => {
       });
 
-      this.router.navigate(['/home']);
-    },
+      this.router.navigate(['/login']);
+        },
       error => {
         console.log('Sign up error');
       });
