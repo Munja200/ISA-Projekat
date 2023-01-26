@@ -103,11 +103,7 @@ openGlobalSocket() {
       let lata = parseFloat(str[0]); 
       let lnga = parseFloat(str[1]);
       
-      if(this.center1.lat == lata && this.center1.lng == lnga)
-      {
-          this.markers == [] as any;        
-          this.button = false;
-      } 
+      
       this.button = true;
 
       this.markers.push({

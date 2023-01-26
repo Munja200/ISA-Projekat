@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
+import javax.persistence.Version;
 
 
 @Entity
@@ -41,7 +41,18 @@ public class Appointment {
 	@JoinColumn(name = "center_id", referencedColumnName = "id")
 	private Center center;
 	
+	@Version
+	private Integer version;
 
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	
 	public Appointment(long id, Date start, Date end, boolean enabled, String text, RegisteredUser user,
 			Center center) {
 		super();

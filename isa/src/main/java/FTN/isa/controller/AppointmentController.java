@@ -2,6 +2,7 @@ package FTN.isa.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -146,8 +147,12 @@ public class AppointmentController {
 	@GetMapping(value = "/setAppointmentUser/{appointmentId}/{registerUserId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> setFreebyUser(@Parameter(name="appointmentId", description = "Appointment id", required = true) @PathVariable("appointmentId") long appointmentId,@Parameter(name="username", description = "username", required = true) @PathVariable("registerUserId") String registerUserId) {		
 		//setAppointmentForUser(long appointmentId, long registerUserId) {
-		if(appointmentService.setAppointmentForUser(appointmentId, registerUserId)) {
-			return new ResponseEntity<>(HttpStatus.OK);		
+		try{
+			Appointment appointment =  appointmentService.findById(appointmentId);
+			if(appointmentService.setAppointmentForUser(appointment, registerUserId)) {
+				return new ResponseEntity<>(HttpStatus.OK);		
+			}		} catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT); // :)
 		}
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -163,8 +168,12 @@ public class AppointmentController {
 	@GetMapping(value = "/setFree/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> setAppointmentFree(@Parameter(name="id", description = "id for appointment", required = true) @PathVariable("id") long id) {		
 		
-		if(appointmentService.setAppointmentFree(id)) {
-			return new ResponseEntity<>(HttpStatus.OK);		
+		try{
+			if(appointmentService.setAppointmentFree(id)) {
+				return new ResponseEntity<>(HttpStatus.OK);		
+			}
+		} catch(NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
 		}
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

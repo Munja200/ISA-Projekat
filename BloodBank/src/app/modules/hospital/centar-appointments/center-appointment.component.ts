@@ -50,6 +50,11 @@ export class CenterAppointmentComponent implements OnInit {
       }
     }
   }
+
+  logout(){
+    this.authService.logout()
+  }
+
   
   public add(appointment: any){
     let username = localStorage.getItem('username');

@@ -38,6 +38,10 @@ export class UserAppointmentsComponent implements OnInit {
     return date_time;
   }
 
+  logout(){
+    this.authService.logout()
+  }
+
   public nextButton(){
     let pom = localStorage.getItem('username');
     if(pom != null){ 

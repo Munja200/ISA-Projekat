@@ -7,10 +7,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import FTN.isa.model.Appointment;
 import FTN.isa.model.QuestionForm;
@@ -20,10 +24,12 @@ import FTN.isa.repository.QuestionFormRepository;
 import FTN.isa.repository.RegisteredUserRepository;
 
 @Service
+@Transactional(readOnly = true)
 public class AppointmentService {
 	
 		@Autowired
 		private AppointmentRepository appointmentRepository;
+		private Logger logger = LoggerFactory.getLogger(this.getClass());
 		
 		@Autowired
 		private QuestionFormRepository questionFormRepository;
@@ -42,11 +48,26 @@ public class AppointmentService {
 
 			   return appointmentRepository.findAllUsersAppointment(pageable,user.getId(), now);
 		}
-
-	
 		
+		public Appointment findById(long id) {
+
+			Appointment product = appointmentRepository.findById(id).get();
+			return product;
+		}
+		
+
+		@Transactional(readOnly = false)
+		public Appointment save(Appointment appointment) {
+			logger.info("> create");
+			Appointment savedAppointment = appointmentRepository.save(appointment);
+			logger.info("< create");
+			return savedAppointment;
+		}
+		
+	
+		@Transactional(readOnly = false, propagation = Propagation.REQUIRED)			
 		public boolean setAppointmentFree(long appointmentId) {
-			Appointment appointment = appointmentRepository.findById(appointmentId);
+			Appointment appointment = appointmentRepository.findById(appointmentId).get();
 			LocalDateTime now = LocalDateTime.now(); 
 			LocalDateTime noww = convertToLocalDateTimeViaMilisecond(appointment.getStart());
 			noww = noww.minusHours(24);
@@ -59,9 +80,11 @@ public class AppointmentService {
 			return true;
 		}
 		
-		public boolean setAppointmentForUser(long appointmentId, String registerUserId) {
-			Appointment appointment = appointmentRepository.findById(appointmentId);
-			RegisteredUser user = userRepository.getByUsername(registerUserId);
+		@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)		
+		public boolean setAppointmentForUser(Appointment appointment, String registerUserId) {
+			   logger.info("> update id:{}", appointment.getId());
+
+			   RegisteredUser user = userRepository.getByUsername(registerUserId);
 			LocalDateTime now = LocalDateTime.now(); 
 			Set<QuestionForm> forms =  questionFormRepository.findAllForUser(user.getId());
 			
@@ -86,7 +109,9 @@ public class AppointmentService {
 			}
 			appointment.setUser(user);
 			
-			appointmentRepository.save(appointment);
+			this.save(appointment);
+	        logger.info(appointment.getUser().getPerson().getUsername()+" " + appointment.getVersion());
+	        logger.info("< update id:{}", appointment.getId());
 			return true;
 		}
 		

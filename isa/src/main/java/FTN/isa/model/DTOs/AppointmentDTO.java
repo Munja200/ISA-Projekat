@@ -6,7 +6,7 @@ import FTN.isa.model.Appointment;
 
 public class AppointmentDTO {
 	private long id;
-	
+	private String centerName;
 	private String text;
 	private Date start;
 	private Date end;
@@ -19,7 +19,7 @@ public class AppointmentDTO {
 		this.text = a.getText();
 		this.start = new Date(a.getStart().getTime());
 		this.end = new Date(a.getEnd().getTime());
-		
+		this.centerName = a.getCenter().getName();
 	}
 
 	public long getId() {
@@ -28,6 +28,14 @@ public class AppointmentDTO {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getCenterName() {
+		return centerName;
+	}
+
+	public void setCenterName(String centerName) {
+		this.centerName = centerName;
 	}
 
 	public String getText() {
