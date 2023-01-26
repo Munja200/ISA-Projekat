@@ -19,4 +19,6 @@ export class CenterService {
     return this.http.get<CenterDTO[]>('api/centers/allForAdministratorRegistration', {headers: this.headers});
   }
 
+
+  
 }

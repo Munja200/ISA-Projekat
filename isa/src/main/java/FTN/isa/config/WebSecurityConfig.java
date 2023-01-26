@@ -92,7 +92,7 @@ public class WebSecurityConfig {
 			.antMatchers("/api/registeredUsers/oneRegisteredUser/{id}").hasRole("USER")
 			.antMatchers("/api/administratorCenters/add").hasRole("ADMIN")
 			.antMatchers("/socket/**").permitAll()		// /api/foo
-			
+
 			// ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
 			// koji tip korisnika moze da pristupi odgovarajucoj ruti. Npr. ukoliko zelimo da definisemo da ruti 'admin' moze da pristupi
 			// samo korisnik koji ima rolu 'ADMIN', navodimo na sledeci nacin: 
@@ -135,6 +135,7 @@ public class WebSecurityConfig {
     			.antMatchers(HttpMethod.GET, "/api/centers/{name}/{city}/{id}")
     			.antMatchers(HttpMethod.GET, "/api/centers/{street}/{id}")
     			.antMatchers(HttpMethod.GET, "/v3/**")
+    			.antMatchers(HttpMethod.GET, "/socket/**")
     			.antMatchers(HttpMethod.GET, "/api/persons/verify/{id}")
     			.antMatchers(HttpMethod.POST, "/api/isa//{exchange}/{queue}")
     			// Ovim smo dozvolili pristup statickim resursima aplikacije

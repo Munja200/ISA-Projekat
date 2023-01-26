@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.service.Producer;
 
-@CrossOrigin
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping(value = "api")
 public class ProducerController {

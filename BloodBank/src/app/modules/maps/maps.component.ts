@@ -3,6 +3,7 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import { MapsService } from '../hospital/services/maps.service';
 
 
 @Component({
@@ -14,9 +15,10 @@ export class MapsComponent implements OnInit {
   private serverUrl = "http://localhost:8080/" +"socket";
   private stompClient: any;
   isLoaded: boolean = false;
+  public button : boolean =false;
+  private pom: string ="";
 
-
-  constructor() {}
+  constructor(private mapService: MapsService) {}
   ngOnInit(): void {
 
     this.initializeWebSocketConnection();
@@ -41,6 +43,16 @@ center2: google.maps.LatLngLiteral = {
 };
 
   zoom = 10;
+  Dugme() {
+    
+    this.pom = this.center1.lat+","+this.center1.lng;
+    console.log(this.pom)
+    this.mapService.generateCords(this.pom).subscribe(res => {
+      console.log(this.pom)
+    });
+    
+}
+
   moveMap(event: google.maps.MapMouseEvent) {
       if (event.latLng != null) this.center = (event.latLng.toJSON());
   }
@@ -90,6 +102,14 @@ openGlobalSocket() {
       
       let lata = parseFloat(str[0]); 
       let lnga = parseFloat(str[1]);
+      
+      if(this.center1.lat == lata && this.center1.lng == lnga)
+      {
+          this.markers == [] as any;        
+          this.button = false;
+      } 
+      this.button = true;
+
       this.markers.push({
         position: {
           lat:lata,

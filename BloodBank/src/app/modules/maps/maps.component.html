@@ -1,5 +1,5 @@
-<google-map height="400px"
-            width="750px"
+<google-map height="50%"
+            width="100%"
             [center]="center"
             [zoom]="zoom"
           >
@@ -9,8 +9,7 @@
         (mapClick)="openInfoWindow(marker,'Polaziste')">
         <map-marker
         #markerElem="mapMarker"
-        *ngFor="let marker of markers"
-        [position]="marker.position"
+        [position]="center2"
         [options]="marker.options"
         ></map-marker>
        </map-marker>
@@ -22,3 +21,7 @@
 
     <map-info-window>{{text}} </map-info-window>
    </google-map>
+   
+   <button [disabled]="button" (click)="Dugme()">Prosledite odredisnu kordinatu</button>
+   
+  
