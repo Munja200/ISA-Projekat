@@ -91,6 +91,8 @@ public class WebSecurityConfig {
 			.antMatchers("/api/foo").permitAll()		// /api/foo
 			.antMatchers("/api/registeredUsers/oneRegisteredUser/{id}").hasRole("USER")
 			.antMatchers("/api/administratorCenters/add").hasRole("ADMIN")
+			.antMatchers("/socket/**").permitAll()		// /api/foo
+			
 			// ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
 			// koji tip korisnika moze da pristupi odgovarajucoj ruti. Npr. ukoliko zelimo da definisemo da ruti 'admin' moze da pristupi
 			// samo korisnik koji ima rolu 'ADMIN', navodimo na sledeci nacin: 
@@ -121,9 +123,9 @@ public class WebSecurityConfig {
     	// Zahtevi koji se mecuju za web.ignoring().antMatchers() nemaju pristup SecurityContext-u
     	// Dozvoljena POST metoda na ruti /auth/login, za svaki drugi tip HTTP metode greska je 401 Unauthorized
     	return (web) -> web.ignoring()
-    			.antMatchers(HttpMethod.POST, "/auth/login")
+    			.antMatchers(HttpMethod.POST, "/auth/login") 
     			.antMatchers(HttpMethod.GET, "/api/centers/{id}")
-    			.antMatchers(HttpMethod.GET, "/api/appointment/**") //NE BI TREBALO DA OVO OVDE STOJI
+    			.antMatchers(HttpMethod.GET, "/api/appointment/**") 
     			.antMatchers(HttpMethod.GET, "/api/centers/name/{id}")
     			.antMatchers(HttpMethod.GET, "/api/centers/nameDes/{id}")
     			.antMatchers(HttpMethod.GET, "/api/centers/city/{id}")

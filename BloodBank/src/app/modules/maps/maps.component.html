@@ -7,11 +7,18 @@
         [position]="center"
         [options]="markerOptions"
         (mapClick)="openInfoWindow(marker,'Polaziste')">
-    </map-marker>
-    <map-marker icon="../maps/icon.png" #marker1="mapMarker"
-    [position]="center1"
+        <map-marker
+        #markerElem="mapMarker"
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [options]="marker.options"
+        ></map-marker>
+       </map-marker>
+    <map-marker  #marker1="mapMarker"
+    [position]="center2"
     [options]="markerOptions"
     (mapClick)="openInfoWindow(marker1, 'Odrediste')">
     </map-marker>
+
     <map-info-window>{{text}} </map-info-window>
    </google-map>
