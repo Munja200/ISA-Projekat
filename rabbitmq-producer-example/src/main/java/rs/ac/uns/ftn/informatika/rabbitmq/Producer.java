@@ -71,15 +71,15 @@ public class Producer {
 
 
 
-//	@RabbitListener(queues="${myqueue2}")
-	public void sendTo(String exchange, String routingkey, String message) throws URISyntaxException, IOException, InterruptedException{
+	@RabbitListener(queues="${myqueue2}")
+	public void sendTo(String message) throws URISyntaxException, IOException, InterruptedException{
 		String[] strs = message.split(",");	
 		float endX = Float.parseFloat(strs[0]);
 		float endY = Float.parseFloat(strs[1]);
 		Client client = ClientBuilder.newClient();
 		String st = endX +","+endY;
 		HttpRequest request = HttpRequest.newBuilder()
-				  .uri(new URI("https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62480e163ba80f3145b0b2e5733c0584753d&start=8.681495,49.41461&end=8.687872,49.420318"))
+				  .uri(new URI("https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62480e163ba80f3145b0b2e5733c0584753d&start=8.681495,49.41461&end=" + st))
 				  .GET()
 				  .build();
 		System.out.println(request.uri());
@@ -101,16 +101,9 @@ public class Producer {
 			message = strin.substring(2);
 			System.out.println(strin.substring(2));			
 			Thread.sleep(1000);
+			log.info("Sending> ... Message=[ " + message + " ] Exchange=[" + "myexchange" + "] RoutingKey=[" + "cordinate" + "]");
+			this.rabbitTemplate.convertAndSend("myexchange", "cordinate", message);
 		}
-		
-		
-
-		log.info("Sending> ... Message=[ " + message + " ] Exchange=[" + exchange + "] RoutingKey=[" + routingkey + "]");
-		this.rabbitTemplate.convertAndSend(exchange, routingkey, message);
 	}
-
-
-
-
 
 }
