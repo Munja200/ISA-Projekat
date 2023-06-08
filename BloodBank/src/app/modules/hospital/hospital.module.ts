@@ -25,24 +25,24 @@ import { CenterAppointmentComponent } from './centar-appointments/center-appoint
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
 import { VerifyComponent } from './verify/verify.component';
 import { MapsComponent } from '../maps/maps.component';
+import { AuthWelcomeService } from './services/auth-welcome.service';
 
 
 
 const routes: Routes = [
-  { path: 'registerCenter', component: RegisterCenterComponent },
-  { path: 'register', component: RegisterPersonComponent },
-  { path: 'questionForm', component: QuestionFormComponent },
-  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
-  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent},
-  { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent},
-  { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent},
-  { path: 'registeredPersons', component: SearchRegisteredPersons},
-  { path: 'complaints', component: ComplaintsComponent},
-  { path: 'calendar', component: CalendarComponent},
-  { path: 'centerAppointments', component: CenterAppointmentComponent},
-  { path: 'userAppointments', component: UserAppointmentsComponent},
-  { path: 'login/verify/:id', component: VerifyComponent},
-{ path: 'maps', component: MapsComponent},
+  { path: 'registerCenter', component: RegisterCenterComponent, canActivate: [AuthWelcomeService] },
+  { path: 'register', component: RegisterPersonComponent  },
+  { path: 'questionForm', component: QuestionFormComponent, canActivate: [AuthWelcomeService]  },
+  { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent, canActivate: [AuthWelcomeService] },
+  { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent, canActivate: [AuthWelcomeService] },
+  { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent, canActivate: [AuthWelcomeService] },
+  { path: 'registeredPersons', component: SearchRegisteredPersons, canActivate: [AuthWelcomeService] },
+  { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthWelcomeService] },
+  { path: 'calendar', component: CalendarComponent, canActivate: [AuthWelcomeService] },
+  { path: 'centerAppointments', component: CenterAppointmentComponent, canActivate: [AuthWelcomeService] },
+  { path: 'userAppointments', component: UserAppointmentsComponent, canActivate: [AuthWelcomeService] },
+  { path: 'login/verify/:id', component: VerifyComponent, canActivate: [AuthWelcomeService] },
+{ path: 'maps', component: MapsComponent, canActivate: [AuthWelcomeService] },
   
 ];
 
