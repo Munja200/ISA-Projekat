@@ -70,13 +70,14 @@ export class LoginComponent implements OnInit {
     this.notification;
     this.submitted = true;
 
-    this.authService.login(this.form.value)
+    /*this.authService.login(this.form.value)
       .subscribe(data => {
         console.log(data);
           let userRole = localStorage.getItem('userRoles');
           let userRoles = userRole?.split(' ');
           let isAdmin = false;
           let isUser = false;
+          let isAdminCenter = false;
           if(userRoles)
             for(let i = 0; i < userRoles?.length; i ++){
               if(userRoles[i] == 'ROLE_ADMIN'){
@@ -91,10 +92,18 @@ export class LoginComponent implements OnInit {
                 break;
               } 
             }
+            if(userRoles)
+            for(let i = 0; i < userRoles?.length; i ++){
+              if(userRoles[i] == 'ROLE_ADMIN_CENTER'){
+                isAdminCenter = true;
+                break;
+              } 
+            }
           
           if(isUser){
             if(isAdmin) this.router.navigate(['/homeAdmin'])
-            else this.router.navigate(['/home'])
+            else if(isUser) this.router.navigate(['/home'])
+            else if(isAdminCenter) this.router.navigate(['/homeAdminCenter'])
           }
         },
         error => {
@@ -102,6 +111,42 @@ export class LoginComponent implements OnInit {
           this.submitted = false;
           this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
+        */
+        this.authService.login(this.form.value)
+        .subscribe(data => {
+          console.log(data);
+          let userRoles = localStorage.getItem('userRoles');
+          let isAdmin = false;
+          let isAdminCenter = false;
+      
+          if (userRoles) {
+            let roles = userRoles.split(' ');
+      
+            for (let i = 0; i < roles.length; i++) {
+              if (roles[i] === 'ROLE_ADMIN') {
+                isAdmin = true;
+                break;
+              } else if (roles[i] === 'ROLE_ADMIN_CENTER') {
+                isAdminCenter = true;
+                break;
+              }
+            }
+          }
+      
+          if (isAdmin) {
+            this.router.navigate(['/homeAdmin']);
+          } else if (isAdminCenter) {
+            this.router.navigate(['/homeAdminCenter']);
+          } else {
+            this.router.navigate(['/home']);
+          }
+        },
+        error => {
+          console.log(error);
+          this.submitted = false;
+          this.notification = { msgType: 'error', msgBody: 'Incorrect username or password.' };
+        });
+      
   }
 
 }

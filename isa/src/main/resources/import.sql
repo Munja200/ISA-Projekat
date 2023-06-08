@@ -8,20 +8,24 @@ insert into address (city, country, latitude, longitude, number, street) values 
 ----------------------ROLE------------------------
 INSERT INTO ROLE (name) VALUES ('ROLE_USER');
 INSERT INTO ROLE (name) VALUES ('ROLE_ADMIN');
+INSERT INTO ROLE (name) VALUES ('ROLE_ADMIN_CENTER');
 
 ----------------------PERSONS------------------------
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A-', '1999-07-07 00:00:00', 'rade@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Radisa', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Bullar', 'rade@gmail.com', 1);
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A+', '2001-05-05 00:00:00', 'ivan@gmail.com', true, 'Male', 'Ftn', 783242348633, '2017-10-01 21:58:58.508-07', 'Ivan', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42134368672', 'Bullar', 'ivan@gmail.com', 2);
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('B-', '1999-09-07 00:00:00', 'milica@gmail.com', true, 'Female', 'Ftn', 214123412342, '2017-10-01 21:58:58.508-07', 'Milica', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42674665672', 'Bullar', 'milica@gmail.com', 3);
+insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A+', '1999-09-07 00:00:00', 'dejana@gmail.com', true, 'Female', 'Ftn', 314123412342, '2017-10-01 21:58:58.508-07', 'Dejana', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '47674665672', 'Bullar', 'dejana@gmail.com', 3);
 
 ----------------------USER_ROLE------------------------
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 1); -- admin-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu ADMIN
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (4, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
 
 ----------------------REGISTERED_USERS------------------------
 insert into registered_user(deleted, person_id, enabled) values (false, 1, false);
 insert into registered_user(deleted, person_id, enabled) values (false, 2, false);
+insert into registered_user(deleted, person_id, enabled) values (false, 4, false);
 
 ----------------------QUESTION------------------------
 insert into question (question, exact_value) values ('Da li imate vise od 50 kg', true);
