@@ -12,12 +12,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeAdminComponent } from './homeADMIN/homeAdmin.component';
 import { HomeUserComponent } from './homeUSER/homeUser.component';
+import { AuthWelcomeService } from '../hospital/services/auth-welcome.service';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'homeAdmin', component: HomeAdminComponent },
-  { path: 'home', component: HomeUserComponent },
+  { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthWelcomeService] },
+  { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
 ];
 
 @NgModule({

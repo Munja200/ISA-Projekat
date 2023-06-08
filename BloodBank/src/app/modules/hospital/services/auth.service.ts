@@ -85,4 +85,14 @@ export class AuthService {
     }
   }
 
+  isLoggedIn(): boolean {
+    // Provera da li postoji token u lokalnom skladištu
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      console.log('Nije pronađen token u lokalnom skladištu.');
+      return false;
+    }
+    return true;
+  }
+
 }

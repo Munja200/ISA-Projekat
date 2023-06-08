@@ -11,7 +11,8 @@ import { JwtInterceptorService } from "./modules/hospital/interceptor/TokenInter
 import { ApiService } from "./modules/hospital/services/api.service";
 import { AuthService } from "./modules/hospital/services/auth.service";
 import { GoogleMapsModule } from '@angular/google-maps';
-import { MapsComponent } from './modules/maps/maps.component'
+import { MapsComponent } from './modules/maps/maps.component';
+import { AuthWelcomeService } from "./modules/hospital/services/auth-welcome.service";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MapsComponent } from './modules/maps/maps.component'
     },
     AuthService,
     ApiService,
+    AuthWelcomeService 
     
   ],
   bootstrap: [AppComponent]

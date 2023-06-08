@@ -118,6 +118,7 @@ public class CenterController {
 		return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	//"api/centers/add"
 	@Operation(summary = "Register new center", description = "Register new center", method = "POST")
 	@ApiResponses(value = {

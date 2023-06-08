@@ -29,3 +29,7 @@
     position: inherit;
 	height: 15%;
 }
+
+.small-font {
+    font-size: 1.8rem;
+}
