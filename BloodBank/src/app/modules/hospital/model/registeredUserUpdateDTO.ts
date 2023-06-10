@@ -13,9 +13,10 @@ export class RegisteredUserUpdateDTO {
     dateOfBirth: Date;
     bloodType: string;
     address: Address;
+    password: string;
 
     public constructor(id: any, name: any, surname: any, phonNumber: any, jmbg: any, gender: any, occupation: any,informationAboutCompany: any, 
-        dateOfBirth: any, bloodType: any, address: any) {
+        dateOfBirth: any, bloodType: any, address: any, password: any) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -27,6 +28,6 @@ export class RegisteredUserUpdateDTO {
         this.dateOfBirth = dateOfBirth;
         this.bloodType = bloodType;
         this.address = address;
-
+        this.password = password;
     }
 }
