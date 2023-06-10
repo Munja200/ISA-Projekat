@@ -38,7 +38,17 @@ export class RegisterPersonService {
 
   }
 
+  getRegisteredUsersByCenterAndPersonId(centerId: number, personId: number) {
+    return this.http.get<any>('api/registeredUsers/findByCenter/' + centerId + '/person/' + personId, { headers: this.headers });
+  }
+  
+
   verify(id: string){
     return this.http.get<Person>('api/persons/verify/' + id, {headers: this.headers});
   }
+
+  getUserByUsername(username: string) {
+    return this.http.get<Person>('api/persons/username/' + username, {headers: this.headers});
+  }
+  
 }

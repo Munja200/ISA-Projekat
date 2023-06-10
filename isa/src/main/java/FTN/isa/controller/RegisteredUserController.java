@@ -129,6 +129,31 @@ public class RegisteredUserController {
 	    return registeredUserService.updateRegisteredUser(id, registerUser);
 	}
 	
+	//"api/registeredUsers/findByCenter/{centerId}/person/{personId}"
+	@PreAuthorize("hasRole('ADMIN_CENTER')")
+		@Operation(summary = "Get registered users by center id", description = "Get registered users by center id", method = "GET")
+		@ApiResponses(value = {
+		    @ApiResponse(responseCode = "200", description = "found registered users by center id",
+		            content = @Content(mediaType = "application/json", schema = @Schema(implementation = RegisteredUserDTO.class))),
+		    @ApiResponse(responseCode = "404", description = "registered users not found", content = @Content)
+		})
+	@GetMapping(value = "/findByCenter/{centerId}/person/{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<RegisteredUserDTO>> getRegisteredUsersByCenterAndPersonId(
+	        @Parameter(name = "centerId", description = "ID of the center", required = true)
+	        @PathVariable("centerId") Long centerId,
+	        @Parameter(name = "personId", description = "ID of the person", required = true)
+	        @PathVariable("personId") Long personId) {
+
+	    List<RegisteredUserDTO> registeredUsers = registeredUserService.findByCenterAndPersonId(centerId, personId);
+
+	    if (registeredUsers.isEmpty()) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    return new ResponseEntity<List<RegisteredUserDTO>>(registeredUsers, HttpStatus.OK);
+	}
+
+
 	
 	
 }

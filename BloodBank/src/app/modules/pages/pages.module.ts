@@ -13,12 +13,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeAdminComponent } from './homeADMIN/homeAdmin.component';
 import { HomeUserComponent } from './homeUSER/homeUser.component';
 import { AuthWelcomeService } from '../hospital/services/auth-welcome.service';
+import { HomeADMINCENTERComponent } from './home-admincenter/home-admincenter.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
+  { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
 ];
 
 @NgModule({
@@ -27,6 +29,7 @@ const routes: Routes = [
     LoginComponent,
     HomeAdminComponent,
     HomeUserComponent,
+    HomeADMINCENTERComponent,
   ],
   imports: [
     CommonModule,

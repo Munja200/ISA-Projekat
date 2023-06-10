@@ -1,5 +1,6 @@
 package FTN.isa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Center;
+import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.DTOs.CenterDTO;
+import FTN.isa.model.DTOs.RegisteredUserDTO;
 import FTN.isa.repository.CenterRepository;
 
 @Service
@@ -60,5 +64,22 @@ public class CenterService {
 		street = street.substring(0, 1).toUpperCase() + street.substring(1).toLowerCase();
 		return centerRepository.findAllByStreet(pageable, street);
 	}
+	
+	 public CenterDTO findByAdminId(Long adminId) {
+		 Center center = centerRepository.findByAdminId(adminId);
+		    
+		   
+		    	CenterDTO centerDTO = new CenterDTO();
+		    	
+		    	centerDTO.setId(center.getId());
+		    	centerDTO.setName(center.getName());
+		    	centerDTO.setAddress(center.getAddress());
+		    	centerDTO.setDescription(center.getDescription());
+		    	centerDTO.setAverageRating(center.getAverageRating());
+		    	centerDTO.setDeleted(false);
+
+		    return centerDTO;
+
+	 }
 	
 }

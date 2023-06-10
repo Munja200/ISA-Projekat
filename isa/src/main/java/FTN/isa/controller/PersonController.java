@@ -119,4 +119,20 @@ public class PersonController {
 		
 	} 
 	
+	@Operation(summary = "Get person by username", description = "Get person by username", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found person by username",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Person.class))),
+			@ApiResponse(responseCode = "404", description = "person not found", content = @Content)
+	})
+	@GetMapping("/username/{username}")
+    public ResponseEntity<Person> getUserByUsername(@Parameter(name="username", description = "username of a person to return", required = true) @PathVariable("username") String username) {
+            Person person = personService.findByUsername(username);
+            if (person != null) {
+                return ResponseEntity.ok(person);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+    }
+	
 }

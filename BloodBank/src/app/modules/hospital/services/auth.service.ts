@@ -8,6 +8,7 @@ import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs';
 import { RegisterPersonService } from './register-person.service';
 import jwt_decode from 'jwt-decode';
+import { Person } from '../model/person';
 
 @Injectable()
 export class AuthService {
@@ -95,4 +96,11 @@ export class AuthService {
     return true;
   }
 
+
+  getCurrentUserUsername(): string {
+    const username = localStorage.getItem('username');
+    console.log(username);
+  
+    return username?.toString() || 'Nije pronađeno korisničko ime.';
+  }
 }
