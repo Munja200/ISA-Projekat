@@ -82,3 +82,16 @@ insert into registered_user_appointments(registered_user_id, appointments_id) va
 insert into registered_user_appointments(registered_user_id, appointments_id) values (2, 4);
 insert into registered_user_appointments(registered_user_id, appointments_id) values (3, 3);
 insert into registered_user_appointments(registered_user_id, appointments_id) values (5, 5);
+
+
+--------------------------BLOOD---------------------------
+
+insert into blood(id, blood_type, quantity, center_id) values (1, 'A-', 50, 1);
+insert into blood(id, blood_type, quantity, center_id) values (2, 'B-', 70, 1);
+insert into blood(id, blood_type, quantity, center_id) values (3, 'A+', 20, 1);
+insert into blood(id, blood_type, quantity, center_id) values (4, 'B+', 10, 1);
+insert into blood(id, blood_type, quantity, center_id) values (5, 'AB+', 28, 1);
+insert into blood(id, blood_type, quantity, center_id) values (6, 'AB-', 49, 1);
+insert into blood(id, blood_type, quantity, center_id) values (7, '0-', 15, 1);
+insert into blood(id, blood_type, quantity, center_id) values (8, '0+', 7, 1);
+
