@@ -2,9 +2,9 @@
     <div class="w-90 h-100" style="background: #212529d8">
         <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
             <div class="d-flex">
-                <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="">Welcome</a></div>
-                <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/">Appointment info</a></div>
-                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/">Calendar</a></div>
+              <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/homeAdminCenter">Amdinistrator center</a></div>
+              <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/">Appointment info</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/calendar">Calendar</a></div>
                 <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/profilOfRegisteredUser">Profile</a></div>
                 <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/">Create appointment</a></div>
             </div>
@@ -22,25 +22,25 @@
                                 <tr>
                                     <th scope="col" class="text-center">
                                         <button class="btn btn-sm" (click)="sortByName()">
-                                          Name
+                                          <b>Name</b>
                                           <i class="fa fa-sort" *ngIf="sortColumn === 'name'"></i>
                                         </button>
                                       </th>
                                       <th scope="col" class="text-center">
                                         <button class="btn btn-sm" (click)="sortBySurname()">
-                                          Surname
+                                          <b>Surname</b>
                                           <i class="fa fa-sort" *ngIf="sortColumn === 'surname'"></i>
                                         </button>
                                       </th>
                                       <th scope="col" class="text-center">
                                         <button class="btn btn-sm" (click)="sortByDate()">
-                                          Date of Birth
+                                          <b>Date of Birth</b>
                                           <i class="fa fa-sort" *ngIf="sortColumn === 'dateOfBirth'"></i>
                                         </button>
                                       </th>
                                       <th scope="col" class="text-center">
                                         <button class="btn btn-sm" (click)="sortByBloodType()">
-                                          Blood Type
+                                          <b>Blood Type</b>
                                           <i class="fa fa-sort" *ngIf="sortColumn === 'bloodType'"></i>
                                         </button>
                                       </th>

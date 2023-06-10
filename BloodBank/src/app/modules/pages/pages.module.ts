@@ -14,6 +14,7 @@ import { HomeAdminComponent } from './homeADMIN/homeAdmin.component';
 import { HomeUserComponent } from './homeUSER/homeUser.component';
 import { AuthWelcomeService } from '../hospital/services/auth-welcome.service';
 import { HomeADMINCENTERComponent } from './home-admincenter/home-admincenter.component';
+import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
+  { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+
 ];
 
 @NgModule({
@@ -30,6 +33,7 @@ const routes: Routes = [
     HomeAdminComponent,
     HomeUserComponent,
     HomeADMINCENTERComponent,
+    CalendarAdminComponent,
   ],
   imports: [
     CommonModule,

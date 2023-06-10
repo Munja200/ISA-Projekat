@@ -49,8 +49,15 @@ public class Center {
 	@Column(name = "deleted")
 	private boolean deleted;
 	//private Set<Blood> bloods = new HashSet<>();
-
 	
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column(name = "radno_vreme")
+	private Set<RadnoVreme> radnoVreme;
+
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Column(name = "termini")
+	private Set<Termin> termini;
+
 	public Center() {}
 	
 	public Center(CenterDTO centerDTO) {
@@ -70,8 +77,25 @@ public class Center {
 		this.description = description;
 		this.averageRating = averageRating;
 		this.deleted = deleted;
+
 	}
 	
+
+	public Center(long id, @Pattern(regexp = "^[A-Z]{1}[a-z]{0,29}$") String name, Address address, String description,
+			float averageRating, Set<AdministratorCenter> administratorCenters, boolean deleted,
+			Set<RadnoVreme> radnoVreme, Set<Termin> termini) {
+		super();
+		Id = id;
+		this.name = name;
+		this.address = address;
+		this.description = description;
+		this.averageRating = averageRating;
+		this.administratorCenters = administratorCenters;
+		this.deleted = deleted;
+		this.radnoVreme = radnoVreme;
+		this.termini = termini;
+	}
+
 	public void addAdministratorCenter(AdministratorCenter exam) {
 		administratorCenters.add(exam);
 		exam.setCenter(this);
@@ -150,5 +174,23 @@ public class Center {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	public Set<RadnoVreme> getRadnoVreme() {
+		return radnoVreme;
+	}
+
+	public void setRadnoVreme(Set<RadnoVreme> radnoVreme) {
+		this.radnoVreme = radnoVreme;
+	}
+
+	public Set<Termin> getTermini() {
+		return termini;
+	}
+
+	public void setTermini(Set<Termin> termini) {
+		this.termini = termini;
+	}
+	
+	
 	
 }

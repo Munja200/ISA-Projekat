@@ -288,8 +288,6 @@ public class CenterController {
     @PathVariable("adminId") Long adminId) {
 		
 	    CenterDTO centerDTO = centerService.findByAdminId(adminId);
-	    
-	  
 
 	    return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
 	}
