@@ -17,43 +17,23 @@
                 <div class="d-flex justify-content-center w-70 pt-2">
                     <div class="w-90 pt-3 rounded" style="background: #212529d8">
                         <div class="h4 d-flex justify-content-center text-white">
-                                Donors
+                                Available Bloods
                         </div>
                         <table class="table table-light table-striped table-hover mx-auto mt-2 w-90">
                             <thead>
                                 <tr>
                                     <th scope="col" class="text-center">
-                                        <button class="btn btn-sm" (click)="sortByName()">
-                                          Name
-                                          <i class="fa fa-sort" *ngIf="sortColumn === 'name'"></i>
-                                        </button>
+                                          Blood type
                                       </th>
                                       <th scope="col" class="text-center">
-                                        <button class="btn btn-sm" (click)="sortBySurname()">
-                                          Surname
-                                          <i class="fa fa-sort" *ngIf="sortColumn === 'surname'"></i>
-                                        </button>
-                                      </th>
-                                      <th scope="col" class="text-center">
-                                        <button class="btn btn-sm" (click)="sortByDate()">
-                                          Date of Birth
-                                          <i class="fa fa-sort" *ngIf="sortColumn === 'dateOfBirth'"></i>
-                                        </button>
-                                      </th>
-                                      <th scope="col" class="text-center">
-                                        <button class="btn btn-sm" (click)="sortByBloodType()">
-                                          Blood Type
-                                          <i class="fa fa-sort" *ngIf="sortColumn === 'bloodType'"></i>
-                                        </button>
+                                          Quantity>
                                       </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let user of rUsers;">
-                                    <td class="text-center">{{user.person.name}}</td>
-                                    <td class="text-center">{{user.person.surname}}</td>
-                                    <td class="text-center">{{user.person.dateOfBirth | date:'dd.MM.yyyy' }}</td>
-                                    <td class="text-center">{{user.person.bloodType}}</td>
+                                <tr *ngFor="let blood of bloods;">
+                                    <td class="text-center">{{blood.bloodType}}</td>
+                                    <td class="text-center">{{blood.quantity}}</td>
                                 </tr>
                             </tbody>
                         </table>

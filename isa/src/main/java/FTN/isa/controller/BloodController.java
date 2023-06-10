@@ -53,7 +53,7 @@ public class BloodController {
 	private BloodService bloodService;
 	
 
-	//@PreAuthorize("hasRole('ADMIN_CENTER')")
+	@PreAuthorize("hasRole('ADMIN_CENTER')")
     @Operation(summary = "Get all bloods for center", description = "Get all bloods for center")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation",

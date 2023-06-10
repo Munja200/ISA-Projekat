@@ -14,6 +14,8 @@ import { HomeAdminComponent } from './homeADMIN/homeAdmin.component';
 import { HomeUserComponent } from './homeUSER/homeUser.component';
 import { AuthWelcomeService } from '../hospital/services/auth-welcome.service';
 import { HomeADMINCENTERComponent } from './home-admincenter/home-admincenter.component';
+import { BloodViewComponent } from './blood-view/blood-view.component';
+import { DonorsComponent } from './donors/donors.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -30,6 +32,8 @@ const routes: Routes = [
     HomeAdminComponent,
     HomeUserComponent,
     HomeADMINCENTERComponent,
+    BloodViewComponent,
+    DonorsComponent,
   ],
   imports: [
     CommonModule,
