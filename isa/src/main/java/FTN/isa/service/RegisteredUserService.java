@@ -1,6 +1,9 @@
 package FTN.isa.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.DTOs.RegisteredUserDTO;
 import FTN.isa.repository.RegisteredUserRepository;
+
 
 @Service
 public class RegisteredUserService {
@@ -72,4 +77,26 @@ public class RegisteredUserService {
             return false;
         }
 	}
+	
+	public List<RegisteredUserDTO> findByCenterAndPersonId(Long centerId, Long personId) {
+	    List<RegisteredUser> registeredUsers = registeredUserRepository.findByCenterAndPersonId(centerId, personId);
+	    List<RegisteredUserDTO> registeredUserDTOs = new ArrayList<>();
+
+	    for (RegisteredUser registeredUser : registeredUsers) {
+	        RegisteredUserDTO registeredUserDTO = new RegisteredUserDTO();
+	        registeredUserDTO.setId(registeredUser.getId());
+	        registeredUserDTO.setPerson(registeredUser.getPerson());
+	        registeredUserDTO.setDeleted(registeredUser.isDeleted());
+
+	        registeredUserDTOs.add(registeredUserDTO);
+	    }
+
+	    return registeredUserDTOs;
+	}
+
+
+
+
+
+
 }

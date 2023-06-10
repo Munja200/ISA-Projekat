@@ -39,6 +39,11 @@ public interface CenterRepository extends PagingAndSortingRepository<Center, Lon
 	
 	@Query(value="SELECT * FROM center c INNER JOIN address a ON c.address_id = a.id WHERE a.street LIKE CONCAT('%', :street ,'%')",nativeQuery = true)
 	Page<Center> findAllByStreet(Pageable pageable, @Param(value = "street") String street);
+	
+	@Query(value = "SELECT * FROM center c JOIN administrator_center ac ON c.id = ac.center_id WHERE ac.person_id =?1", nativeQuery = true)
+	Center findByAdminId(@Param("adminId") Long id);
+
+
 
 	
 }

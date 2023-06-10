@@ -276,35 +276,22 @@ public class CenterController {
 			}
 	
 	
-	
-	
-	/*
-	//"api/centers/{averageRating}/{id}"
-	@Operation(summary = "Get centers by average", description = "Get centers by average", method="GET")
+	//@PreAuthorize("hasRole('ADMIN_CENTER')")
+	@Operation(summary = "Get all centers for managers", description = "Get all centers for managers")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "found centers by page number",
-					content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
-			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	        @ApiResponse(responseCode = "200", description = "Successful operation",
+	                content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+	        @ApiResponse(responseCode = "404", description = "registered users not found", content = @Content)
 	})
-	@GetMapping(value = "/{averageRating}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CenterDTO>> getAllbyAverage(
-			@Parameter(name="averageRating", description = "Average Rating of center (0 to ignore)", required = false) @PathVariable("averageRating") float averageRating,
-			@Parameter(name="id", description = "Number of a page to return (pages not working)", required = false) @PathVariable("id") int id) {
-		Pageable pageable =  PageRequest.of(id, 10);	
-				
-				Page<Center> questions = null;
-				List<CenterDTO> centerDTOs = new ArrayList<CenterDTO>();
-				
-				if (!(averageRating == 0)) {
-					questions = centerService.findAllByAverage(pageable, averageRating);
-				}
-				if(questions != null)
-					for(Center c : questions){
-						centerDTOs.add(new CenterDTO(c));
-					}
-				
-				return new ResponseEntity<List<CenterDTO>>(centerDTOs, HttpStatus.OK);
-			}
-	
-	*/
+	@GetMapping(value = "/allForAdminCenter/{adminId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CenterDTO> getAllForAdminCenter(@Parameter(name = "adminId", description = "ID of the admin", required = true)
+    @PathVariable("adminId") Long adminId) {
+		
+	    CenterDTO centerDTO = centerService.findByAdminId(adminId);
+	    
+	  
+
+	    return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
+	}
+
 }

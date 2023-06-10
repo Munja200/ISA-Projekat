@@ -53,4 +53,8 @@ export class CenterService {
     return this.http.get<CenterDTO[]>('api/centers/'+ street +'/' + page, {headers: this.headers});
   }
 
+  getAllForAdminCenter(adminId : number) : Observable<CenterDTO> {
+    return this.http.get<CenterDTO>('api/centers/allForAdminCenter/' + adminId, {headers: this.headers});
+  }
+
 }

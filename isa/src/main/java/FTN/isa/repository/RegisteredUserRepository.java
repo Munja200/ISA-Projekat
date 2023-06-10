@@ -36,5 +36,13 @@ public interface RegisteredUserRepository extends PagingAndSortingRepository<Reg
 
 	@Query(value="select * from registered_user ru ,person p where ru.person_id= p.id and  p.username =?1",nativeQuery = true)
 	public RegisteredUser getByUsername(String id);
+	
+	@Query(value = "SELECT * FROM registered_user ru INNER JOIN person p ON p.id = ru.person_id INNER JOIN appointment a ON ru.id = a.registered_user_id INNER JOIN center c ON a.center_id = c.id INNER JOIN administrator_center ac ON c.id = ac.center_id WHERE c.id = ?1 AND ac.person_id = ?2", nativeQuery = true)
+	public List<RegisteredUser> findByCenterAndPersonId(Long centerId, Long personId);
+
+
+
+
+
 
 }
