@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <div class="w-90 h-100" style="background: #212529d8">
+        <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
+            <div class="d-flex">
+                <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="">Welcome</a></div>
+                <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/">Appointment info</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/donors">Donors</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/">Calendar</a></div>
+                <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/profilOfRegisteredUser">Profile</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/">Create appointment</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/bloods">Bloods</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/editCenter">My center</a></div>
+            </div>
+            <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none small-font" (click)="logout()" href="">Logout</a></div>
+        </div>
+
+        <body class="background-image">
+            <form class="container">
+        
+              <div class="container1">
+        
+                <div class="left-div">
+        
+              <mat-form-field class="example-full-width" style="color: white;">
+                <input matInput placeholder="Name" [formControl]="requiredNameControl"[(ngModel)]="centerDTO.name">
+                <mat-error *ngIf="requiredNameControl.hasError('required')">
+                    Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field><br>
+        
+                <mat-form-field class="example-full-width" style="color: white;">
+                    <input matInput placeholder="Country" [formControl]="requiredAddressControl"[(ngModel)]="centerDTO.address.country">
+                    <mat-error *ngIf="requiredAddressControl.hasError('required')">
+                        Counrty is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>
+        
+                
+        
+                  <mat-form-field class="example-full-width" style="color: white;">
+                    <input matInput placeholder="City" [formControl]="requiredCityControl"[(ngModel)]="centerDTO.address.city">
+                    <mat-error *ngIf="requiredCityControl.hasError('required')">
+                        City is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>
+        
+                </div>
+                  <div class="right-div">
+                
+                  <mat-form-field class="example-full-width" style="color: white;">
+                    <input matInput placeholder="Street" [formControl]="requiredCountryControl"[(ngModel)]="centerDTO.address.street">
+                    <mat-error *ngIf="requiredCountryControl.hasError('required')">
+                        Street is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>
+        
+        
+                  <mat-form-field class="example-full-width" style="color: white;">
+                    <input matInput placeholder="Number" [formControl]="requiredNumberControl"[(ngModel)]="centerDTO.address.number">
+                    <mat-error *ngIf="requiredNumberControl.hasError('required')">
+                        Number is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>
+        
+                  <mat-form-field class="example-full-width" style="color: white;">
+                    <input matInput placeholder="Description" [formControl]="requiredDescriptionControl"[(ngModel)]="centerDTO.description">
+                    <mat-error *ngIf="requiredDescriptionControl.hasError('required')">
+                        Description is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br> 
+        
+                  <mat-form-field class="example-full-width" style="color: white;">
+                    <input matInput placeholder="Score" [formControl]="requiredScoreControl"[(ngModel)]="centerDTO.averageRating">
+                    <mat-error *ngIf="requiredScoreControl.hasError('required')">
+                        Score is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>   
+        
+        
+                  <div>
+                    <button mat-stroked-button (click)="editProfile()"> 
+                      Submit
+                  </button>
+                  </div>      
+        
+                  </div>
+                  
+                  </div>
+        
+        
+                  
+        
+                
+            </form> 
+            </body>
+        
