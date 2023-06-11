@@ -5,6 +5,8 @@ import { RegisteredPersonDTO } from '../../hospital/model/registeredPersonDTO';
 import { RegisterPersonService } from '../../hospital/services/register-person.service';
 import { CenterService } from '../service/center.service';
 import { CenterDTO } from '../../hospital/model/centerDTO';
+import { PersonDTO } from '../../hospital/model/personDTO';
+import { Person } from '../../hospital/model/person';
 
 @Component({
   selector: 'app-home-admincenter',
@@ -20,16 +22,21 @@ export class HomeADMINCENTERComponent implements OnInit {
   centerId : number = 0;
   personId : number = 0;
 
+
+  currentPerson : Person = new Person();
+
   CenterDto = new CenterDTO();
 
   constructor(private router: Router, private centerService: CenterService, private authService: AuthService, private registerPersonService : RegisterPersonService) { }
 
   ngOnInit(): void {
-    const username = this.authService.getCurrentUserUsername();
-    if (username) {
-      this.registerPersonService.getUserByUsername(username).subscribe(person => {
+     const username = this.authService.getCurrentUserUsername();
+      if (username) {
+        this.registerPersonService.getUserByUsername(username).subscribe(person => {
         this.personId = person.id;
         console.log(this.personId);
+
+       this.currentPerson = person;
   
         
         this.centerService.getAllForAdminCenter(this.personId).subscribe(centar => {
@@ -44,6 +51,8 @@ export class HomeADMINCENTERComponent implements OnInit {
       });
     }
   }
+
+
   
   logout(){
     this.authService.logout()

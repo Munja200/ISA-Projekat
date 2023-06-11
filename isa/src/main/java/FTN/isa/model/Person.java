@@ -24,6 +24,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import FTN.isa.model.DTOs.CenterDTO;
+import FTN.isa.model.DTOs.PersonDTO;
+
 
 @Entity
 public class Person implements UserDetails{
@@ -94,7 +97,52 @@ public class Person implements UserDetails{
 	@Valid
 	private Address address;
 	
+	@Column (name="isFirstLogin")
+    private boolean firstLogin;
+	
 	public Person() {}
+	
+	
+	
+	public Person(long id, @Pattern(regexp = "^\\w{3,20}$") String name, String username, String surname,
+			@Pattern(regexp = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$") String email, String password,
+			@Pattern(regexp = "^[\\+]{1}[\\(]{1}[0-9]{3}[\\)]{1}[0-9]{2}[\\/]{1}[0-9]{3}[\\-]{1}[0-9]{4,6}") String phonNumber,
+			@Pattern(regexp = "[0-9]{13}") String jmbg,
+			@Pattern(regexp = "\\bMale\\b|\\bFemale\\b|\\bOther\\b") String gender, String occupation,
+			String informationAboutCompany, Date dateOfBirth, List<Role> roles, boolean enabled,
+			Timestamp lastPasswordResetDate,
+			@Pattern(regexp = "\\bA\\b(\\+|\\-){1}|\\bB\\b(\\+|\\-){1}|\\bO\\b(\\+|\\-){1}|\\bAB\\b(\\+|\\-){1}") String bloodType,
+			@Valid Address address, boolean firstLogin) {
+		super();
+		Id = id;
+		this.name = name;
+		this.username = username;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.phonNumber = phonNumber;
+		this.jmbg = jmbg;
+		this.gender = gender;
+		this.occupation = occupation;
+		this.informationAboutCompany = informationAboutCompany;
+		this.dateOfBirth = dateOfBirth;
+		this.roles = roles;
+		this.enabled = enabled;
+		this.lastPasswordResetDate = lastPasswordResetDate;
+		this.bloodType = bloodType;
+		this.address = address;
+		this.firstLogin = firstLogin;
+	}
+
+
+
+	public Person(PersonDTO personDTO) {
+		Id = personDTO.getId();
+		this.name = personDTO.getName();
+		this.surname = personDTO.getSurname();
+	}
+	
+	
 
 	public long getId() {
 		return Id;
@@ -215,7 +263,7 @@ public class Person implements UserDetails{
     public String getRolesString() {
     	String roles = "";
     	for (Role role : this.roles) {
-			roles += role.getName() + " ";
+			roles += role.getName() + "";
 		}
        return roles;
     }
@@ -267,5 +315,13 @@ public class Person implements UserDetails{
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
+	public boolean isFirstLogin() {
+		return firstLogin;
+	}
+
+	public void setFirstLogin(boolean firstLogin) {
+		this.firstLogin = firstLogin;
+	}
 	
 }

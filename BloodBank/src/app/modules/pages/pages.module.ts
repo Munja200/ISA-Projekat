@@ -18,6 +18,7 @@ import { BloodViewComponent } from './blood-view/blood-view.component';
 import { DonorsComponent } from './donors/donors.component';
 import { EditCenterComponent } from './edit-center/edit-center.component';
 import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
     BloodViewComponent,
     DonorsComponent,
     EditCenterComponent,
-    CalendarAdminComponent
+    CalendarAdminComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

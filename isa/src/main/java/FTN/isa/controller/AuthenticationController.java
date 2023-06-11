@@ -25,6 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import FTN.isa.exception.ResourceConflictException;
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.Role;
 import FTN.isa.model.DTOs.JwtAuthenticationRequest;
 import FTN.isa.model.DTOs.UserTokenState;
 import FTN.isa.service.EmailService;
@@ -56,6 +57,25 @@ public class AuthenticationController {
 			@RequestBody JwtAuthenticationRequest authenticationRequest, HttpServletResponse response) {
 		// Ukoliko kredencijali nisu ispravni, logovanje nece biti uspesno, desice se
 		// AuthenticationException
+		
+		/*Person person = userService.getOneByUsername(authenticationRequest.getUsername());
+		boolean isAdminCenter = false;
+
+		for (Role role : person.getRoles()) {
+		    if (role.getName().equals("ROLE_ADMIN_CENTER")) {
+		        isAdminCenter = true;
+		        break;
+		    }
+		}
+
+		if (isAdminCenter && person.isFirstLogin()) {
+		   // person.setFirstLogin(false);
+		    userService.updateRegisteredPerson(person.getId(), person);
+		}*/
+
+		
+		
+		
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 

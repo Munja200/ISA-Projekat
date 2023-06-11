@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import { AuthService } from '../../hospital/services/auth.service';
+import { RegisterPersonService } from '../../hospital/services/register-person.service';
+import { Person } from '../../hospital/model/person';
 
 interface DisplayMessage {
   msgType: string;
@@ -18,6 +20,9 @@ interface DisplayMessage {
 export class LoginComponent implements OnInit {
   title = 'Login';
   form!: FormGroup;
+
+  personId : number = 0;
+  currentPerson: Person = new Person();
 
   /**
    * Boolean used in telling the UI
@@ -34,13 +39,15 @@ export class LoginComponent implements OnInit {
 
     returnUrl!: string;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
+  
 
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private registerPersonService : RegisterPersonService
   ) { }
 
   ngOnInit() {
@@ -62,56 +69,11 @@ export class LoginComponent implements OnInit {
     this.ngUnsubscribe.complete();
   }
 
-  onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
+  onSubmit() {   
     
     this.notification;
     this.submitted = true;
 
-    /*this.authService.login(this.form.value)
-      .subscribe(data => {
-        console.log(data);
-          let userRole = localStorage.getItem('userRoles');
-          let userRoles = userRole?.split(' ');
-          let isAdmin = false;
-          let isUser = false;
-          let isAdminCenter = false;
-          if(userRoles)
-            for(let i = 0; i < userRoles?.length; i ++){
-              if(userRoles[i] == 'ROLE_ADMIN'){
-                isAdmin = true;
-                break;
-              }
-            }
-          if(userRoles)
-            for(let i = 0; i < userRoles?.length; i ++){
-              if(userRoles[i] == 'ROLE_USER'){
-                isUser = true;
-                break;
-              } 
-            }
-            if(userRoles)
-            for(let i = 0; i < userRoles?.length; i ++){
-              if(userRoles[i] == 'ROLE_ADMIN_CENTER'){
-                isAdminCenter = true;
-                break;
-              } 
-            }
-          
-          if(isUser){
-            if(isAdmin) this.router.navigate(['/homeAdmin'])
-            else if(isUser) this.router.navigate(['/home'])
-            else if(isAdminCenter) this.router.navigate(['/homeAdminCenter'])
-          }
-        },
-        error => {
-          console.log(error);
-          this.submitted = false;
-          this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
-        });
-        */
         this.authService.login(this.form.value)
         .subscribe(data => {
           console.log(data);
@@ -136,7 +98,23 @@ export class LoginComponent implements OnInit {
           if (isAdmin) {
             this.router.navigate(['/homeAdmin']);
           } else if (isAdminCenter) {
-            this.router.navigate(['/homeAdminCenter']);
+            const username = this.authService.getCurrentUserUsername();
+      if (username) {
+        this.registerPersonService.getUserByUsername(username).subscribe(person => {
+        this.personId = person.id;
+        console.log(this.personId);
+
+       this.currentPerson = person;
+
+        if(this.currentPerson.firstLogin){
+          console.log(this.currentPerson);
+          this.router.navigate(['/changePassword']);
+
+        }else{
+        this.router.navigate(['/homeAdminCenter']);
+        }
+      });
+    }
           } else {
             this.router.navigate(['/home']);
           }
