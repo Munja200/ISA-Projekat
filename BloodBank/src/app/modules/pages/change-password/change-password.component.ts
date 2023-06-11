@@ -54,8 +54,8 @@ export class ChangePasswordComponent implements OnInit {
         console.log(this.currentPerson);
   
         this.registerPersonService.updateRegisteredPerson(this.currentPerson).subscribe(updatedPerson => {
-          //updatedPerson.roles = "ROLE_ADMIN_CENTER"
-          this.router.navigate(['/homeAdminCenter']);
+          this.router.navigate(['/login']);
+          alert('You have successfully changed password, please log in again')
         });
       });
     }
