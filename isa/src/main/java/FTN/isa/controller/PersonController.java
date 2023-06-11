@@ -141,7 +141,7 @@ public class PersonController {
             }
     }
 	
-	//"api/persons/update/{id}"
+	//"api/persons/updateRegisteredUserate/{id}"
 		@PreAuthorize("hasRole('ADMIN_CENTER')")
 		@Operation(summary = "Update registered person", description = "Update registered person", method="POST")
 		@ApiResponses(value = {
