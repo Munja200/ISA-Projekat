@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
-  { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+ // { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
 
 ];
 
