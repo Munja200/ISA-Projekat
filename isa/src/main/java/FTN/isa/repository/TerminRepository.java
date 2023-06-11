@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+
+import FTN.isa.model.Center;
 import FTN.isa.model.Termin;
 
 public interface TerminRepository extends PagingAndSortingRepository<Termin, Long>{
@@ -11,4 +13,9 @@ public interface TerminRepository extends PagingAndSortingRepository<Termin, Lon
 	@Query(value = "SELECT * FROM termin t WHERE t.center_id =?1", nativeQuery = true)
 	List<Termin> getTerminiByCenterId(@Param("id") Long id);
 
+	@SuppressWarnings("unchecked")
+	public Termin save(Termin termin);
+	
+	@Query(value="select * FROM termin t WHERE t.id =?1",nativeQuery = true)
+	Termin getOne(Long id);
 }

@@ -33,7 +33,7 @@ const routes: Routes = [
     HomeAdminComponent,
     HomeUserComponent,
     HomeADMINCENTERComponent,
-    CalendarAdminComponent,
+    CalendarAdminComponent
   ],
   imports: [
     CommonModule,

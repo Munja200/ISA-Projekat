@@ -1,5 +1,7 @@
 package FTN.isa.model.DTOs;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -7,6 +9,7 @@ import javax.validation.constraints.Pattern;
 
 import FTN.isa.model.Address;
 import FTN.isa.model.Center;
+import FTN.isa.model.RadnoVreme;
 
 public class CenterDTO {
 	
@@ -26,6 +29,9 @@ public class CenterDTO {
 	
 	private boolean deleted;
 	
+	private List<RadnoVreme> radnoVreme;
+
+	
 	public CenterDTO() {}
 	
 	public CenterDTO(Center c) {
@@ -36,9 +42,10 @@ public class CenterDTO {
 		this.description = c.getDescription();
 		this.averageRating = c.getAverageRating();
 		this.deleted = c.isDeleted();
+		this.radnoVreme = c.getRadnoVreme();
 	}
 	
-	public CenterDTO(long id, String name, Address address, String description, float averageRating, boolean deleted) {
+	public CenterDTO(long id, String name, Address address, String description, float averageRating, boolean deleted, List<RadnoVreme> radnoVreme) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,6 +53,17 @@ public class CenterDTO {
 		this.description = description;
 		this.averageRating = averageRating;
 		this.deleted = deleted;
+		this.radnoVreme = radnoVreme;
+	}
+
+	
+	
+	public List<RadnoVreme> getRadnoVreme() {
+		return radnoVreme;
+	}
+
+	public void setRadnoVreme(List<RadnoVreme> radnoVreme) {
+		this.radnoVreme = radnoVreme;
 	}
 
 	public long getId() {

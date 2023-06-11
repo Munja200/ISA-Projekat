@@ -13,8 +13,17 @@ export class TerminService {
 
   constructor(private http: HttpClient) { }
 
+  /*
   getTerminiByCenterId(id: number): Observable<any> {
     return this.http.get<TerminDTO[]>('api/termini/' + id, {headers: this.headers});
   }
+  */
 
+  getTerminiByCenterId(id: number): Observable<any> {
+    return this.http.get<Termin[]>('api/termini/' + id, {headers: this.headers});
+  }
+  
+  createTermin(termini: any): Observable<any> {
+    return this.http.post<any>('api/termini/add', termini, {headers: this.headers});
+  }
 }

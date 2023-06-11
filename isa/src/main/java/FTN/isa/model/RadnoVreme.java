@@ -2,16 +2,13 @@ package FTN.isa.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class RadnoVreme {
 	
@@ -20,15 +17,12 @@ public class RadnoVreme {
 	private long Id;
 	
 	@Column (name="vreme_otvaranja")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime vremeOtvaranja;
 	
 	@Column (name="vreme_zatvaranja")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime vremeZatvaranja;
-	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "center_id", referencedColumnName = "id")
-	@Valid
-	private Center center;
 	
 	public RadnoVreme() {
 	}
@@ -38,7 +32,6 @@ public class RadnoVreme {
 		Id = id;
 		this.vremeOtvaranja = vremeOtvaranja;
 		this.vremeZatvaranja = vremeZatvaranja;
-		this.center = center;
 	}
 
 	public long getId() {
@@ -63,14 +56,6 @@ public class RadnoVreme {
 
 	public void setVremeZatvaranja(LocalDateTime vremeZatvaranja) {
 		this.vremeZatvaranja = vremeZatvaranja;
-	}
-
-	public Center getCenter() {
-		return center;
-	}
-
-	public void setCenter(Center center) {
-		this.center = center;
 	}
 	    
 }

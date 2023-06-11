@@ -7,6 +7,7 @@ export class Termin {
     krajTermina : Date = new Date();
     trajanje : number = 0;
     center: Center = new Center();
+    centerId : number = 0;
 
     constructor(obj?: any) {
         if (obj) {
@@ -15,6 +16,7 @@ export class Termin {
           this.krajTermina = obj.krajTermina;
           this.trajanje = obj.trajanje;
           this.center = obj.center;
+          this.centerId = obj.centerId;
         }
       }
 }

@@ -1,6 +1,8 @@
 package FTN.isa.model;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -50,13 +52,13 @@ public class Center {
 	private boolean deleted;
 	//private Set<Blood> bloods = new HashSet<>();
 	
-	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@Column(name = "radno_vreme")
-	private Set<RadnoVreme> radnoVreme;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "center_id")
+	private List<RadnoVreme> radnoVreme;
 
+	
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@Column(name = "termini")
-	private Set<Termin> termini;
+	private Set<Termin> termini = new HashSet<>();
 
 	public Center() {}
 	
@@ -82,8 +84,8 @@ public class Center {
 	
 
 	public Center(long id, @Pattern(regexp = "^[A-Z]{1}[a-z]{0,29}$") String name, Address address, String description,
-			float averageRating, Set<AdministratorCenter> administratorCenters, boolean deleted,
-			Set<RadnoVreme> radnoVreme, Set<Termin> termini) {
+			float averageRating, Set<AdministratorCenter> administratorCenters, boolean deleted, List<RadnoVreme> radnoVreme,
+			Set<Termin> termini) {
 		super();
 		Id = id;
 		this.name = name;
@@ -175,11 +177,11 @@ public class Center {
 		this.deleted = deleted;
 	}
 
-	public Set<RadnoVreme> getRadnoVreme() {
+	public List<RadnoVreme> getRadnoVreme() {
 		return radnoVreme;
 	}
 
-	public void setRadnoVreme(Set<RadnoVreme> radnoVreme) {
+	public void setRadnoVreme(List<RadnoVreme> radnoVreme) {
 		this.radnoVreme = radnoVreme;
 	}
 

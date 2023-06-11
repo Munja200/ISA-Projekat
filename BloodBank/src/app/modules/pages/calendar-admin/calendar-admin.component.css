@@ -11,7 +11,7 @@
 
 .w-70 {
     position: inherit;
-    width: 80%;
+    width: 60%;
 }
 
 
@@ -34,3 +34,74 @@
 .small-font {
     font-size: 1.3rem;
 }
+
+#createPeriod{
+    margin-left: 500px;
+    width: 39px;
+    height: 39px
+}
+
+#myDiv {
+    position: absolute;
+    width: 30%;
+    top: 105px;
+  }
+
+  .fc-toolbar {
+    margin-bottom: 1rem;
+  }
+  
+  .fc-button-group {
+    margin-right: 1rem;
+  }
+  
+  .fc-content {
+    background-color: #212529d8;
+    color: #ffffff;
+  }
+  
+  .fc-content .fc-time {
+    color: #ffffff;
+  }
+  
+  .fc-day-grid-event .fc-content {
+    white-space: normal;
+  }
+  
+  .fc-day-grid-event .fc-content .fc-title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .fc-day-grid-event .fc-content .fc-time {
+    font-size: 12px;
+  }
+  
+  .fc-axis {
+    display: none;
+  }
+  
+  .fc-unthemed td.fc-today {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .add-button {
+    margin-left: 10px;
+  }
+  
+  .input-group-text {
+    background-color: #212529;
+    color: #ffffff;
+  }
+  
+  .btn-outline-light {
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  .btn-outline-light:hover {
+    color: #212529;
+    background-color: #ffffff;
+  }
+  
+  

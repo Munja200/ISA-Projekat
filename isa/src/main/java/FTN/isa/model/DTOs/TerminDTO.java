@@ -22,14 +22,16 @@ public class TerminDTO {
 		this.center = center;
 	}
 	
+	
 	public TerminDTO(Termin t) {
 		super();
-		this.id = t.getId();
+		this.id = t.getCenterId();
 		this.pocetakTermina = t.getPocetakTermina();
 		this.krajTermina = t.getKrajTermina();
 		this.trajanje = t.getTrajanje();
 		this.center = t.getCenter().getId();
 	}
+	
 
 	public Long getId() {
 		return id;

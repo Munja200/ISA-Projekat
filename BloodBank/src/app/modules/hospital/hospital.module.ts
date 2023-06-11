@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'registeredPersons', component: SearchRegisteredPersons, canActivate: [AuthWelcomeService] },
   { path: 'complaints', component: ComplaintsComponent, canActivate: [AuthWelcomeService] },
-  { path: 'calendar', component: CalendarComponent, canActivate: [AuthWelcomeService] },
+  { path: 'calendaaaar', component: CalendarComponent, canActivate: [AuthWelcomeService] },
   { path: 'centerAppointments', component: CenterAppointmentComponent, canActivate: [AuthWelcomeService] },
   { path: 'userAppointments', component: UserAppointmentsComponent, canActivate: [AuthWelcomeService] },
   { path: 'login/verify/:id', component: VerifyComponent, canActivate: [AuthWelcomeService] },
