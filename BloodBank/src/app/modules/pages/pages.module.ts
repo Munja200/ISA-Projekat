@@ -18,6 +18,7 @@ import { BloodViewComponent } from './blood-view/blood-view.component';
 import { DonorsComponent } from './donors/donors.component';
 import { EditCenterComponent } from './edit-center/edit-center.component';
 import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+import { SchedulingAppointmentComponent } from './scheduling-appointment/scheduling-appointment.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
   { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+  { path: 'schedulingAppointment', component: SchedulingAppointmentComponent, canActivate: [AuthWelcomeService] },
 
 ];
 
@@ -40,7 +42,8 @@ const routes: Routes = [
     BloodViewComponent,
     DonorsComponent,
     EditCenterComponent,
-    CalendarAdminComponent
+    CalendarAdminComponent,
+    SchedulingAppointmentComponent
   ],
   imports: [
     CommonModule,
