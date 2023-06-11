@@ -1,92 +1,113 @@
-<div class="container">
-    <span> </span>
-    <table>
-       
-        <td></td>
-            <td colspan="3">
-                <p>Profile</p>
-                <p>informations:</p>
+<body class="background-image">
+    <form class="container">
 
-            </td>
+      <div class="container1">
 
-    <td colspan="2">
+        <div class="left-div">
+
+      <mat-form-field class="example-full-width" style="color: white;">
+        <input matInput placeholder="Name" [formControl]="requiredNameControl"[(ngModel)]="registeredUserDto.name">
+        <mat-error *ngIf="requiredNameControl.hasError('required')">
+            Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field class="example-full-width" style="color: white;">
+        <input matInput placeholder="Surname" [formControl]="requiredSurnameControl" [(ngModel)]="registeredUserDto.surname">
+        <mat-error *ngIf="requiredSurnameControl.hasError('required')">
+            Surname is <strong>required</strong>
+        </mat-error>
+      </mat-form-field><br>
+
+
+      <mat-form-field class="example-full-width" style="color: white;">
+        <input matInput placeholder="Jmbg" [formControl]="requiredJmbgControl" [(ngModel)]="registeredUserDto.jmbg">
+        <mat-error *ngIf="requiredJmbgControl.hasError('required')">
+            Jmbg is <strong>required</strong>
+        </mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field class="example-full-width" style="color: white;">
+        <input matInput placeholder="PhoneNumber" [formControl]="requiredPhoneNumberControl" [(ngModel)]="registeredUserDto.phonNumber">
+        <mat-error *ngIf="requiredPhoneNumberControl.hasError('required')">
+            PhoneNumber is <strong>required</strong>
+        </mat-error>
+      </mat-form-field><br>
+      
+          
+
+        <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="Country" [formControl]="requiredAddressControl"[(ngModel)]="registeredUserDto.address.country">
+            <mat-error *ngIf="requiredAddressControl.hasError('required')">
+                Counrty is <strong>required</strong>
+            </mat-error>
+          </mat-form-field><br>
+
         
-        <mat-form-field>
-        <th> Name: </th>
-        <tr> {{registeredUser.person.name}}</tr>
-        </mat-form-field>
+
+          <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="City" [formControl]="requiredCityControl"[(ngModel)]="registeredUserDto.address.city">
+            <mat-error *ngIf="requiredCityControl.hasError('required')">
+                City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field><br>
+
+        </div>
+          <div class="right-div">
+        
+          <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="Street" [formControl]="requiredCountryControl"[(ngModel)]="registeredUserDto.address.street">
+            <mat-error *ngIf="requiredCountryControl.hasError('required')">
+                Street is <strong>required</strong>
+            </mat-error>
+          </mat-form-field><br>
 
 
-        <mat-form-field>
-        <th> Surname </th>
-        <tr> {{registeredUser.person.surname}}</tr>
-        </mat-form-field>
+          <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="Number" [formControl]="requiredNumberControl"[(ngModel)]="registeredUserDto.address.number">
+            <mat-error *ngIf="requiredNumberControl.hasError('required')">
+                Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field><br>
 
-        <mat-form-field>
-            <th> Email </th>
-            <tr> {{registeredUser.person.email}}</tr>
-        </mat-form-field>
 
-        <mat-form-field>
-            <th> Phone number </th>
-            <tr> {{registeredUser.person.phonNumber}}</tr>
-        </mat-form-field>
+          <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="Occupation" [formControl]="requiredOccupationControl"[(ngModel)]="registeredUserDto.occupation">
+            <mat-error *ngIf="requiredOccupationControl.hasError('required')">
+                Occupation is <strong>required</strong>
+            </mat-error>
+          </mat-form-field><br>   
 
-        <mat-form-field>
-            <th> Jmbg </th>
-            <tr > {{registeredUser.person.jmbg}}</tr>
-        </mat-form-field>
+          <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="BloodType" [formControl]="requiredBloodTypeControl" [(ngModel)]="registeredUserDto.bloodType" pattern="^(A|B|AB|O)[+-]$">
+            <mat-error *ngIf="requiredBloodTypeControl.hasError('required')">
+              BloodType is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="requiredBloodTypeControl.hasError('pattern')">
+              BloodType is invalid. Please enter a valid blood type (A, B, AB, O) followed by a + or - sign.
+            </mat-error>
+          </mat-form-field><br>
+          
+          <mat-form-field class="example-full-width" style="color: white;">
+            <input matInput placeholder="Password" type="password" [formControl]="requiredPasswordControl" [(ngModel)]="registeredUserDto.password">
+            <mat-error *ngIf="requiredPasswordControl.hasError('required')">
+                Password is <strong>required</strong>!
+            </mat-error>
+          </mat-form-field><br>
 
-        <mat-form-field>
-            
-            <th> Address </th>
-            <tr > {{registeredUser.person.address.street}} {{registeredUser.person.address.number}} </tr>
-            <tr > {{registeredUser.person.address.city}}, {{registeredUser.person.address.country}}</tr>
-            <tr > {{registeredUser.person.address.latitude}}, {{registeredUser.person.address.longitude}} </tr>
-            
-        </mat-form-field>
+          <div>
+            <button mat-stroked-button (click)="editProfile()"> 
+              Submit
+          </button>
+          </div>      
 
-        <mat-form-field>
-            <button (click)="editProfile()"><b>Edit Profile</b></button>   
-        </mat-form-field>
+          </div>
+          
+          </div>
 
-    </td>
 
-    <td>
-        <mat-form-field>
-        </mat-form-field>
-    </td>
-    <td>
-        <mat-form-field>
-            <th> Role </th>
-            <tr> {{registeredUser.person.role}}</tr>
-        </mat-form-field>
+          
 
-        <mat-form-field>
-            <th> Date of Birth </th>
-            <tr> {{registeredUser.person.dateOfBirth}}</tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Occupation </th>
-            <tr> {{registeredUser.person.occupation}}</tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Information About Company </th>
-            <tr> {{registeredUser.person.informationAboutCompany}}</tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Blood Type </th>
-            <tr> {{registeredUser.person.bloodType}}</tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Gender </th>
-            <tr> {{registeredUser.person.gender}}</tr>
-        </mat-form-field>
-    </td>
-    </table> 
-</div>
-<div>
+        
+    </form> 
+    </body>

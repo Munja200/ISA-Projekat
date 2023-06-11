@@ -14,7 +14,7 @@ INSERT INTO ROLE (name) VALUES ('ROLE_ADMIN_CENTER');
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A-', '1999-07-07 00:00:00', 'rade@gmail.com', true, 'Male', 'Ftn', 7808765978633, '2017-10-01 21:58:58.508-07', 'Radisa', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '4634368672', 'Radic', 'rade@gmail.com', 1);
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A+', '2001-05-05 00:00:00', 'ivan@gmail.com', true, 'Male', 'Ftn', 783242348633, '2017-10-01 21:58:58.508-07', 'Ivan', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42134368672', 'Ivanic', 'ivan@gmail.com', 2);
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('B-', '1999-09-07 00:00:00', 'milica@gmail.com', true, 'Female', 'Ftn', 214123412342, '2017-10-01 21:58:58.508-07', 'Milica', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '42674665672', 'Milic', 'milica@gmail.com', 3);
-insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A+', '1999-09-07 00:00:00', 'dejana@gmail.com', true, 'Female', 'Ftn', 314123412342, '2017-10-01 21:58:58.508-07', 'Dejana', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '47674665672', 'Bullar', 'dejana@gmail.com', 3);
+insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('A+', '1999-09-07 00:00:00', 'dejana@gmail.com', true, 'Female', 'Ftn', 1234567891234, '2017-10-01 21:58:58.508-07', 'Dejana', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '+(123)45/678-9012', 'Dejanic', 'dejana@gmail.com', 3);
 insert into person (blood_type, date_of_birth, email, enabled, gender, information_about_company, jmbg, last_password_reset_date, name, occupation, password, phon_number, surname, username, address_id) values ('B+', '1998-08-07 00:00:00', 'ivana@gmail.com', true, 'Female', 'Ftn', 284123412342, '2017-10-01 21:58:58.508-07', 'Ivana', 'occupation', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '58674665672', 'Ivanovic', 'ivana@gmail.com', 4);
 
 ----------------------USER_ROLE------------------------
@@ -22,6 +22,8 @@ INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo ro
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 1); -- admin-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu ADMIN
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 1); -- user-u dodeljujemo rolu USER
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (4, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (5, 1); -- user-u dodeljujemo rolu USER
 
@@ -56,8 +58,8 @@ insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values (
 insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-20 07:00:00', '2023-06-20 22:00:00', 12, 2);
 
 ----------------------CENTER_ADMINISTRATOR------------------------
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 1);
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);
+insert into administrator_center(deleted, center_id, person_id) values (false, 1, 3);
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 4);
 
 ----------------------COMPLAINT----------------------
@@ -92,3 +94,16 @@ insert into registered_user_appointments(registered_user_id, appointments_id) va
 insert into registered_user_appointments(registered_user_id, appointments_id) values (2, 4);
 insert into registered_user_appointments(registered_user_id, appointments_id) values (3, 3);
 insert into registered_user_appointments(registered_user_id, appointments_id) values (5, 5);
+
+
+--------------------------BLOOD---------------------------
+
+insert into blood(id, blood_type, quantity, center_id) values (1, 'A-', 50, 1);
+insert into blood(id, blood_type, quantity, center_id) values (2, 'B-', 70, 1);
+insert into blood(id, blood_type, quantity, center_id) values (3, 'A+', 20, 1);
+insert into blood(id, blood_type, quantity, center_id) values (4, 'B+', 10, 1);
+insert into blood(id, blood_type, quantity, center_id) values (5, 'AB+', 28, 1);
+insert into blood(id, blood_type, quantity, center_id) values (6, 'AB-', 49, 1);
+insert into blood(id, blood_type, quantity, center_id) values (7, '0-', 15, 1);
+insert into blood(id, blood_type, quantity, center_id) values (8, '0+', 7, 1);
+

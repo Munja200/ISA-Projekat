@@ -95,8 +95,8 @@ public class RegisteredUserController {
 		return new ResponseEntity<List<RegisteredUserDTO>>(registeredUserDTOs, HttpStatus.OK);
 	}
 	
+	
 	//"api/registeredUsers/oneRegisteredUser/{id}"
-	@PreAuthorize("hasRole('USER')")
 	@Operation(summary = "Get registered person by id", description = "Get registered person by id", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found registered person by id",
@@ -115,7 +115,7 @@ public class RegisteredUserController {
 	}
 	
 	//"api/registeredUsers/oneRegisteredUser/{id}"
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN_CENTER')")
 	@Operation(summary = "Update registered person", description = "Update registered person", method="POST")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",

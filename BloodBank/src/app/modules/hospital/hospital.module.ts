@@ -26,6 +26,9 @@ import { UserAppointmentsComponent } from './user-appointments/user-appointments
 import { VerifyComponent } from './verify/verify.component';
 import { MapsComponent } from '../maps/maps.component';
 import { AuthWelcomeService } from './services/auth-welcome.service';
+import { BloodViewComponent } from '../pages/blood-view/blood-view.component';
+import { DonorsComponent } from '../pages/donors/donors.component';
+import { EditCenterComponent } from '../pages/edit-center/edit-center.component';
 
 
 
@@ -42,7 +45,10 @@ const routes: Routes = [
   { path: 'centerAppointments', component: CenterAppointmentComponent, canActivate: [AuthWelcomeService] },
   { path: 'userAppointments', component: UserAppointmentsComponent, canActivate: [AuthWelcomeService] },
   { path: 'login/verify/:id', component: VerifyComponent, canActivate: [AuthWelcomeService] },
-{ path: 'maps', component: MapsComponent, canActivate: [AuthWelcomeService] },
+  { path: 'maps', component: MapsComponent, canActivate: [AuthWelcomeService] },
+  { path: 'bloods', component: BloodViewComponent, canActivate: [AuthWelcomeService]},
+  { path: 'donors', component: DonorsComponent, canActivate: [AuthWelcomeService]},
+  { path: 'editCenter', component: EditCenterComponent, canActivate: [AuthWelcomeService]}
   
 ];
 

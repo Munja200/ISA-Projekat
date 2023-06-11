@@ -292,6 +292,7 @@ public class CenterController {
 	    return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
 	}
 	
+
 	@Operation(summary = "Get center by id", description = "Get center by id", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found center by id",
@@ -306,6 +307,6 @@ public class CenterController {
 		return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
 	}
 	
-	
+
 
 }

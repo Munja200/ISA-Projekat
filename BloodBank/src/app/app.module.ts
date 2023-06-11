@@ -13,6 +13,8 @@ import { AuthService } from "./modules/hospital/services/auth.service";
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapsComponent } from './modules/maps/maps.component';
 import { AuthWelcomeService } from "./modules/hospital/services/auth-welcome.service";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -28,8 +30,9 @@ import { AuthWelcomeService } from "./modules/hospital/services/auth-welcome.ser
     MaterialModule,
     PagesModule,
     HospitalModule,
-    GoogleMapsModule
-
+    GoogleMapsModule,
+    MatFormFieldModule,
+    MatInputModule
 
   ],
    providers: [ 

@@ -1,3 +1,40 @@
+/**********W**********/
+.w-30{
+    position: inherit;
+	width: 30%;
+}
+
+.w-60{
+    position: inherit;
+	width: 60%;
+}
+
+.w-70{
+    position: inherit;
+	width: 70%;
+}
+
+.w-80{
+    position: inherit;
+	width: 80%;
+}
+
+.w-90{
+    position: inherit;
+	width: 90%;
+}
+
+/**********H**********/
+.h-15{
+    position: inherit;
+	height: 15%;
+}
+
+.small-font {
+    font-size: 1.3rem;
+}
+
+
 .container {
     width: 520px;
     height: 480px;
