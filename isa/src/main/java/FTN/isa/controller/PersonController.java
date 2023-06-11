@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +21,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.DTOs.PersonDTO;
+import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.service.EmailService;
 import FTN.isa.service.PersonService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -119,6 +124,7 @@ public class PersonController {
 		
 	} 
 	
+	@PreAuthorize("hasRole('ADMIN_CENTER')")
 	@Operation(summary = "Get person by username", description = "Get person by username", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found person by username",
@@ -129,10 +135,25 @@ public class PersonController {
     public ResponseEntity<Person> getUserByUsername(@Parameter(name="username", description = "username of a person to return", required = true) @PathVariable("username") String username) {
             Person person = personService.findByUsername(username);
             if (person != null) {
-                return ResponseEntity.ok(person);
+                return new ResponseEntity<Person>(person, HttpStatus.OK);
             } else {
                 return ResponseEntity.notFound().build();
             }
     }
+	
+	//"api/persons/update/{id}"
+		@PreAuthorize("hasRole('ADMIN_CENTER')")
+		@Operation(summary = "Update registered person", description = "Update registered person", method="POST")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by page number",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = Person.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "/updateRegisteredUser/{id}", method = RequestMethod.POST)
+		public Person updateRegisteredPerson(@PathVariable("id") long id, @RequestBody @Valid Person person) {
+			//Person person1 = new Person(person);
+		    return personService.updateRegisteredPerson(id, person);
+		}
 	
 }

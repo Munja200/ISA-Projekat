@@ -20,4 +20,9 @@ public interface PersonRepository  extends JpaRepository<Person, Long> {
 	
 	@Query(value="select * from person p ,address a where p.address_id= a.id and  p.id =?1",nativeQuery = true)
 	public Person getOne(Long id);
+	
+	@Query(value="select * from person p ,address a where p.address_id= a.id and  p.username =?1",nativeQuery = true)
+	public Person getOneByUsername(String username);
+	
+	
 }

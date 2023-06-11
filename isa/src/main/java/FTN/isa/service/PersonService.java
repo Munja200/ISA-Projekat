@@ -61,6 +61,9 @@ public class PersonService {
 		return personRepository.getOne(id);
 	}
 	
+	public Person getOneByUsername(String username) {
+		return personRepository.getOneByUsername(username);
+	}
 	
 	
 	public Person verify(String verificationCode) {
@@ -77,5 +80,36 @@ public class PersonService {
 	        System.out.println("A sad ovde"); 
 	        return user.getPerson();
 	    }
+	}
+	
+	
+	public Person updateRegisteredPerson(Long id, Person person) {
+        var p = personRepository.findById(id).get();
+        if(p != null) {
+        	
+        	
+        	
+        	p.setName(person.getName());
+        	p.setSurname(person.getSurname());
+        	p.setPhonNumber(person.getPhonNumber());
+        	p.setJmbg(person.getJmbg());
+        	p.setGender(person.getGender());
+        	p.setOccupation(person.getOccupation());
+        	p.setInformationAboutCompany(person.getInformationAboutCompany());
+        	p.setDateOfBirth(person.getDateOfBirth());
+        	p.setBloodType(person.getBloodType());
+        	p.setAddress(person.getAddress());
+        	p.setPassword(passwordEncoder.encode(person.getPassword()));
+        	List<Role> roles = roleService.findByName("ROLE_ADMIN_CENTER");
+    		p.setRoles(roles);
+        	p.setFirstLogin(person.isFirstLogin());
+        	
+            
+        	personRepository.save(p);
+        	
+            return person;
+        } else {
+            return null;
+        }
 	}
 }

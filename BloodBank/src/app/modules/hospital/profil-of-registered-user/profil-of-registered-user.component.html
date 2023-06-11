@@ -1,3 +1,20 @@
+<div class="d-flex justify-content-center w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+  <div class="w-90 h-100" style="background: #212529d8">
+      <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
+          <div class="d-flex">
+            <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/homeAdminCenter">Amdinistrator center</a></div>
+            <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/">Appointment info</a></div>
+            <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/donors">Donors</a></div>
+              <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/calendar">Calendar</a></div>
+              <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/profilOfRegisteredUser">Profile</a></div>
+              <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/">Create appointment</a></div>
+              <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/bloods">Bloods</a></div>
+              <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/editCenter">My center</a></div>
+          </div>
+          <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none small-font" (click)="logout()" href="">Logout</a></div>
+      </div>
+
+
 <body class="background-image">
     <form class="container">
 
@@ -97,17 +114,20 @@
 
           <div>
             <button mat-stroked-button (click)="editProfile()"> 
-              Submit
+              Edit
           </button>
           </div>      
 
           </div>
           
           </div>
-
+        
 
           
 
         
     </form> 
     </body>
+  </div>
+</div>
+

@@ -10,6 +10,7 @@ import { Person } from '../../hospital/model/person';
 import { MatTableDataSource } from '@angular/material/table';
 import { CenterDTO } from '../../hospital/model/centerDTO';
 import { CenterService } from '../service/center.service';
+import { CenterAdministratorDTO } from '../../hospital/model/centerAdministratorDTO';
 
 @Component({
   selector: 'app-edit-center',
@@ -24,6 +25,9 @@ export class EditCenterComponent implements OnInit {
   public id : number = 0;
   public personId : number = 0;
   public centerDTO: CenterDTO = new CenterDTO();
+  public adminsList: CenterAdministratorDTO[] = [];
+
+  public lista: CenterAdministratorDTO[] = [];
   
 
   constructor(private authService: AuthService, private registerPersonService: RegisterPersonService, private centerService: CenterService, private router: Router) { }
@@ -44,7 +48,23 @@ export class EditCenterComponent implements OnInit {
     }
   }
 
+  getAdmins(centerDTO: any): string {
+    let adminsList = centerDTO.admins.map((admin: any) => `${admin.person.name} ${admin.person.surname}`);
+    return adminsList.join(", ");
+  }
+  
+  
+
   public editProfile() {
+    if (this.isInputValid()) {
+      this.centerService.updateCenter(this.centerDTO).subscribe(res => {
+        this.centerDTO = res;      
+        alert("You have successfully updated!");
+        this.router.navigate(['/homeAdminCenter']);
+      });
+    } else {
+      alert("You must fill in all fields!");
+    }
     
   }
 

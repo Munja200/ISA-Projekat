@@ -57,7 +57,7 @@ public class TokenUtils {
 	 * @param username Korisničko ime korisnika kojem se token izdaje
 	 * @return JWT token
 	 */
-	public String generateToken(Person user) {
+	/*public String generateToken(Person user) {
 		return Jwts.builder()
 				.setIssuer(APP_NAME)
 				.setSubject(user.getUsername())
@@ -70,7 +70,21 @@ public class TokenUtils {
 		
 
 		// moguce je postavljanje proizvoljnih podataka u telo JWT tokena pozivom funkcije .claim("key", value), npr. .claim("role", user.getRole())
+	}*/
+	public String generateToken(Person user) {
+	    return Jwts.builder()
+	            .setIssuer(APP_NAME)
+	            .setSubject(user.getUsername())
+	            .claim("username", user.getUsername())
+	            .claim("userRole", user.getRolesString())
+	            .claim("isFirstLogin", user.isFirstLogin()) 
+	            .setAudience(generateAudience())
+	            .setIssuedAt(new Date())
+	            .setExpiration(generateExpirationDate())
+	            .signWith(SIGNATURE_ALGORITHM, SECRET)
+	            .compact();
 	}
+
 	
 	/**
 	 * Funkcija za utvrđivanje tipa uređaja za koji se JWT kreira.
@@ -237,7 +251,7 @@ public class TokenUtils {
 	 * @param userDetails Informacije o korisniku koji je vlasnik JWT tokena.
 	 * @return Informacija da li je token validan ili ne.
 	 */
-	public Boolean validateToken(String token, UserDetails userDetails) {
+	/*public Boolean validateToken(String token, UserDetails userDetails) {
 		Person user = (Person) userDetails;
 		final String username = getUsernameFromToken(token);
 		final Date created = getIssuedAtDateFromToken(token);
@@ -246,7 +260,33 @@ public class TokenUtils {
 		return (username != null // korisnicko ime nije null
 			&& username.equals(userDetails.getUsername()) // korisnicko ime iz tokena se podudara sa korisnickom imenom koje pise u bazi
 			&& !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())); // nakon kreiranja tokena korisnik nije menjao svoju lozinku 
+	}*/
+	public Boolean validateToken(String token, UserDetails userDetails) {
+	    Person user = (Person) userDetails;
+	    final String username = getUsernameFromToken(token);
+	    final Date created = getIssuedAtDateFromToken(token);
+	    final Boolean isFirstLogin = getIsFirstLoginFromToken(token); 
+
+	    return (username != null
+	            && username.equals(userDetails.getUsername())
+	            && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())
+	            && isFirstLogin != null 
+	            && isFirstLogin.equals(user.isFirstLogin())); 
 	}
+
+	private Boolean getIsFirstLoginFromToken(String token) {
+	    Boolean isFirstLogin;
+	    try {
+	        final Claims claims = this.getAllClaimsFromToken(token);
+	        isFirstLogin = claims.get("isFirstLogin", Boolean.class);
+	    } catch (ExpiredJwtException ex) {
+	        throw ex;
+	    } catch (Exception e) {
+	        isFirstLogin = null;
+	    }
+	    return isFirstLogin;
+	}
+
 	
 	/**
 	 * Funkcija proverava da li je lozinka korisnika izmenjena nakon izdavanja tokena.

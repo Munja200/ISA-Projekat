@@ -26,6 +26,8 @@ export class DonorsComponent implements OnInit {
   constructor(private router: Router, private centerService: CenterService, private authService: AuthService, private registerPersonService : RegisterPersonService) { }
 
   ngOnInit(): void {
+  
+
     const username = this.authService.getCurrentUserUsername();
     if (username) {
       this.registerPersonService.getUserByUsername(username).subscribe(person => {

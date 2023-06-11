@@ -1,4 +1,5 @@
 import { Address } from "./address";
+import { CenterAdministratorDTO } from "./centerAdministratorDTO";
 import { RadnoVreme } from "./radnoVreme";
 
 export class CenterDTO {
@@ -9,6 +10,7 @@ export class CenterDTO {
     averageRating: number;
     deleted: boolean;
     radnoVreme: RadnoVreme[] = [];
+    admins: CenterAdministratorDTO[] = [];
 
     public constructor(
         id: number = 0, 
@@ -18,6 +20,7 @@ export class CenterDTO {
         averageRating: number = 0, 
         deleted: boolean = false,
         radnoVreme: RadnoVreme[] = [],
+        admins: CenterAdministratorDTO[] = [],
 
     ) {
         this.id = id;
@@ -27,6 +30,7 @@ export class CenterDTO {
         this.averageRating = averageRating;
         this.deleted = deleted;
         this.radnoVreme = radnoVreme;
+        this.admins = admins;
 
     }
 }
