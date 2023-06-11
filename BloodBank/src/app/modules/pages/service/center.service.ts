@@ -2,6 +2,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CenterDTO } from 'src/app/modules/hospital/model/centerDTO';
+import { Center } from '../../hospital/model/center';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,10 @@ export class CenterService {
 
   getAllForAdminCenter(adminId : number) : Observable<CenterDTO> {
     return this.http.get<CenterDTO>('api/centers/allForAdminCenter/' + adminId, {headers: this.headers});
+  }
+
+  getById(id: number): Observable<Center> {
+    return this.http.get<Center>('api/centers/cntr/' + id, {headers: this.headers});
   }
 
 }

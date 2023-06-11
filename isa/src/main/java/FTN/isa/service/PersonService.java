@@ -29,8 +29,6 @@ public class PersonService {
 	@Autowired
 	private RoleService roleService;
 
-
-	
 	
 	@Autowired
 	private RegisteredUserRepository registeredUserRepository;

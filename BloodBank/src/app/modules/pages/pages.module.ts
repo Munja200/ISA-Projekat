@@ -17,6 +17,8 @@ import { HomeADMINCENTERComponent } from './home-admincenter/home-admincenter.co
 import { BloodViewComponent } from './blood-view/blood-view.component';
 import { DonorsComponent } from './donors/donors.component';
 import { EditCenterComponent } from './edit-center/edit-center.component';
+import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
+  { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+
 ];
 
 @NgModule({
@@ -36,6 +40,7 @@ const routes: Routes = [
     BloodViewComponent,
     DonorsComponent,
     EditCenterComponent,
+    CalendarAdminComponent
   ],
   imports: [
     CommonModule,

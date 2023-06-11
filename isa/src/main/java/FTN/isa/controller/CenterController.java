@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Center;
+import FTN.isa.model.Person;
 import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.service.CenterService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -288,12 +289,23 @@ public class CenterController {
     @PathVariable("adminId") Long adminId) {
 		
 	    CenterDTO centerDTO = centerService.findByAdminId(adminId);
-	    
-	  
-
 	    return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
 	}
 	
+
+	@Operation(summary = "Get center by id", description = "Get center by id", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found center by id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Center.class))),
+			@ApiResponse(responseCode = "404", description = "center not found", content = @Content)
+	})
+	@GetMapping(value = "/cntr/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CenterDTO> getCenterById(@Parameter(name="id", description = "ID of a center to return", required = true) @PathVariable("id") Long id) {
+		Center center = centerService.getById(id);
+		CenterDTO centerDTO = new CenterDTO(center);
+
+		return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
+	}
 	
 
 

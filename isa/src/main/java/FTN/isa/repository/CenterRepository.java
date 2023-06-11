@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import FTN.isa.model.Center;
+import FTN.isa.model.Person;
 
 public interface CenterRepository extends PagingAndSortingRepository<Center, Long>{
 	
@@ -43,7 +44,8 @@ public interface CenterRepository extends PagingAndSortingRepository<Center, Lon
 	@Query(value = "SELECT * FROM center c JOIN administrator_center ac ON c.id = ac.center_id WHERE ac.person_id =?1", nativeQuery = true)
 	Center findByAdminId(@Param("adminId") Long id);
 
-
+	@Query(value="select * FROM center c WHERE c.id =?1",nativeQuery = true)
+	Center getOne(Long id);
 
 	
 }
