@@ -2,6 +2,8 @@ package FTN.isa.model.DTOs;
 
 import javax.validation.Valid;
 
+import FTN.isa.model.AdministratorCenter;
+import FTN.isa.model.Center;
 import FTN.isa.model.Person;
 
 public class AdministratorCenterDTO {
@@ -13,16 +15,23 @@ public class AdministratorCenterDTO {
 	@Valid
 	private Person person;
 	
-	private String centerId;
+	private long centerId;
 
 	public AdministratorCenterDTO() {}
 
-	public AdministratorCenterDTO(long id, boolean deleted, Person person, String centerId) {
+	public AdministratorCenterDTO(long id, boolean deleted, Person person, long centerId) {
 		super();
 		this.id = id;
 		this.deleted = deleted;
 		this.person = person;
 		this.centerId = centerId;
+	}
+	
+	public AdministratorCenterDTO(AdministratorCenter ac) {
+		super();
+		this.id = ac.getId();
+		this.person = ac.getPerson();
+		this.centerId = ac.getCenter().getId();
 	}
 
 	public long getId() {
@@ -49,11 +58,11 @@ public class AdministratorCenterDTO {
 		this.person = person;
 	}
 
-	public String getCenterId() {
+	public long getCenterId() {
 		return centerId;
 	}
 
-	public void setCenterId(String centerId) {
+	public void setCenterId(long centerId) {
 		this.centerId = centerId;
 	}
 }

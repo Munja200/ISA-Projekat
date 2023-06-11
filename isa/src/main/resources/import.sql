@@ -1,7 +1,7 @@
 ----------------------ADDRESES------------------------
 insert into address (city, country, latitude, longitude, number, street) values ('Zrenjanin', 'Srbija', 73.09, 2.71, '3', 'Zrenjaninska');
 insert into address (city, country, latitude, longitude, number, street) values ('Sombor', 'Srbija', 11.73, 63.94, '497', 'Somborska');
-insert into address (city, country, latitude, longitude, number, street) values ('Vrsac', 'Srbija', 18.53, 40.48, '1051', 'Vrsacka');
+insert into address (city, country, latitude, longitude, number, street) values ('Novi Sad', 'Srbija', 18.53, 40.48, '15a', 'Vrsacka');
 insert into address (city, country, latitude, longitude, number, street) values ('Novi Sad', 'Srbija', 9.89, 45.04, '2680', 'Novosadska');
 insert into address (city, country, latitude, longitude, number, street) values ('Bijeljina', 'Bosna Ba', 85.21, 28.72, '633', 'Bijeljinska');
 
