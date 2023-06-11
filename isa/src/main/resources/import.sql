@@ -107,3 +107,10 @@ insert into blood(id, blood_type, quantity, center_id) values (6, 'AB-', 49, 1);
 insert into blood(id, blood_type, quantity, center_id) values (7, '0-', 15, 1);
 insert into blood(id, blood_type, quantity, center_id) values (8, '0+', 7, 1);
 
+--------------------------GRADE---------------------------
+
+insert into grade(id, center_id, score, person_id) values (1, 1, 5, 1);
+insert into grade(id, center_id, score, person_id) values (2, 1, 8, 2);
+insert into grade(id, center_id, score, person_id) values (3, 1, 4, 3);
+
+
