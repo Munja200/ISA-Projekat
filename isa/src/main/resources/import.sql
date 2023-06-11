@@ -22,6 +22,8 @@ INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo ro
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 1); -- admin-u dodeljujemo rolu USER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu ADMIN
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 1); -- user-u dodeljujemo rolu USER
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (4, 3); -- user-u dodeljujemo rolu ADMIN_CENTER
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (5, 1); -- user-u dodeljujemo rolu USER
 
@@ -46,8 +48,8 @@ insert into center (average_rating, deleted, description, name, address_id) valu
 insert into center (average_rating, deleted, description, name, address_id) values (6.26, false, 'In eleifend quam a odio.', 'Thoughtstorm', 5);
 
 ----------------------CENTER_ADMINISTRATOR------------------------
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 1);
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);
+insert into administrator_center(deleted, center_id, person_id) values (false, 1, 3);
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 4);
 
 ----------------------COMPLAINT----------------------
