@@ -62,4 +62,8 @@ export class CenterService {
     return this.http.get<Center>('api/centers/cntr/' + id, {headers: this.headers});
   }
 
+  getCentersbyDateWithFreeAppointments(datum: Date): Observable<any> {
+    return this.http.get<CenterDTO[]>('api/centers/slobodniCentri/' + datum, {headers: this.headers});
+  }
+
 }

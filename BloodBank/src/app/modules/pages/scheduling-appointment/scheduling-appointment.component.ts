@@ -19,14 +19,16 @@ export class SchedulingAppointmentComponent implements OnInit {
   public sort : boolean = false;
   public datum : Date = new Date();
   public showForm: boolean = false;
+  public minDate: string = '';
 
-  constructor(private centerService: CenterService, private router: Router, private authService: AuthService) { }
+  constructor(private centerService: CenterService, private router: Router, private authService: AuthService) 
+  {
+    const today = new Date();
+    this.minDate = today.toISOString().substring(0, 16);
+   }
 
   ngOnInit(): void {
     this.averageSort = false;
-    this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.centers = res;
-    })
   }
 
   logout(){
@@ -51,49 +53,23 @@ export class SchedulingAppointmentComponent implements OnInit {
     }
   }
 
-  public nextButton(){
-    if(this.centers.length >= 10 ){
-      this.page =this.page + 1;
-    
-      if(this.averageSort == true){
-        this.sort = (!this.sort);
-
-        this.sortByAverageRating();
-      }else{
-        this.centerService.getCentersbyPage(this.page).subscribe(res => {
-          this.centers = res;
-        })
-      }
-    }
-  }
-
-  public previousButton(){
-    if(this.page - 1 >=0 ){
-      this.page =this.page - 1;
-      if(this.averageSort == true){
-        this.sort = (!this.sort)
-
-        this.sortByAverageRating();
-      }else{
-        this.centerService.getCentersbyPage(this.page).subscribe(res => {
-          this.centers = res;
-        })
-      }
-    }
-  }
 
   public reset(){
     this.averageSort = false;
     this.datum = new Date();
+    this.showForm = false;
 
-    this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.centers = res;
-    })
+    this.centers = []
+
   }
 
   public search(){
     this.showForm = true;
+    console.log(this.datum);
 
+    this.centerService.getCentersbyDateWithFreeAppointments(this.datum).subscribe(res => {
+      this.centers = res;
+    })
   }
 
 }

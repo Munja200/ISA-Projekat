@@ -35,7 +35,7 @@ import { EditCenterComponent } from '../pages/edit-center/edit-center.component'
 const routes: Routes = [
   { path: 'registerCenter', component: RegisterCenterComponent, canActivate: [AuthWelcomeService] },
   { path: 'register', component: RegisterPersonComponent  },
-  { path: 'questionForm', component: QuestionFormComponent, canActivate: [AuthWelcomeService]  },
+  { path: 'questionForm', component: QuestionFormComponent  },
   { path: 'registerCenterAdministrator', component: RegisterCenterAdministratorComponent, canActivate: [AuthWelcomeService] },
   { path: 'profilOfRegisteredUser', component: ProfilOfRegisteredUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'editProfilRegisteredUser', component: EditProfilRegisteredUserComponent, canActivate: [AuthWelcomeService] },

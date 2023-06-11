@@ -1,6 +1,9 @@
 package FTN.isa.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -305,6 +308,30 @@ public class CenterController {
 		CenterDTO centerDTO = new CenterDTO(center);
 
 		return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
+	}
+	
+	@Operation(summary = "Get centers", description = "Get centers", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@GetMapping(value = "/slobodniCentri/{datum}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CenterDTO>> getCentersbyDateWithFreeAppointments(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("datum") String datum) {		
+		
+		//formatirati datum u LocalDateTime da bih mogla da poredim vreme
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(datum, formatter);
+        
+		List<Center> lista = centerService.getCentersbyDateWithFreeAppointments(datum);
+		//List<Center> lista = centerService.getCentersbyDateWithFreeAppointments(dateTime);
+        
+		List<CenterDTO> centers = new ArrayList<CenterDTO>();
+		
+		for(Center c : lista){
+			centers.add(new CenterDTO(c));
+		}
+		return new ResponseEntity<List<CenterDTO>>(centers, HttpStatus.OK);
 	}
 	
 
