@@ -45,6 +45,16 @@ insert into question (question, exact_value) values ('Da li proslo manje od  7 d
 insert into center (average_rating, deleted, description, name, address_id) values (1.58, false, 'Vivamus tortor.', 'Wikibox', 4);
 insert into center (average_rating, deleted, description, name, address_id) values (6.26, false, 'In eleifend quam a odio.', 'Thoughtstorm', 5);
 
+----------------------RADNO-VREME------------------------
+insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('2023-06-11 07:00:00', '2023-06-11 22:00:00', 1);
+insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('2023-06-12 07:00:00', '2023-06-12 22:00:00', 1);
+
+----------------------TERMINI------------------------
+insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-13 07:00:00', '2023-06-13 22:00:00', 11, 1);
+insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-15 07:00:00', '2023-06-15 22:00:00', 13, 1);
+insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-17 07:00:00', '2023-06-17 22:00:00', 10, 1);
+insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-20 07:00:00', '2023-06-20 22:00:00', 12, 2);
+
 ----------------------CENTER_ADMINISTRATOR------------------------
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 1);
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);

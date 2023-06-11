@@ -23,6 +23,10 @@ public class CenterService {
 		return centerRepository.findAll(pageable);
 	}
 	
+	public Center getById(Long id) {
+		return centerRepository.getOne(id);
+	}
+	
 	public List<Center> findAll() {
 		return centerRepository.findAll();
 	}
@@ -67,7 +71,6 @@ public class CenterService {
 	
 	 public CenterDTO findByAdminId(Long adminId) {
 		 Center center = centerRepository.findByAdminId(adminId);
-		    
 		   
 		    	CenterDTO centerDTO = new CenterDTO();
 		    	
@@ -77,6 +80,7 @@ public class CenterService {
 		    	centerDTO.setDescription(center.getDescription());
 		    	centerDTO.setAverageRating(center.getAverageRating());
 		    	centerDTO.setDeleted(false);
+		    	centerDTO.setRadnoVreme(center.getRadnoVreme());
 
 		    return centerDTO;
 
