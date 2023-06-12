@@ -9,12 +9,10 @@ import FTN.isa.repository.QuestionFormRepository;
 @Service
 public class QuestionFormService {
 	@Autowired
-	private QuestionFormRepository personRepository;
+	private QuestionFormRepository questionFormRepository;
 	
-	public QuestionForm save(QuestionForm person) {
-		
-		
-		return personRepository.save(person);
+	public QuestionForm createQuestionForm(QuestionForm questionForm) {
+		return questionFormRepository.save(questionForm);
 	}
 
 }

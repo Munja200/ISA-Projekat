@@ -22,6 +22,7 @@ import { SchedulingAppointmentComponent } from './scheduling-appointment/schedul
 import { ZakazivanjeTerminaComponent } from './zakazivanje-termina/zakazivanje-termina.component';
 import { CenterWithTerminServiceComponent } from './center-with-termin-service/center-with-termin-service.component';
 import { DatePipe } from '@angular/common';
+import { FutureAppointmentsComponent } from './future-appointments/future-appointments.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'schedulingAppointment', component: SchedulingAppointmentComponent, canActivate: [AuthWelcomeService] },
   { path: 'scheduleCenterAppointment', component: ZakazivanjeTerminaComponent,  canActivate: [AuthWelcomeService] },
+  { path: 'futureAppointments', component: FutureAppointmentsComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
@@ -50,7 +52,8 @@ const routes: Routes = [
     CalendarAdminComponent,
     SchedulingAppointmentComponent,
     ZakazivanjeTerminaComponent,
-    CenterWithTerminServiceComponent
+    CenterWithTerminServiceComponent,
+    FutureAppointmentsComponent
   ],
   imports: [
     CommonModule,

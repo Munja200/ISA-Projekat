@@ -8,6 +8,7 @@ export class Termin {
     trajanje : number = 0;
     center: Center = new Center();
     centerId : number = 0;
+    korisnikId : number = 0
 
     constructor(obj?: any) {
         if (obj) {
@@ -17,6 +18,7 @@ export class Termin {
           this.trajanje = obj.trajanje;
           this.center = obj.center;
           this.centerId = obj.centerId;
+          this.korisnikId = obj.korisnikId;
         }
       }
 }

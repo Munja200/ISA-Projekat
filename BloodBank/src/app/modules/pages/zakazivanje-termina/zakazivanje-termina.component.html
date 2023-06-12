@@ -51,14 +51,14 @@
                       
 
                     <div class="d-flex justify-content-between mb-5">
-                        <button type="button" class="btn btn-outline-light">Schedule</button>
+                        <button type="button" class="btn btn-outline-light" (click)="editTermin(centerWithTermin)">Schedule</button>
                     </div>
                     
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center w-20 pt-2">
-                <div class="w-90 pt-3 rounded" style="background: #212529d8" >
+            <div class="d-flex justify-content-center w-20 pt-2" *ngIf="!isQuestionFormFilled">
+                <div class="w-90 pt-3 rounded" style="background: #212529d8">
                     <div class="h4 d-flex justify-content-center text-white">
                             Question Form
                     </div>
@@ -80,17 +80,21 @@
                         <tbody>
                             <tr *ngFor="let question of questions;">
                                 <td class="text-center">{{question.question}}</td>
+
                                 <td class="text-center"> 
-                                    <input type="checkbox" [(ngModel)]="question.exactValue" />
+                                    <input type="radio" (click)="radioButtonChange(question,'True')"  value="True"/>Yes
+                                    <input type="radio" (click)="radioButtonChange(question,'False')"  value="False"/>No
                                 </td>
+
                             </tr>
                         </tbody><br>
                         <div class="d-flex justify-content-between mb-5">
-                            <button type="button" class="btn btn-outline-light">Question Filled</button>
+                            <button type="button" class="btn btn-outline-light" (click)="createQuestionForm()">Question Filled</button>
                         </div>
                     </table>
                    
                 </div>
+                
             </div>
            
         </div>

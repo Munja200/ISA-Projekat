@@ -23,9 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Center;
+import FTN.isa.model.Person;
+import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.Termin;
 import FTN.isa.model.DTOs.CenterDTO;
+import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.model.DTOs.TerminDTO;
+import FTN.isa.service.EmailService;
+import FTN.isa.service.PersonService;
 import FTN.isa.service.TerminService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -41,6 +46,10 @@ public class TerminController {
 
 	@Autowired
 	private TerminService terminService;
+	@Autowired
+	private EmailService mailService;
+	@Autowired
+	private PersonService personService;
 
 	//"api/termini/{id}"
 	@Operation(summary = "Get termini", description = "Get termini", method="GET")
@@ -76,7 +85,9 @@ public class TerminController {
 	public ResponseEntity<Termin> registerTermin(@RequestBody @Valid Termin termin)  {
 			//Termin termin = new Termin(terminDTO);
 			try {
+				
 			    terminService.createTermin(termin);
+
 			    return new ResponseEntity<Termin>(termin, HttpStatus.CREATED);
 			} catch (Exception e) {
 			    e.printStackTrace();
@@ -102,4 +113,68 @@ public class TerminController {
 		return new ResponseEntity<Termin>(termin, HttpStatus.OK);
 	}
 	*/
+	
+	
+	@PreAuthorize("hasRole('USER')")
+	@Operation(summary = "Update termin", description = "Update registered person", method="POST")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/izmena/{id}/{korId}", method = RequestMethod.POST)
+	public boolean updateTermin(@PathVariable("id") long id, @PathVariable("korId") long korId, @RequestBody @Valid TerminDTO terminDTO) {
+		
+		try {
+			terminService.updateTermin(id, korId, terminDTO);
+			if(terminService.updateTermin(id, korId, terminDTO) == true ) {
+				Person person =  new Person();
+				person = personService.getById(terminDTO.getKorisnikId());
+				mailService.sendMessage(person);
+				return true;
+			}
+
+			return false;
+			
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    return false;
+		}
+	}
+	 
+	
+	/*
+	@PreAuthorize("hasRole('USER')")
+	@Operation(summary = "Update termin", description = "Update registered person", method="POST")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/izmena/{id}/{korId}", method = RequestMethod.POST)
+	public ResponseEntity<TerminDTO> updateTermin(@PathVariable("id") long id, @PathVariable("korId") long korId, @RequestBody @Valid TerminDTO terminDTO) {
+	  	
+		try {
+			terminService.updateTermin(id, korId, terminDTO);
+			/*
+			Person person =  new Person();
+			person = personService.getById(terminDTO.getKorisnikId());
+				    
+			mailService.sendMessage(person);
+			
+
+		    return new ResponseEntity<TerminDTO>(terminDTO, HttpStatus.CREATED);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    String errorMessage = e.getMessage(); 
+		    System.out.println(errorMessage); // Ispisivanje poruke greške u konzolu
+		    return new ResponseEntity<TerminDTO>(terminDTO, HttpStatus.CONFLICT);
+		}
+	}
+	*/
+	
+	
+	
 }

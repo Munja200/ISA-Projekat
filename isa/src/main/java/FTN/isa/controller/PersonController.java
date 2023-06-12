@@ -75,7 +75,7 @@ public class PersonController {
 	}
 	
 	
-	
+	/*
 	@Operation(summary = "Register new person", description = "Register new person", method = "POST")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Created",
@@ -93,6 +93,26 @@ public class PersonController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Person>(savedPerson.getPerson(), HttpStatus.CONFLICT);
+		}
+	}
+	*/
+
+	@Operation(summary = "Register new person", description = "Register new person", method = "POST")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Created",
+					content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Person.class)) }),
+			@ApiResponse(responseCode = "409", description = "Not possible to register new person when given id is not null",
+					content = @Content)
+	})
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Person> sendEmailMessage(@RequestBody Person person,HttpServletRequest request) throws UnsupportedEncodingException, MessagingException  {
+		try {
+			mailService.sendMessage(person);
+			
+			return new ResponseEntity<Person>(person, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Person>(person, HttpStatus.CONFLICT);
 		}
 	}
 	

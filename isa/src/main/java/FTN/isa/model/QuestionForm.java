@@ -20,26 +20,24 @@ import javax.validation.Valid;
 public class QuestionForm {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;	
+	private Long Id;	
 	
 	@Column(name = "deleted")
 	private boolean deleted;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "registered_user_id", referencedColumnName = "id")
-	@Valid
 	private Person registeredUser;
 	
 	@Column(name = "date", nullable = false)
 	private Date date;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@Valid
 	private Set<AnswerQuestion> questions = new HashSet<AnswerQuestion>();
 	
-	public QuestionForm() {}
+	public QuestionForm() {} 
 	
-	public QuestionForm(int id, boolean deleted, Person registeredUser, Date date, Set<AnswerQuestion> questions) {
+	public QuestionForm(Long id, boolean deleted, Person registeredUser, Date date, Set<AnswerQuestion> questions) {
 		super();
 		Id = id;
 		this.deleted = deleted;
@@ -48,19 +46,20 @@ public class QuestionForm {
 		this.questions = questions;
 	}
 
-	public QuestionForm(int id, boolean deleted, Person registeredUser, Date date) {
+	public QuestionForm(Long id, boolean deleted, Person registeredUser, Date date) {
 		super();
 		Id = id;
 		this.deleted = deleted;
 		this.registeredUser = registeredUser;
 		this.date = date;
 	}
-
-	public int getId() {
+	
+	
+	public Long getId() {
 		return Id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		Id = id;
 	}
 

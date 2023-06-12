@@ -76,13 +76,12 @@ public class Termin {
 			this.korisnikId = korisnikId;
 		}
 
-		
-		public Long getKorisnik_id() {
-			return korisnikId;
+		public Long getId() {
+			return Id;
 		}
 
-		public void setKorisnik_id(Long korisnik_id) {
-			this.korisnikId = korisnik_id;
+		public void setId(Long id) {
+			Id = id;
 		}
 
 		public LocalDateTime getPocetakTermina() {
@@ -109,6 +108,14 @@ public class Termin {
 			this.trajanje = trajanje;
 		}
 
+		public Long getKorisnikId() {
+			return korisnikId;
+		}
+
+		public void setKorisnikId(Long korisnikId) {
+			this.korisnikId = korisnikId;
+		}
+
 		public Center getCenter() {
 			return center;
 		}
@@ -125,10 +132,8 @@ public class Termin {
 			this.centerId = centerId;
 		}
 
-		public void setId(Long id) {
-			Id = id;
-		}
 
+		
 	
 
 
