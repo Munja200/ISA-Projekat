@@ -77,4 +77,8 @@ export class CenterService {
     return this.http.post<any>('api/centers/update/' + centerDto.id, centerDto, {headers: this.headers});
   }
 
+  getCentersRegUserHaveTermins(personId: number): Observable<CenterDTO[]> {
+    return this.http.get<CenterDTO[]>('api/centers/regUserHaveTermins/' + personId, {headers: this.headers});
+  }
+
 }

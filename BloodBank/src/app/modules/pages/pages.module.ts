@@ -26,6 +26,7 @@ import { FutureAppointmentsComponent } from './future-appointments/future-appoin
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { GradeComponent } from './grade/grade.component';
 import { RateCenterComponent } from './rate-center/rate-center.component';
+import { CreateGradeComponent } from './create-grade/create-grade.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'schedulingAppointment', component: SchedulingAppointmentComponent, canActivate: [AuthWelcomeService] },
   { path: 'scheduleCenterAppointment', component: ZakazivanjeTerminaComponent,  canActivate: [AuthWelcomeService] },
   { path: 'futureAppointments', component: FutureAppointmentsComponent,  canActivate: [AuthWelcomeService] },
+  { path: 'createGrade', component: CreateGradeComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
@@ -59,7 +61,8 @@ const routes: Routes = [
     FutureAppointmentsComponent,
     ChangePasswordComponent,
     GradeComponent,
-    RateCenterComponent
+    RateCenterComponent,
+    CreateGradeComponent
   ],
   imports: [
     CommonModule,
