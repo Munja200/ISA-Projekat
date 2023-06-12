@@ -1,12 +1,19 @@
 package FTN.isa.model.DTOs;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import FTN.isa.model.Termin;
 
 public class TerminDTO {
 
 	private Long id;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime pocetakTermina;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime krajTermina;
 	private int trajanje;
 	private Long center;

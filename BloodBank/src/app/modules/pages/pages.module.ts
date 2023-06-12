@@ -19,6 +19,9 @@ import { DonorsComponent } from './donors/donors.component';
 import { EditCenterComponent } from './edit-center/edit-center.component';
 import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
 import { SchedulingAppointmentComponent } from './scheduling-appointment/scheduling-appointment.component';
+import { ZakazivanjeTerminaComponent } from './zakazivanje-termina/zakazivanje-termina.component';
+import { CenterWithTerminServiceComponent } from './center-with-termin-service/center-with-termin-service.component';
+import { DatePipe } from '@angular/common';
 
 
 const routes: Routes = [
@@ -29,10 +32,12 @@ const routes: Routes = [
   { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
   { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'schedulingAppointment', component: SchedulingAppointmentComponent, canActivate: [AuthWelcomeService] },
+  { path: 'scheduleCenterAppointment', component: ZakazivanjeTerminaComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
 @NgModule({
+  providers: [CenterWithTerminServiceComponent, DatePipe],
   declarations: [
     WelcomeComponent,
     LoginComponent,
@@ -43,7 +48,9 @@ const routes: Routes = [
     DonorsComponent,
     EditCenterComponent,
     CalendarAdminComponent,
-    SchedulingAppointmentComponent
+    SchedulingAppointmentComponent,
+    ZakazivanjeTerminaComponent,
+    CenterWithTerminServiceComponent
   ],
   imports: [
     CommonModule,

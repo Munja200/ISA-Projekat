@@ -35,12 +35,12 @@ insert into registered_user(deleted, person_id, enabled) values (false, 4, false
 insert into registered_user(deleted, person_id, enabled) values (false, 5, false);
 
 ----------------------QUESTION------------------------
-insert into question (question, exact_value) values ('Da li imate vise od 50 kg', true);
+insert into question (question, exact_value) values ('Da li imate vise od 50 kg', false);
 insert into question (question, exact_value) values ('Da li imate simptome prehlade ili neke bolesti', false);
 insert into question (question, exact_value) values ('Da li imate promene na kozi (osip, infekcije)', false);
 insert into question (question, exact_value) values ('Da li imate suvise visok ili suvise nizak pritisak', false);
 insert into question (question, exact_value) values ('Da li ste pod terapijom  vise ili nije proslo najmanje 7 dana od terapije antibiotika', false);
-insert into question (question, exact_value) values ('Da li proslo vise od 6 meseci od probadanja tela i koze (pirsing), tetoviranja ili transfuzije krvi', true);
+insert into question (question, exact_value) values ('Da li proslo vise od 6 meseci od probadanja tela i koze (pirsing), tetoviranja ili transfuzije krvi', false);
 insert into question (question, exact_value) values ('Da li proslo manje od  7 dana od vadjenja zuba i manjih stomatoloskih intervencija', false);
 
 ----------------------CENTER------------------------
@@ -59,12 +59,14 @@ insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('
 insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('2023-06-30 07:00:00', '2023-06-30 22:00:00', 1);
 insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('2023-06-20 07:00:00', '2023-06-20 22:00:00', 2);
 
+----------------------ZAKAZANI-TERMINI------------------------
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (1, '2023-08-20 08:00:00', '2023-08-20 09:00:00', 11, 1);
 
 ----------------------SLOBODNI-TERMINI------------------------
-insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-20 08:00:00', '2023-06-20 09:00:00', 11, 1);
-insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-22 08:00:00', '2023-06-22 09:00:00', 13, 1);
-insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-24 08:00:00', '2023-06-24 09:00:00', 10, 1);
-insert into termin (kraj_termina, pocetak_termina, trajanje, center_id) values ('2023-06-20 08:30:00', '2023-06-20 09:00:00', 12, 2);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:00:00', 11, 1);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (null, '2023-06-22 09:00:00', '2023-06-22 08:00:00', 13, 1);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (null, '2023-06-24 09:00:00', '2023-06-24 08:00:00', 10, 1);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:30:00', 12, 2);
 
 ----------------------CENTER_ADMINISTRATOR------------------------
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);

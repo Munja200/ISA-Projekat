@@ -3,6 +3,8 @@ import { CenterService } from '../service/center.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../hospital/services/auth.service';
 import { CenterDTO } from '../../hospital/model/centerDTO';
+import { CenterWithTerminDTO } from '../../hospital/model/centerWithTerminDTO';
+import { CenterWithTerminServiceComponent } from '../center-with-termin-service/center-with-termin-service.component';
 
 @Component({
   selector: 'app-scheduling-appointment',
@@ -21,7 +23,9 @@ export class SchedulingAppointmentComponent implements OnInit {
   public showForm: boolean = false;
   public minDate: string = '';
 
-  constructor(private centerService: CenterService, private router: Router, private authService: AuthService) 
+  public centriSaTerminima: CenterWithTerminDTO[] = [];
+
+  constructor(private centerWithTerminService: CenterWithTerminServiceComponent, private centerService: CenterService, private router: Router, private authService: AuthService) 
   {
     const today = new Date();
     this.minDate = today.toISOString().substring(0, 16);
@@ -40,13 +44,13 @@ export class SchedulingAppointmentComponent implements OnInit {
 
     if(this.sort == false){
       this.centerService.getCentersSortedbyAverageRating(this.page).subscribe(res => {
-        this.centers = res;
+        this.centriSaTerminima = res;
       })
 
       this.sort = true;
     }else{
       this.centerService.getCentersSortedbyAverageRatingDes(this.page).subscribe(res => {
-        this.centers = res;
+        this.centriSaTerminima = res;
       })
 
       this.sort = false;
@@ -59,7 +63,7 @@ export class SchedulingAppointmentComponent implements OnInit {
     this.datum = new Date();
     this.showForm = false;
 
-    this.centers = []
+    this.centriSaTerminima = []
 
   }
 
@@ -68,8 +72,17 @@ export class SchedulingAppointmentComponent implements OnInit {
     console.log(this.datum);
 
     this.centerService.getCentersbyDateWithFreeAppointments(this.datum).subscribe(res => {
-      this.centers = res;
+      //this.centers = res;
+      this.centriSaTerminima = res;
+      console.log(this.centriSaTerminima);
     })
   }
+
+schedulingAppointment(centerWithTermin: any): void {
+  this.centerWithTerminService.setCenterWithTermin(centerWithTermin);
+  this.router.navigate(['/scheduleCenterAppointment']);
+}
+
+
 
 }

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import FTN.isa.model.Center;
 import FTN.isa.model.Person;
 import FTN.isa.model.DTOs.CenterDTO;
+import FTN.isa.model.DTOs.CenterWithTerminDTO;
 import FTN.isa.service.CenterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -310,6 +311,7 @@ public class CenterController {
 		return new ResponseEntity<CenterDTO>(centerDTO, HttpStatus.OK);
 	}
 	
+	/*
 	@Operation(summary = "Get centers", description = "Get centers", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found centers by page number",
@@ -332,6 +334,26 @@ public class CenterController {
 			centers.add(new CenterDTO(c));
 		}
 		return new ResponseEntity<List<CenterDTO>>(centers, HttpStatus.OK);
+	}
+	*/
+	
+	@Operation(summary = "Get centers", description = "Get centers", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found centers by page number",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterWithTerminDTO.class))),
+			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+	})
+	@GetMapping(value = "/slobodniCentri/{datum}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CenterWithTerminDTO>> getCentersbyDateWithFreeAppointments(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("datum") String datum) {		
+		
+		//formatirati datum u LocalDateTime da bih mogla da poredim vreme
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(datum, formatter);
+        
+		List<CenterWithTerminDTO> lista = centerService.getCentersbyDateWithFreeAppointments(datum);
+        
+		
+		return new ResponseEntity<List<CenterWithTerminDTO>>(lista, HttpStatus.OK);
 	}
 	
 

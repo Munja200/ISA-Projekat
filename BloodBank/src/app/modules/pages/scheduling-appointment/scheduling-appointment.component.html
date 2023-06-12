@@ -51,13 +51,18 @@
                                         <b>Rating</b> 
                                     </button>
                                 </th>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm">
+                                    </button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let center of centers;">
-                                <td class="text-center">{{center.name}}</td>
-                                <td class="text-center">{{center.address.city}}</td>
-                                <td class="text-center">{{center.averageRating}}</td>
+                            <tr *ngFor="let centarSaTerminom of centriSaTerminima;">
+                                <td class="text-center">{{centarSaTerminom.centerDTO.name}}</td>
+                                <td class="text-center">{{centarSaTerminom.centerDTO.address.city}}</td>
+                                <td class="text-center">{{centarSaTerminom.centerDTO.averageRating}}</td>
+                                <td class="text-center"> <button type="button" class="btn btn-dark" (click)="schedulingAppointment(centarSaTerminom)">Schedule</button></td></tr>
                         </tbody>
                     </table>
                    
