@@ -3,11 +3,9 @@
         <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
             <div class="d-flex">
               <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/homeAdminCenter">Amdinistrator center</a></div>
-              <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/">Appointment info</a></div>
               <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/donors">Donors</a></div>
                 <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/calendar">Calendar</a></div>
                 <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/profilOfRegisteredUser">Profile</a></div>
-                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/">Create appointment</a></div>
                 <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/bloods">Bloods</a></div>
                 <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/editCenter">My center</a></div>
             </div>
@@ -34,8 +32,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let termin of termini;">
-                                <td class="text-center">{{ formatirajDatum(termin.pocetakTermina.toString()) }}</td>
-                                <td class="text-center">{{ formatirajDatum(termin.krajTermina.toString()) }}</td>
+                                <td class="text-center">{{ termin.pocetakTermina | date:'dd.MM.yyyy HH:mm'}}</td>
+                                <td class="text-center">{{ termin.krajTermina | date:'dd.MM.yyyy HH:mm'}}</td>
 
                                 <td class="text-center">{{ termin.trajanje }}</td>
                             </tr>
