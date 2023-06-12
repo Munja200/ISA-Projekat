@@ -19,6 +19,8 @@ import { DonorsComponent } from './donors/donors.component';
 import { EditCenterComponent } from './edit-center/edit-center.component';
 import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { GradeComponent } from './grade/grade.component';
+import { RateCenterComponent } from './rate-center/rate-center.component';
 
 
 const routes: Routes = [
@@ -42,7 +44,9 @@ const routes: Routes = [
     DonorsComponent,
     EditCenterComponent,
     CalendarAdminComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    GradeComponent,
+    RateCenterComponent
   ],
   imports: [
     CommonModule,
