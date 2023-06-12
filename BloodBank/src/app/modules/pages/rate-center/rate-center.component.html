@@ -64,13 +64,13 @@
               <tbody>
                 <tr>
                   <td>
-                    <input type="number" class="form-control" [(ngModel)]="grade.score" placeholder="Enter rating">
+                    <input type="number" class="form-control" [(ngModel)]="grade.score" placeholder="Enter rating" min="1" max="10">
                   </td>
                 </tr>
               </tbody>
             </table>
             <div class="d-flex justify-content-between mb-5">
-              <button type="button" class="btn btn-outline-light">Submit</button>
+                <button type="button" class="btn btn-outline-light" (click)="submitRating()">Submit</button>
             </div>
           </div>
         </div>

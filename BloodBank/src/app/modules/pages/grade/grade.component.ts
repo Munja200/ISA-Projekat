@@ -43,7 +43,7 @@ export class GradeComponent implements OnInit {
     this.authService.logout()
   }
 
-  public Appointments(id: any){
+  public Rate(id: any){
     localStorage.setItem('centar_id', id);
     this.router.navigate(['/rate']);
   }

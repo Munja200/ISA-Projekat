@@ -124,7 +124,7 @@ public class PersonController {
 		
 	} 
 	
-	@PreAuthorize("hasRole('ADMIN_CENTER')")
+	//@PreAuthorize("hasRole('ADMIN_CENTER') and hasRole('USER')")
 	@Operation(summary = "Get person by username", description = "Get person by username", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found person by username",
