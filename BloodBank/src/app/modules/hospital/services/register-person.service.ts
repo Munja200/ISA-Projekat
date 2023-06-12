@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Person } from '../model/person';
 import { RegisteredPerson } from '../model/registeredPerson';
 import { RegisteredUserUpdateDTO } from '../model/registeredUserUpdateDTO';
+import { PersonDTO } from '../model/personDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,10 @@ export class RegisterPersonService {
 
   getUserByUsername(username: string) {
     return this.http.get<Person>('api/persons/username/' + username, {headers: this.headers});
+  }
+
+  updateRegisteredPerson(person: Person){
+    return this.http.post<any>('api/persons/updateRegisteredUser/' + person.id, person, {headers: this.headers});
   }
   
 }

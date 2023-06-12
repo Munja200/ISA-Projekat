@@ -29,6 +29,10 @@ import { AuthWelcomeService } from './services/auth-welcome.service';
 import { BloodViewComponent } from '../pages/blood-view/blood-view.component';
 import { DonorsComponent } from '../pages/donors/donors.component';
 import { EditCenterComponent } from '../pages/edit-center/edit-center.component';
+import { ChangePasswordComponent } from '../pages/change-password/change-password.component';
+import { CalendarAdminComponent } from '../pages/calendar-admin/calendar-admin.component';
+import { GradeComponent } from '../pages/grade/grade.component';
+import { RateCenterComponent } from '../pages/rate-center/rate-center.component';
 
 
 
@@ -48,7 +52,11 @@ const routes: Routes = [
   { path: 'maps', component: MapsComponent, canActivate: [AuthWelcomeService] },
   { path: 'bloods', component: BloodViewComponent, canActivate: [AuthWelcomeService]},
   { path: 'donors', component: DonorsComponent, canActivate: [AuthWelcomeService]},
-  { path: 'editCenter', component: EditCenterComponent, canActivate: [AuthWelcomeService]}
+  { path: 'editCenter', component: EditCenterComponent, canActivate: [AuthWelcomeService]},
+  { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthWelcomeService]},
+  { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+  { path: 'grade', component: GradeComponent, canActivate: [AuthWelcomeService] },
+  { path: 'rate', component: RateCenterComponent, canActivate: [AuthWelcomeService] }
   
 ];
 

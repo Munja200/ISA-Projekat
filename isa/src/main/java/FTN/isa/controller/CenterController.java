@@ -28,8 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Center;
 import FTN.isa.model.Person;
+import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.model.DTOs.CenterWithTerminDTO;
+import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.service.CenterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -355,6 +357,21 @@ public class CenterController {
 		
 		return new ResponseEntity<List<CenterWithTerminDTO>>(lista, HttpStatus.OK);
 	}
+	
+	//"api/centers/update/{id}"
+		@PreAuthorize("hasRole('ADMIN_CENTER')")
+		@Operation(summary = "Update registered center", description = "Update registered center", method="POST")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by id",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+		public boolean updateCenter(@PathVariable("id") long id, @RequestBody @Valid CenterDTO center) {
+			Center center1 = new Center(center);
+		    return centerService.updateCenter(id, center1);
+		}
 	
 
 

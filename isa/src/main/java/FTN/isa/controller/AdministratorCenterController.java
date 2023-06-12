@@ -84,7 +84,7 @@ public class AdministratorCenterController {
 				administratorCenterDTO.getId(),
 				administratorCenterDTO.isDeleted(),
 				administratorCenterDTO.getPerson(),
-				centerService.findById(administratorCenterDTO.getCenterId())
+				centerService.getById(administratorCenterDTO.getCenterId())
 				);
 		administratorCenterService.create(administratorCenter);
 		return new ResponseEntity<AdministratorCenterDTO>(administratorCenterDTO, HttpStatus.CREATED);

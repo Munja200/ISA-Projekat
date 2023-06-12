@@ -1,3 +1,33 @@
+.w-30{
+    position: inherit;
+    width: 30%;
+}
+
+.w-60{
+    position: inherit;
+    width: 60%;
+}
+
+.w-70{
+    position: inherit;
+    width: 70%;
+}
+
+.w-80{
+    position: inherit;
+    width: 80%;
+}
+
+.w-90{
+    position: inherit;
+    width: 90%;
+}
+
+/**H**/
+.h-15{
+    position: inherit;
+    height: 15%;
+}
 .container {
     width: 520px;
     height: 480px;
@@ -7,9 +37,8 @@
     background-color: white;
     border-color:  rgb(201, 14, 4);
     border-width: 3px;
-    border-radius: 20px;
     padding: 5px;
-    background-color:  rgb(227, 123, 245);
+    background-color : #d796e2d8;
     font-size: 16px;
     text-align: center;
     position: fixed;
@@ -19,13 +48,7 @@
 }
 
 .background-image {
-    background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);
-}
-
-button {
-    color: white;
-    background-color: rgb(122, 4, 133);
-    border-radius: 20px;
+    background-color : #212529d8;
 }
 
 .container1 {
@@ -34,7 +57,25 @@ button {
     margin-top: 20px;
 
   }
-  
+
   .left-div, .right-div {
     width: 50%;
+  }
+
+  .invisible-button {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  input.mat-input-element {
+    font-size: 20px;
+  }
+
+  ::ng-deep .mat-input-element::placeholder {
+    color: white;
+  }
+
+  .dugme {
+    background-color: #212529d8;
+    color: white;
   }

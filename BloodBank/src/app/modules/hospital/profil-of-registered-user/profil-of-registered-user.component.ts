@@ -57,6 +57,10 @@ export class ProfilOfRegisteredUserComponent implements OnInit {
     && this.registeredUserDto.address.street != '' && this.registeredUserDto.occupation != '' && this.registeredUserDto.bloodType != ''
 }
 
+  logout() {
+    
+  }
+
   requiredBloodTypeControl = new FormControl('', [
     Validators.required,
     Validators.pattern(/^(A|B|AB|O)[+-]$/)

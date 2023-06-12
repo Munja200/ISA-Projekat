@@ -10,8 +10,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import FTN.isa.model.Address;
 import FTN.isa.model.Center;
 import FTN.isa.model.RadnoVreme;
+import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.Termin;
 import FTN.isa.model.DTOs.CenterDTO;
@@ -78,19 +80,46 @@ public class CenterService {
 	 public CenterDTO findByAdminId(Long adminId) {
 		 Center center = centerRepository.findByAdminId(adminId);
 		   
-		    	CenterDTO centerDTO = new CenterDTO();
+		    	CenterDTO centerDTO = new CenterDTO(center);
 		    	
-		    	centerDTO.setId(center.getId());
+		    	/*centerDTO.setId(center.getId());
 		    	centerDTO.setName(center.getName());
 		    	centerDTO.setAddress(center.getAddress());
 		    	centerDTO.setDescription(center.getDescription());
 		    	centerDTO.setAverageRating(center.getAverageRating());
 		    	centerDTO.setDeleted(false);
-		    	centerDTO.setRadnoVreme(center.getRadnoVreme());
+		    	centerDTO.setRadnoVreme(center.getRadnoVreme());*/
 
 		    return centerDTO;
 
 	 }
+	 
+	 public Boolean updateCenter(Long id, Center center) {
+	        var c = centerRepository.getOne(id);
+	        
+	        if(c != null) {
+	        	
+	        	
+	        	c.setName(center.getName());
+	        	
+	        	Address adresa = new Address();
+	        	adresa.setCountry(center.getAddress().getCountry());
+	        	adresa.setCity(center.getAddress().getCity());
+	        	adresa.setStreet(center.getAddress().getStreet());
+	        	adresa.setNumber(center.getAddress().getNumber());
+	        	
+	        	c.setAddress(adresa);
+	        	
+	        	c.setDescription(center.getDescription());
+	        	c.setAverageRating(center.getAverageRating());
+	        	
+	        	centerRepository.save(c);
+	        	
+	            return true;
+	        } else {
+	            return false;
+	        }
+		}
 
 	 	
 	 	/*

@@ -1,6 +1,8 @@
 package FTN.isa.model.DTOs;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -8,6 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import FTN.isa.model.Address;
+import FTN.isa.model.AdministratorCenter;
 import FTN.isa.model.Center;
 import FTN.isa.model.RadnoVreme;
 
@@ -30,6 +33,8 @@ public class CenterDTO {
 	private boolean deleted;
 	
 	private List<RadnoVreme> radnoVreme;
+	
+	private List<AdministratorCenterDTO> admins;
 
 	
 	public CenterDTO() {}
@@ -43,9 +48,19 @@ public class CenterDTO {
 		this.averageRating = c.getAverageRating();
 		this.deleted = c.isDeleted();
 		this.radnoVreme = c.getRadnoVreme();
+		
+		List<AdministratorCenterDTO> lista = new ArrayList<>();
+		
+		for(AdministratorCenter ac : c.getAdministratorCenters()) {
+			AdministratorCenterDTO acd = new AdministratorCenterDTO(ac);
+			lista.add(acd);
+		}
+		
+		this.admins = lista;
 	}
 	
-	public CenterDTO(long id, String name, Address address, String description, float averageRating, boolean deleted, List<RadnoVreme> radnoVreme) {
+	
+	public CenterDTO(long id, String name, Address address, String description, float averageRating, boolean deleted, List<RadnoVreme> radnoVreme, List<AdministratorCenterDTO> admins ) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,6 +69,7 @@ public class CenterDTO {
 		this.averageRating = averageRating;
 		this.deleted = deleted;
 		this.radnoVreme = radnoVreme;
+		this.admins = admins;
 	}
 
 	
@@ -113,5 +129,14 @@ public class CenterDTO {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	public  List<AdministratorCenterDTO> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins( List<AdministratorCenterDTO> admins) {
+		this.admins = admins;
+	}
+	
 	
 }

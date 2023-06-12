@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppointmentDTO } from '../model/appointmentDto';
 import { AppointmentService } from '../services/appointment.service';
 import { AuthService } from '../services/auth.service';
+import { CenterService } from '../services/center.service';
 
 @Component({
   selector: 'app-center-appointment',
@@ -16,7 +17,7 @@ export class CenterAppointmentComponent implements OnInit {
   public dateSort: boolean = false;
   public pom: any = localStorage.getItem('centar_id');
   
-  constructor(private appointmentService: AppointmentService, private authService: AuthService) { }
+  constructor(private appointmentService: AppointmentService,private centerService: CenterService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.dateSort = false;

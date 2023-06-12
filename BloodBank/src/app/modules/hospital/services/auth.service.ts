@@ -47,6 +47,8 @@ export class AuthService {
         const tokenInfo = this.getDecodedAccessToken(res.body.accessToken);
         localStorage.setItem('userRoles', tokenInfo.userRole);
         localStorage.setItem('username', tokenInfo.username);
+        localStorage.setItem('isFirstLogin', tokenInfo.firstLogin); //dodato
+        console.log(tokenInfo);
         
       }));
       

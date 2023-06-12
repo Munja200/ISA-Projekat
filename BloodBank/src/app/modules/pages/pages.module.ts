@@ -23,6 +23,9 @@ import { ZakazivanjeTerminaComponent } from './zakazivanje-termina/zakazivanje-t
 import { CenterWithTerminServiceComponent } from './center-with-termin-service/center-with-termin-service.component';
 import { DatePipe } from '@angular/common';
 import { FutureAppointmentsComponent } from './future-appointments/future-appointments.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { GradeComponent } from './grade/grade.component';
+import { RateCenterComponent } from './rate-center/rate-center.component';
 
 
 const routes: Routes = [
@@ -54,6 +57,9 @@ const routes: Routes = [
     ZakazivanjeTerminaComponent,
     CenterWithTerminServiceComponent,
     FutureAppointmentsComponent
+    ChangePasswordComponent,
+    GradeComponent,
+    RateCenterComponent
   ],
   imports: [
     CommonModule,
