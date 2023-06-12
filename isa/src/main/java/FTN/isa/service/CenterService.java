@@ -81,14 +81,6 @@ public class CenterService {
 		 Center center = centerRepository.findByAdminId(adminId);
 		   
 		    	CenterDTO centerDTO = new CenterDTO(center);
-		    	
-		    	/*centerDTO.setId(center.getId());
-		    	centerDTO.setName(center.getName());
-		    	centerDTO.setAddress(center.getAddress());
-		    	centerDTO.setDescription(center.getDescription());
-		    	centerDTO.setAverageRating(center.getAverageRating());
-		    	centerDTO.setDeleted(false);
-		    	centerDTO.setRadnoVreme(center.getRadnoVreme());*/
 
 		    return centerDTO;
 
@@ -122,36 +114,6 @@ public class CenterService {
 		}
 
 	 	
-	 	/*
-	 public List<Center> getCentersbyDateWithFreeAppointments(String datum) {
-		    List<Center> centers = new ArrayList<Center>();
-
-		    for (Center c : findAll()) {
-		        
-		        for (RadnoVreme rv : c.getRadnoVreme()) {
-		            LocalDateTime otvaranje = rv.getVremeOtvaranja();
-		            LocalDateTime zatvaranje = rv.getVremeZatvaranja();
-		            LocalDateTime dateTime = LocalDateTime.parse(datum, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
-		            if (dateTime.isAfter(otvaranje) && dateTime.isBefore(zatvaranje)) {
-		                
-		                // Da li ima neki termin koji upada u ovaj datum?
-		                for (Termin t : c.getTermini()) {
-		                    LocalDateTime pocetak = t.getPocetakTermina();
-		                    LocalDateTime kraj = t.getKrajTermina();
-		                    
-		                    // DateTime upada u vremenski interval slobodnog termina
-		                    if (!dateTime.isAfter(pocetak) && !dateTime.isBefore(kraj)) {
-		    		            centers.add(c);
-		    		            break;
-		                    }
-		                } 
-		                break; 
-		            }
-		        }
-		    }
-		    return centers;
-		}
-		*/
 
 	 public List<CenterWithTerminDTO> getCentersbyDateWithFreeAppointments(String datum) {
 		 
@@ -194,8 +156,28 @@ public class CenterService {
 		    }
 		    return lista;
 		}
-
-
+	 
+	 public List<Center> getCentersRegUserHaveTermins(Long personId) {
+		 
+		  List<Center> centers = new ArrayList<Center>();
+		  
+		  for (Center c : findAll()) {
+			  for (Termin t : c.getTermini()) {
+				  if(t.getKorisnikId() == personId) {
+					  centers.add(c);
+					  break;
+				  }
+				  else if(t.getKorisnikId() == null) {
+					  continue;
+				  }
+				  else {
+					  continue;
+				  }
+			  }
+			  
+		  }
+			return centers;
+		}
 
 	
 }

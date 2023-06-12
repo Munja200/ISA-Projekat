@@ -373,6 +373,25 @@ public class CenterController {
 		    return centerService.updateCenter(id, center1);
 		}
 	
+		
+		@Operation(summary = "Get centers", description = "Get centers", method="GET")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by page number",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@GetMapping(value = "/regUserHaveTermins/{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<List<CenterDTO>> getCentersRegUserHaveTermins(@Parameter(name="personId", description = "Number of a page to return", required = true) @PathVariable("personId") Long personId) {		
+
+			List<Center> centers = centerService.getCentersRegUserHaveTermins(personId);
+			
+			List<CenterDTO> centerDTOS = new ArrayList<CenterDTO>();
+			
+			for(Center c : centers){
+				centerDTOS.add(new CenterDTO(c));
+			}
+			return new ResponseEntity<List<CenterDTO>>(centerDTOS, HttpStatus.OK);
+		}
 
 
 } 

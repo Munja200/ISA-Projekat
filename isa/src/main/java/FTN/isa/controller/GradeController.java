@@ -42,7 +42,7 @@ public class GradeController {
 	@Operation(summary = "Submit new grade", description = "Submit new grade", method = "POST")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Created",
-					content = { @Content(mediaType = "application/json", schema = @Schema(implementation = CenterDTO.class)) }),
+					content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Grade.class)) }),
 			@ApiResponse(responseCode = "409", description = "Not possible to submit new grade",
 					content = @Content)
 	})
@@ -59,7 +59,7 @@ public class GradeController {
 		}
 	}
 	
-	//api/grades/update/{id}
+	//api/grades/update/{id} 
 	@PreAuthorize("hasRole('USER')")
 	@Operation(summary = "Update grade", description = "Update grade", method="POST")
 	@ApiResponses(value = {

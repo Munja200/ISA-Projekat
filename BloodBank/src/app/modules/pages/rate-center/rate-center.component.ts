@@ -20,38 +20,34 @@ export class RateCenterComponent implements OnInit {
  
   public center : Center = new Center();
   public grade: Grade = new Grade();
+  public showForm: boolean = true;
 
   public personId: number = 0;
   public currentPerson: Person = new Person();
+  public isSubmitted: boolean = false;
   
   public pom: any = localStorage.getItem('centar_id');
+  public prenesenaOcenaId: any = localStorage.getItem('grade_id');
+  public prenesenaOcenaCenterId: any = localStorage.getItem('grade_center_id');
+  public prenesenaOcenaPersonId: any = localStorage.getItem('grade_person_id');
+  public prenesenaOcenaScore: any = localStorage.getItem('grade_score');
   
   constructor(private router: Router, private registerPersonService: RegisterPersonService, private gradeService: GradeService,private centerService: CenterService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    
+
+    this.grade.id = parseInt(this.prenesenaOcenaId)
+    this.grade.centerId = parseInt(this.prenesenaOcenaCenterId)
+    this.grade.personId = parseInt(this.prenesenaOcenaPersonId)
+    this.grade.score = parseInt(this.prenesenaOcenaScore)
+
+    console.log(this.grade)
+
     this.centerService.getById(this.pom).subscribe(res => {
       this.center = res;
       console.log(this.center);
     })
-
-   
-      const username = this.authService.getCurrentUserUsername();
-      if (username) {
-        this.registerPersonService.getUserByUsername(username).subscribe(person => {
-          this.personId = person.id;
-          console.log(this.personId);
     
-          this.currentPerson = person;
-    
-          this.gradeService.findGradeByCenterAndPersonId(this.pom, this.personId).subscribe(ocena => {
-            this.grade = ocena;
-            console.log(ocena);
-          });
-        });
-      }
-    
-
   }
 
   submitRating() {
@@ -61,18 +57,14 @@ export class RateCenterComponent implements OnInit {
     } else {
     this.gradeService.updateGrade(this.grade).subscribe(
       response => {
-        alert('Grade created successfully');
+        alert('Grade are changed successfully');
         this.router.navigate(['/grade']);
       },
       error => {
-        // Obrada greške
         console.error('Error creating grade:', error);
       }
     );
     }
-
-
-    
   }
 
   logout(){

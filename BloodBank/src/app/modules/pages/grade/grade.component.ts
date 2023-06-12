@@ -4,6 +4,10 @@ import { Address } from '../../hospital/model/address';
 import { Router } from '@angular/router';
 import { AuthService } from '../../hospital/services/auth.service';
 import { CenterService } from '../service/center.service';
+import { GradeService } from '../../hospital/services/grade.service';
+import { RegisterPersonService } from '../../hospital/services/register-person.service';
+import { Person } from '../../hospital/model/person';
+import { Grade } from '../../hospital/model/grade';
 
 @Component({
   selector: 'app-grade',
@@ -27,16 +31,35 @@ export class GradeComponent implements OnInit {
   public average: number = 0;
   public street: string = 'none';
   public searchs: CenterDTO[] = [];
+  public currentPerson: Person = new Person();
+  public personId: number = 0;
+  public grade: Grade = new Grade();
 
-  constructor(private centerService: CenterService, private router: Router, private authService: AuthService) { }
+
+  constructor(private gradeService: GradeService, private registerPersonService: RegisterPersonService, private centerService: CenterService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.averageSort = false;
     this.nameSort = false;
     this.citySort = false;
+    /*
     this.centerService.getCentersbyPage(this.page).subscribe(res => {
       this.centers = res;
     })
+    */
+
+    const username = this.authService.getCurrentUserUsername();
+    this.registerPersonService.getUserByUsername(username).subscribe(person => {
+      this.personId = person.id;
+      this.currentPerson = person;
+
+      this.centerService.getCentersRegUserHaveTermins(this.personId).subscribe(res => {
+        this.centers = res;
+      })
+      
+    })
+
+
   }
 
   logout(){
@@ -44,12 +67,29 @@ export class GradeComponent implements OnInit {
   }
 
   public Rate(id: any){
-    localStorage.setItem('centar_id', id);
-    this.router.navigate(['/rate']);
+    this.gradeService.findGradeByCenterAndPersonId(id, this.personId).subscribe(ocena => {
+
+      this.grade = ocena;
+      console.log(ocena);
+
+      if(this.grade.score === 0){
+        localStorage.setItem('person_id', this.personId.toString());
+        localStorage.setItem('centar_id', id);
+        this.router.navigate(['/createGrade']);
+      }
+      else{
+        localStorage.setItem('centar_id', id);
+        localStorage.setItem('grade_id', this.grade.id.toString());
+        localStorage.setItem('grade_center_id', this.grade.centerId.toString());
+        localStorage.setItem('grade_person_id', this.grade.personId.toString());
+        localStorage.setItem('grade_score', this.grade.score.toString());
+
+        this.router.navigate(['/rate']);
+      }
+
+    })
+
   }
-
-  
-
 
   public sortByName() {
       this.averageSort = false;

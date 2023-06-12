@@ -61,6 +61,8 @@ insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('
 
 ----------------------ZAKAZANI-TERMINI------------------------
 insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (1, '2023-08-20 08:00:00', '2023-08-20 09:00:00', 11, 1);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (1, '2023-08-21 08:00:00', '2023-08-21 09:00:00', 11, 1);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (1, '2023-08-21 08:00:00', '2023-08-21 09:00:00', 11, 2);
 
 ----------------------SLOBODNI-TERMINI------------------------
 insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:00:00', 11, 1);
@@ -117,8 +119,8 @@ insert into blood(id, blood_type, quantity, center_id) values (8, '0+', 7, 1);
 
 --------------------------GRADE---------------------------
 
-insert into grade(id, center_id, score, person_id) values (1, 1, 5, 1);
-insert into grade(id, center_id, score, person_id) values (2, 1, 8, 2);
-insert into grade(id, center_id, score, person_id) values (3, 1, 4, 3);
+insert into grade(center_id, score, person_id) values (1, 5, 1);
+insert into grade(center_id, score, person_id) values (1, 8, 2);
+insert into grade(center_id, score, person_id) values (1, 4, 3); 
 
 
