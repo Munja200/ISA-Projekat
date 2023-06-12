@@ -56,7 +56,7 @@ const routes: Routes = [
     SchedulingAppointmentComponent,
     ZakazivanjeTerminaComponent,
     CenterWithTerminServiceComponent,
-    FutureAppointmentsComponent
+    FutureAppointmentsComponent,
     ChangePasswordComponent,
     GradeComponent,
     RateCenterComponent
