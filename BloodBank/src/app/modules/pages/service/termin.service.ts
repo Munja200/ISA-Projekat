@@ -26,4 +26,9 @@ export class TerminService {
   createTermin(termini: any): Observable<any> {
     return this.http.post<any>('api/termini/add', termini, {headers: this.headers});
   }
+
+  editTermin(terminDTO: TerminDTO, korId: any): Observable<Termin> {
+    return this.http.post<Termin>('api/termini/izmena/' + terminDTO.id + '/' + korId, terminDTO, {headers: this.headers});
+  }
+
 }

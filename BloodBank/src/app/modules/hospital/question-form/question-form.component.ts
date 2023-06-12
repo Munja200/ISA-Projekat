@@ -31,7 +31,7 @@ export class QuestionFormComponent implements OnInit {
 
     this.personService.getPerson(1).subscribe(res => {
       console.log(res)
-      this.qf.person = res
+      this.qf.registeredUser = res
     })
 
     this.questionService.getAll().subscribe(res => {
@@ -59,7 +59,7 @@ export class QuestionFormComponent implements OnInit {
   public registePerson() {
       this.qf.questions = this.answers;
       console.log(this.qf)
-      this.questionService.registerPerson(this.qf).subscribe(res => {
+      this.questionService.createQuestion(this.qf).subscribe(res => {
         this.router.navigate(['/home']);
       });
       console.log(this.answers);

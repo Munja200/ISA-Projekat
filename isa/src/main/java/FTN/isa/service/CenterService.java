@@ -1,5 +1,7 @@
 package FTN.isa.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +12,14 @@ import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Address;
 import FTN.isa.model.Center;
+import FTN.isa.model.RadnoVreme;
 import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.Termin;
 import FTN.isa.model.DTOs.CenterDTO;
+import FTN.isa.model.DTOs.CenterWithTerminDTO;
 import FTN.isa.model.DTOs.RegisteredUserDTO;
+import FTN.isa.model.DTOs.TerminDTO;
 import FTN.isa.repository.CenterRepository;
 
 @Service
@@ -114,6 +120,81 @@ public class CenterService {
 	            return false;
 	        }
 		}
+
+	 	
+	 	/*
+	 public List<Center> getCentersbyDateWithFreeAppointments(String datum) {
+		    List<Center> centers = new ArrayList<Center>();
+
+		    for (Center c : findAll()) {
+		        
+		        for (RadnoVreme rv : c.getRadnoVreme()) {
+		            LocalDateTime otvaranje = rv.getVremeOtvaranja();
+		            LocalDateTime zatvaranje = rv.getVremeZatvaranja();
+		            LocalDateTime dateTime = LocalDateTime.parse(datum, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+		            if (dateTime.isAfter(otvaranje) && dateTime.isBefore(zatvaranje)) {
+		                
+		                // Da li ima neki termin koji upada u ovaj datum?
+		                for (Termin t : c.getTermini()) {
+		                    LocalDateTime pocetak = t.getPocetakTermina();
+		                    LocalDateTime kraj = t.getKrajTermina();
+		                    
+		                    // DateTime upada u vremenski interval slobodnog termina
+		                    if (!dateTime.isAfter(pocetak) && !dateTime.isBefore(kraj)) {
+		    		            centers.add(c);
+		    		            break;
+		                    }
+		                } 
+		                break; 
+		            }
+		        }
+		    }
+		    return centers;
+		}
+		*/
+
+	 public List<CenterWithTerminDTO> getCentersbyDateWithFreeAppointments(String datum) {
+		 
+		    List<CenterWithTerminDTO> lista = new ArrayList<CenterWithTerminDTO>();
+		    List<Center> centers = new ArrayList<Center>();
+
+		    for (Center c : findAll()) {
+		        
+			    CenterWithTerminDTO list = new CenterWithTerminDTO();
+
+		        for (RadnoVreme rv : c.getRadnoVreme()) {
+		            LocalDateTime otvaranje = rv.getVremeOtvaranja();
+		            LocalDateTime zatvaranje = rv.getVremeZatvaranja();
+		            LocalDateTime dateTime = LocalDateTime.parse(datum, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+		            if (dateTime.isAfter(otvaranje) && dateTime.isBefore(zatvaranje)) {
+		                
+		                // Da li ima neki termin koji upada u ovaj datum?
+		                for (Termin t : c.getTermini()) {
+		                    LocalDateTime pocetak = t.getPocetakTermina();
+		                    LocalDateTime kraj = t.getKrajTermina();
+		                    
+		                    // DateTime upada u vremenski interval slobodnog termina
+		                    if (dateTime.isAfter(pocetak) && dateTime.isBefore(kraj)) {
+		    		            //centers.add(c);
+		                    	
+		                    	CenterDTO centarDto = new CenterDTO(c);
+		                    	TerminDTO terminDto = new TerminDTO(t);
+
+		                    	list.setId(c.getId());
+		    		            list.setCenterDTO(centarDto);
+		    		            list.setTerminDTO(terminDto);
+		    			        lista.add(list);
+
+		    		            break;
+		                    }
+		                } 
+		                break; 
+		            }
+		        }
+		    }
+		    return lista;
+		}
+
 
 
 	

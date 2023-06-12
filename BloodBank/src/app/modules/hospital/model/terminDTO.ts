@@ -7,6 +7,7 @@ export class TerminDTO {
     krajTermina : Date = new Date();
     trajanje : number = 0;
     center: number = 0;
+    korisnikId : number = 0
 
     constructor(obj?: any) {
         if (obj) {
@@ -15,6 +16,7 @@ export class TerminDTO {
           this.krajTermina = obj.krajTermina;
           this.trajanje = obj.trajanje;
           this.center = obj.center;
+          this.korisnikId = obj.korisnikId;
         }
       }
 }

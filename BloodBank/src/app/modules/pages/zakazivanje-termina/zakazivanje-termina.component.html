@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-center w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <div class="w-90 h-100" style="background: #212529d8">
+        <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
+            <div class="d-flex">
+                <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/home">Registered User</a></div>
+                <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none" href="/profilOfRegisteredUser">Profile</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none" href="/schedulingAppointment">Scheduling appointment</a></div>
+            </div>
+            <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" (click)="logout()" href="">Logout</a></div>
+        </div>
+        <div class="d-flex h-75">
+
+            <div class="d-flex justify-content-center  w-75 pt-2">
+                <div id="absolute-div" class="w-90 p-4 mt-5 mb-5 rounded" style="background: #212529d8">
+                    
+                    <label class="h4 text-white mb-4">Center for scheduling appointment</label>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" [(ngModel)]="centerWithTermin.centerDTO.name" class="form-control" aria-describedby="basic-addon1" style="background: #ffffff8e" disabled>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Address</span>
+                        </div>
+                        <input type="text" [(ngModel)]="centerWithTermin.centerDTO.address.street + ' ' + centerWithTermin.centerDTO.address.number + ', '
+                         + centerWithTermin.centerDTO.address.city + ', ' +  centerWithTermin.centerDTO.address.country" class="form-control" 
+                         aria-describedby="basic-addon1" style="background: #ffffff8e" disabled><br>
+                    </div>
+                    <br>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">The start of your appointment: </span>
+                        </div>
+                        <input [value]="centerWithTermin.terminDTO.pocetakTermina | date: 'dd.MM.yyyy HH:mm'" class="form-control"
+                          aria-describedby="basic-addon1" style="background: #ffffff8e" disabled>
+                      </div>
+                      
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">The end of your appointment: </span>
+                        </div>
+                        <input [value]="centerWithTermin.terminDTO.krajTermina | date: 'dd.MM.yyyy HH:mm'" class="form-control"
+                          aria-describedby="basic-addon1" style="background: #ffffff8e" disabled>
+                      </div>
+                      <br>                      
+                      
+
+                    <div class="d-flex justify-content-between mb-5">
+                        <button type="button" class="btn btn-outline-light" (click)="editTermin(centerWithTermin)">Schedule</button>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center w-20 pt-2" *ngIf="!isQuestionFormFilled">
+                <div class="w-90 pt-3 rounded" style="background: #212529d8">
+                    <div class="h4 d-flex justify-content-center text-white">
+                            Question Form
+                    </div>
+                    <table class="table table-light table-striped table-hover mx-auto mt-2 w-90">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm">
+                                        <b>Question</b>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm" >
+                                        <b>Question Answer</b>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let question of questions;">
+                                <td class="text-center">{{question.question}}</td>
+
+                                <td class="text-center"> 
+                                    <input type="radio" (click)="radioButtonChange(question,'True')"  value="True"/>Yes
+                                    <input type="radio" (click)="radioButtonChange(question,'False')"  value="False"/>No
+                                </td>
+
+                            </tr>
+                        </tbody><br>
+                        <div class="d-flex justify-content-between mb-5">
+                            <button type="button" class="btn btn-outline-light" (click)="createQuestionForm()">Question Filled</button>
+                        </div>
+                    </table>
+                   
+                </div>
+                
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+

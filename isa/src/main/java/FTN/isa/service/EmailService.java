@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 
 @Service
@@ -49,6 +50,33 @@ public class EmailService {
 		String verifyURL = "http://localhost:4200/login/verify/" + user.getVerificationCode();
 		
 		content = content.replace("[[URL]]", verifyURL);
+		
+		helper.setText(content, true);
+		
+		mailSender.send(message);
+		
+		System.out.println("Email has been sent");
+	}
+	
+	@Async
+	public void sendMessage(Person user) throws MailException, InterruptedException, UnsupportedEncodingException, MessagingException {
+		String toAddress = user.getEmail();
+		String fromAddress = env.getProperty("spring.mail.username");
+		String senderName = "Blood Bank";
+		String subject = "Termin za davanje krvi";
+		String content = "Postovani [[name]],<br>"
+				+ "Uspesno ste zakazali termin za davanje krvi:<br>"
+				+ "Hvala Vam ,<br>"
+				+ "Vasa kompanija.";
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		
+		helper.setFrom(fromAddress, senderName);
+		helper.setTo(toAddress);
+		helper.setSubject(subject);
+		
+		content = content.replace("[[name]]", user.getName());
 		
 		helper.setText(content, true);
 		

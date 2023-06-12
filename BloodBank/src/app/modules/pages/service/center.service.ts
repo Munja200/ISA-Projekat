@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CenterDTO } from 'src/app/modules/hospital/model/centerDTO';
 import { Center } from '../../hospital/model/center';
+import { CenterWithTerminDTO } from '../../hospital/model/centerWithTerminDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,16 @@ export class CenterService {
     return this.http.get<Center>('api/centers/cntr/' + id, {headers: this.headers});
   }
 
+  /*
+  getCentersbyDateWithFreeAppointments(datum: Date): Observable<any> {
+    return this.http.get<CenterDTO[]>('api/centers/slobodniCentri/' + datum, {headers: this.headers});
+  }
+  */
+  
+  getCentersbyDateWithFreeAppointments(datum: Date): Observable<any> {
+    return this.http.get<CenterWithTerminDTO[]>('api/centers/slobodniCentri/' + datum, {headers: this.headers});
+  }
+  
   updateCenter(centerDto: CenterDTO){
     return this.http.post<any>('api/centers/update/' + centerDto.id, centerDto, {headers: this.headers});
   }

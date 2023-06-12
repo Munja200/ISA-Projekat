@@ -28,12 +28,8 @@ public class Termin {
 		@Column(name = "trajanje")
 		private int trajanje;
 		
-		/*
-		@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-		@JoinColumn(name = "center_id", referencedColumnName = "id")
-		@Valid
-		private Center center;
-		*/
+		@Column(name = "korisnik_id")
+		private Long korisnikId;
 		
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "center_id")
@@ -68,7 +64,7 @@ public class Termin {
 		
 		*/
 
-		public Termin(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Center center,
+		public Termin(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Long korisnikId, Center center,
 				Long centerId) {
 			super();
 			Id = id;
@@ -77,6 +73,15 @@ public class Termin {
 			this.trajanje = trajanje;
 			this.center = center;
 			this.centerId = centerId;
+			this.korisnikId = korisnikId;
+		}
+
+		public Long getId() {
+			return Id;
+		}
+
+		public void setId(Long id) {
+			Id = id;
 		}
 
 		public LocalDateTime getPocetakTermina() {
@@ -103,6 +108,14 @@ public class Termin {
 			this.trajanje = trajanje;
 		}
 
+		public Long getKorisnikId() {
+			return korisnikId;
+		}
+
+		public void setKorisnikId(Long korisnikId) {
+			this.korisnikId = korisnikId;
+		}
+
 		public Center getCenter() {
 			return center;
 		}
@@ -119,10 +132,8 @@ public class Termin {
 			this.centerId = centerId;
 		}
 
-		public void setId(Long id) {
-			Id = id;
-		}
 
+		
 	
 
 

@@ -18,6 +18,11 @@ import { BloodViewComponent } from './blood-view/blood-view.component';
 import { DonorsComponent } from './donors/donors.component';
 import { EditCenterComponent } from './edit-center/edit-center.component';
 import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+import { SchedulingAppointmentComponent } from './scheduling-appointment/scheduling-appointment.component';
+import { ZakazivanjeTerminaComponent } from './zakazivanje-termina/zakazivanje-termina.component';
+import { CenterWithTerminServiceComponent } from './center-with-termin-service/center-with-termin-service.component';
+import { DatePipe } from '@angular/common';
+import { FutureAppointmentsComponent } from './future-appointments/future-appointments.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { GradeComponent } from './grade/grade.component';
 import { RateCenterComponent } from './rate-center/rate-center.component';
@@ -29,11 +34,15 @@ const routes: Routes = [
   { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'home', component: HomeUserComponent, canActivate: [AuthWelcomeService] },
   { path: 'homeAdminCenter', component: HomeADMINCENTERComponent, canActivate: [AuthWelcomeService] },
- // { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+  { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
+  { path: 'schedulingAppointment', component: SchedulingAppointmentComponent, canActivate: [AuthWelcomeService] },
+  { path: 'scheduleCenterAppointment', component: ZakazivanjeTerminaComponent,  canActivate: [AuthWelcomeService] },
+  { path: 'futureAppointments', component: FutureAppointmentsComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
 @NgModule({
+  providers: [CenterWithTerminServiceComponent, DatePipe],
   declarations: [
     WelcomeComponent,
     LoginComponent,
@@ -44,6 +53,10 @@ const routes: Routes = [
     DonorsComponent,
     EditCenterComponent,
     CalendarAdminComponent,
+    SchedulingAppointmentComponent,
+    ZakazivanjeTerminaComponent,
+    CenterWithTerminServiceComponent,
+    FutureAppointmentsComponent
     ChangePasswordComponent,
     GradeComponent,
     RateCenterComponent
