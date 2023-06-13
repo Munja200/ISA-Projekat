@@ -10,6 +10,7 @@ import { CenterService } from '../service/center.service';
 import { AuthService } from '../../hospital/services/auth.service';
 import { RegisterPersonService } from '../../hospital/services/register-person.service';
 import { Observable, catchError, map, of } from 'rxjs';
+import { Person } from '../../hospital/model/person';
 
 @Component({
   selector: 'app-occupied-calendar-admin',
@@ -31,6 +32,13 @@ export class OccupiedCalendarAdminComponent implements OnInit {
   public terminDTO : TerminDTO = new TerminDTO();
   public centar : Center = new Center();
   public centerDTO : CenterDTO = new CenterDTO();
+
+  public osoba : Person = new Person();
+  public osobaId : number = 0;
+  public osobe: Person[] = [];
+
+  public ime: string = '';
+  public prezime : string = '';
 
   constructor(private router: Router, private centerAdministratorService: CenterAdministratorService, private terminService: TerminService, private centerService: CenterService, private authService: AuthService, private registerPersonService : RegisterPersonService) 
   {
@@ -54,11 +62,23 @@ export class OccupiedCalendarAdminComponent implements OnInit {
 
           this.terminService.getZauzetiTerminiByCenterId(this.centerId).subscribe(res1 => {
             this.termini = res1;
+            this.osobe = [];
+          
+            this.termini.forEach((termin: TerminDTO) => {
+              this.osobaId = termin.korisnikId;
+          
+              this.registerPersonService.getPerson(this.osobaId).subscribe(res2 => {
+                const osoba: Person = res2;
+                this.osobe.push(osoba);
+          
+                console.log(osoba);
+              });
+            });
+          });
+          
 
           })
-        })
-
-    })   
+        })  
     }
   }
   
@@ -122,9 +142,54 @@ export class OccupiedCalendarAdminComponent implements OnInit {
     }
   }
 
+  public Appointments(id: any, korId: any, name: string, surname: string, startDate: Date, endDate: Date) {
+    const queryParams = { termin_id: id, korId, name, surname, startDate, endDate };
+    this.router.navigate(['/exam'], { queryParams });
+  }
+
   parseDate(date: Date): Date {
     return new Date(date);
   }  
+
+  public reset(){
+    this.ime = '';
+    this.prezime = '';
+    this.ngOnInit();
+  }
+
+  private isInputValidButton(): boolean {
+
+    if (this.ime == '' ||  this.prezime == '') {
+      //alert("Must fill all fields!");
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+
+  public searchByNameAndSurname() {
+    if(this.isInputValidButton()) {
+      this.terminService.getAllbyNameSurname(this.ime, this.prezime, this.centerId).subscribe(res => {
+        this.termini = res;
+        this.osobe = [];
+            
+              this.termini.forEach((termin: TerminDTO) => {
+                this.osobaId = termin.korisnikId;
+            
+                this.registerPersonService.getPerson(this.osobaId).subscribe(res2 => {
+                  const osoba: Person = res2;
+                  this.osobe.push(osoba);
+            
+                  console.log(osoba);
+                });
+              });
+      })
+
+    } else {
+      alert("Must fill all fields!");
+    }
+  }
 
 
   private isInputValid(): boolean {

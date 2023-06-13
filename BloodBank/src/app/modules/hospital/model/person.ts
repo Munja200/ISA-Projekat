@@ -18,6 +18,7 @@ export class Person {
     bloodType: string ;
     address: Address;
     firstLogin : boolean;
+    penal : number;
 
     public constructor(
         id: number = 0,
@@ -34,7 +35,8 @@ export class Person {
         informationAboutCompany: string = "",
         bloodType: string = "",
         address: Address = new Address(),
-        firstLogin : boolean = false
+        firstLogin : boolean = false,
+        penal : number = 0,
     ) {
         this.id = id;
         this.dateOfBirth = dateOfBirth;
@@ -51,5 +53,6 @@ export class Person {
         this.informationAboutCompany = informationAboutCompany;
         this.bloodType = bloodType;
         this.firstLogin = firstLogin;
+        this.penal = penal;
     }
 }

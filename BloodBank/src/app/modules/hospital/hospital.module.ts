@@ -33,6 +33,7 @@ import { ChangePasswordComponent } from '../pages/change-password/change-passwor
 import { CalendarAdminComponent } from '../pages/calendar-admin/calendar-admin.component';
 import { GradeComponent } from '../pages/grade/grade.component';
 import { RateCenterComponent } from '../pages/rate-center/rate-center.component';
+import { ExamComponent } from '../pages/exam/exam.component';
 
 
 
@@ -56,7 +57,8 @@ const routes: Routes = [
   { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthWelcomeService]},
   { path: 'calendar', component: CalendarAdminComponent, canActivate: [AuthWelcomeService] },
   { path: 'grade', component: GradeComponent, canActivate: [AuthWelcomeService] },
-  { path: 'rate', component: RateCenterComponent, canActivate: [AuthWelcomeService] }
+  { path: 'rate', component: RateCenterComponent, canActivate: [AuthWelcomeService] },
+  { path: 'exam', component: ExamComponent, canActivate: [AuthWelcomeService]}
   
 ];
 

@@ -100,6 +100,9 @@ public class Person implements UserDetails{
 	@Column (name="isFirstLogin")
     private boolean firstLogin;
 	
+	@Column(name = "penal")
+	private int penal;
+	
 	public Person() {}
 	
 	
@@ -112,7 +115,7 @@ public class Person implements UserDetails{
 			String informationAboutCompany, Date dateOfBirth, List<Role> roles, boolean enabled,
 			Timestamp lastPasswordResetDate,
 			@Pattern(regexp = "\\bA\\b(\\+|\\-){1}|\\bB\\b(\\+|\\-){1}|\\bO\\b(\\+|\\-){1}|\\bAB\\b(\\+|\\-){1}") String bloodType,
-			@Valid Address address, boolean firstLogin) {
+			@Valid Address address, boolean firstLogin, int penal) {
 		super();
 		Id = id;
 		this.name = name;
@@ -132,6 +135,7 @@ public class Person implements UserDetails{
 		this.bloodType = bloodType;
 		this.address = address;
 		this.firstLogin = firstLogin;
+		this.penal = penal;
 	}
 
 
@@ -322,6 +326,18 @@ public class Person implements UserDetails{
 
 	public void setFirstLogin(boolean firstLogin) {
 		this.firstLogin = firstLogin;
+	}
+
+
+
+	public int getPenal() {
+		return penal;
+	}
+
+
+
+	public void setPenal(int penal) {
+		this.penal = penal;
 	}
 	
 }

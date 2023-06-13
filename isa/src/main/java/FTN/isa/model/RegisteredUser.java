@@ -92,6 +92,7 @@ public class RegisteredUser {
 		this.person.setDateOfBirth(reg.getDateOfBirth());
 		this.person.setBloodType(reg.getBloodType());
 		this.person.setAddress(reg.getAddress());
+		this.person.setPenal(reg.getPenal());
 	}
 
 	public void addQuestionForm(QuestionForm exam) {
@@ -136,6 +137,7 @@ public class RegisteredUser {
 	public void setQuestionForms(Set<QuestionForm> questionForms) {
 		this.questionForms = questionForms;
 	}
+
 	
 	//private Set<Complaint> complaints = new HashSet<>();
 	

@@ -92,6 +92,10 @@
                   Occupation is <strong>required</strong>
               </mat-error>
             </mat-form-field><br>   
+
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="Penal" name="penal" [(ngModel)]="registeredUserDto.penal" disabled>
+            </mat-form-field><br> 
   
             <mat-form-field class="example-full-width" style="color: white;">
               <input matInput placeholder="BloodType" [formControl]="requiredBloodTypeControl" [(ngModel)]="registeredUserDto.bloodType" pattern="^(A|B|AB|O)[+-]$">

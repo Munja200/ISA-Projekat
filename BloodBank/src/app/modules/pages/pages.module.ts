@@ -28,7 +28,9 @@ import { GradeComponent } from './grade/grade.component';
 import { RateCenterComponent } from './rate-center/rate-center.component';
 import { CreateGradeComponent } from './create-grade/create-grade.component';
 import { OccupiedCalendarAdminComponent } from './occupied-calendar-admin/occupied-calendar-admin.component';
+import { ExamComponent } from './exam/exam.component';
 import { HistoryTerminsComponent } from './history-termins/history-termins.component';
+
 
 
 const routes: Routes = [
@@ -68,6 +70,7 @@ const routes: Routes = [
     RateCenterComponent,
     CreateGradeComponent,
     OccupiedCalendarAdminComponent,
+    ExamComponent,
     HistoryTerminsComponent
   ],
   imports: [

@@ -5,6 +5,7 @@ import { Person } from '../model/person';
 import { RegisteredPerson } from '../model/registeredPerson';
 import { RegisteredUserUpdateDTO } from '../model/registeredUserUpdateDTO';
 import { PersonDTO } from '../model/personDTO';
+import { TerminDTO } from '../model/terminDTO';
 
 @Injectable({
   providedIn: 'root'
