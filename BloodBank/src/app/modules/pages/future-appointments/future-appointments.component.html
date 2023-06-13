@@ -1,1 +1,43 @@
-<p>future-appointments works!</p>
+<div class="d-flex justify-content-center w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <div class="w-90 h-100" style="background: #212529d8">
+        <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
+            <div class="d-flex">
+                <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/home">Registered User</a></div>
+                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none" href="/editProfilRegisteredUser">Profile</a></div>
+                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none" href="/historyAppointments">History appointment</a></div>
+                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none" href="/schedulingAppointment">Scheduling appointment</a></div>
+                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none" href="/futureAppointments">Future appointment</a></div>
+                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none" href="/grade">Rate center</a></div>
+            </div>
+            <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none small-font" (click)="logout()" href="">Logout</a></div>
+        </div>
+        <div class="d-flex h-75">
+
+            <div class="d-flex justify-content-center w-70 pt-2">
+                <div class="w-90 pt-3 rounded" style="background: #212529d8">
+
+                    <table class="table table-light table-striped table-hover mx-auto mt-2 w-90">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center"> Start Time Period </th>
+                                <th scope="col" class="text-center"> End Time Period </th>
+                                <th scope="col" class="text-center"> Duration of Period </th>
+                                <th scope="col" class="text-center"> Center Name </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let terminWithCenterName of terminiWithCenterName;">
+                                <td class="text-center">{{ terminWithCenterName.pocetakTermina | date:'dd.MM.yyyy HH:mm'}}</td>
+                                <td class="text-center">{{ terminWithCenterName.krajTermina | date:'dd.MM.yyyy HH:mm'}}</td>
+                                <td class="text-center">{{ terminWithCenterName.trajanje }}</td>
+                                <td class="text-center">{{ terminWithCenterName.centerName }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

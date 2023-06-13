@@ -29,6 +29,7 @@ import FTN.isa.model.Termin;
 import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.model.DTOs.TerminDTO;
+import FTN.isa.model.DTOs.TerminWithCenterNameDTO;
 import FTN.isa.service.EmailService;
 import FTN.isa.service.PersonService;
 import FTN.isa.service.TerminService;
@@ -177,6 +178,7 @@ public class TerminController {
 		return new ResponseEntity<List<TerminDTO>>(terminiDTO, HttpStatus.OK);
 	}
 	
+
 	//"api/termini/search/{ime}/{prezime}/{centerId}"
 		@Operation(summary = "Get centers by name and city", description = "Get centers by name and city", method="GET")
 		@ApiResponses(value = {
@@ -209,6 +211,26 @@ public class TerminController {
 			
 			return new ResponseEntity<List<TerminDTO>>(terminDTOs, HttpStatus.OK);
 		}
+
+	@Operation(summary = "Get termini", description = "Get termini", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found termini by center id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Termin.class))),
+			@ApiResponse(responseCode = "404", description = "termini not found", content = @Content)
+	})
+	@GetMapping(value = "/buduci/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TerminWithCenterNameDTO>> getTerminiByKorId(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("id") Long id) {		
+		
+        List<Termin> termini = terminService.getTerminiByKorId(id);
+        
+		List<TerminWithCenterNameDTO> terminiWithCenterNameDTOS = new ArrayList<TerminWithCenterNameDTO>();
+        for(Termin t : termini){
+        	terminiWithCenterNameDTOS.add(new TerminWithCenterNameDTO(t));
+		}
+        
+		return new ResponseEntity<List<TerminWithCenterNameDTO>>(terminiWithCenterNameDTOS, HttpStatus.OK);
+	}
+
 	
 	
 }

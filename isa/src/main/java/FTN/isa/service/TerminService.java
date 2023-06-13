@@ -40,6 +40,11 @@ public class TerminService {
 		return termini;
 	}
 	
+	//samo ovde kasnije dodas proveru, da je izvestaj null
+	public List<Termin> getTerminiByKorId(Long id) {
+		return terminRepository.getTerminiByKorId(id);
+	}
+	
 	public List<Termin> getZauzetiTerminiByCenterId(Long id) {
 		List<Termin> termini = new ArrayList<Termin>();
 

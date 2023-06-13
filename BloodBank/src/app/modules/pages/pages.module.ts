@@ -29,6 +29,7 @@ import { RateCenterComponent } from './rate-center/rate-center.component';
 import { CreateGradeComponent } from './create-grade/create-grade.component';
 import { OccupiedCalendarAdminComponent } from './occupied-calendar-admin/occupied-calendar-admin.component';
 import { ExamComponent } from './exam/exam.component';
+import { HistoryTerminsComponent } from './history-termins/history-termins.component';
 
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'futureAppointments', component: FutureAppointmentsComponent,  canActivate: [AuthWelcomeService] },
   { path: 'createGrade', component: CreateGradeComponent,  canActivate: [AuthWelcomeService] },
   { path: 'occupiedCalendar', component: OccupiedCalendarAdminComponent,  canActivate: [AuthWelcomeService] },
+  { path: 'historyAppointments', component: HistoryTerminsComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
@@ -68,7 +70,8 @@ const routes: Routes = [
     RateCenterComponent,
     CreateGradeComponent,
     OccupiedCalendarAdminComponent,
-    ExamComponent
+    ExamComponent,
+    HistoryTerminsComponent
   ],
   imports: [
     CommonModule,

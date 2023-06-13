@@ -39,8 +39,13 @@ export class TerminService {
     return this.http.post<Termin>('api/termini/izmena/' + terminDTO.id + '/' + korId, terminDTO, {headers: this.headers});
   }
 
+
   getAllbyNameSurname(ime: string, prezime: string, centerId: number): Observable<TerminDTO[]> {
     return this.http.get<TerminDTO[]>('api/termini/search/' + ime + '/' + prezime + '/' + centerId, {headers: this.headers});
+  }
+
+  getTerminiByKorId(id: number): Observable<any> {
+    return this.http.get<Termin[]>('api/termini/buduci/' + id, {headers: this.headers});
   }
 
 }
