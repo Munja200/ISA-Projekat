@@ -72,7 +72,6 @@ export class SchedulingAppointmentComponent implements OnInit {
     console.log(this.datum);
 
     this.centerService.getCentersbyDateWithFreeAppointments(this.datum).subscribe(res => {
-      //this.centers = res;
       this.centriSaTerminima = res;
       console.log(this.centriSaTerminima);
     })
@@ -82,7 +81,5 @@ schedulingAppointment(centerWithTermin: any): void {
   this.centerWithTerminService.setCenterWithTermin(centerWithTermin);
   this.router.navigate(['/scheduleCenterAppointment']);
 }
-
-
 
 }
