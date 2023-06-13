@@ -177,5 +177,38 @@ public class TerminController {
 		return new ResponseEntity<List<TerminDTO>>(terminiDTO, HttpStatus.OK);
 	}
 	
+	//"api/termini/search/{ime}/{prezime}/{centerId}"
+		@Operation(summary = "Get centers by name and city", description = "Get centers by name and city", method="GET")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by page number",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@GetMapping(value = "/search/{ime}/{prezime}/{centerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<List<TerminDTO>> getAllbyNameCity(
+				@Parameter(name="ime", description = "Name of person (none to ignore)", required = false) @PathVariable("ime") String ime,
+				@Parameter(name="prezime", description = "Surname of person (none to ignore)", required = false) @PathVariable("prezime") String prezime,
+				@Parameter(name="centerId", description = "Id of center (none to ignore)", required = false) @PathVariable("centerId") Long centerId)
+				{
+			
+			List<Termin> lista = new ArrayList<Termin>();
+			
+			List<TerminDTO> terminDTOs = new ArrayList<TerminDTO>();
+			if(!ime.equals("none") && !prezime.equals("none"))
+				lista = terminService.findAllByImePrezime(ime, prezime, centerId);
+			else {
+				if(!ime.equals("none"))
+					lista = terminService.findAllByIme(ime, centerId);
+				if (!prezime.equals("none"))
+					lista = terminService.findAllByPrezime(prezime, centerId);
+			}
+			if(lista != null)
+				for(Termin t : lista){
+					terminDTOs.add(new TerminDTO(t));
+				}
+			
+			return new ResponseEntity<List<TerminDTO>>(terminDTOs, HttpStatus.OK);
+		}
+	
 	
 }

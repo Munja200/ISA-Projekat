@@ -3,6 +3,8 @@ package FTN.isa.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Center;
@@ -10,6 +12,7 @@ import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
 import FTN.isa.model.Termin;
 import FTN.isa.model.DTOs.TerminDTO;
+import FTN.isa.repository.PersonRepository;
 import FTN.isa.repository.TerminRepository;
 
 @Service
@@ -17,6 +20,9 @@ public class TerminService {
 	
 	@Autowired
 	private TerminRepository terminRepository;
+	
+	@Autowired
+	private PersonRepository personRepository;
 	
 	public List<Termin> getTerminiByCenterId(Long id) {
 		return terminRepository.getTerminiByCenterId(id);
@@ -67,5 +73,51 @@ public class TerminService {
         } else { 
             return false;
         }
+	}
+	
+	public List<Termin> findAllByImePrezime(String ime, String prezime, Long centerId) {
+		List<Termin> lista= new ArrayList<>();
+		
+		ime = ime.substring(0, 1).toUpperCase() + ime.substring(1).toLowerCase();
+		prezime = prezime.substring(0, 1).toUpperCase() + prezime.substring(1).toLowerCase();
+		
+		for(Termin t : getZauzetiTerminiByCenterId(centerId)){
+			Person person = new Person();
+			person = personRepository.getOne(t.getKorisnikId());
+			if(person.getName().equals(ime) && person.getSurname().equals(prezime)) {
+				lista.add(t);
+			}
+		}
+		return lista;
+		
+	}
+	
+	public List<Termin> findAllByIme(String ime, Long centerId) {
+		List<Termin> lista= new ArrayList<>();
+		ime = ime.substring(0, 1).toUpperCase() + ime.substring(1).toLowerCase();
+
+		for(Termin t : getZauzetiTerminiByCenterId(centerId)){
+			Person person = new Person();
+			person = personRepository.getOne(t.getKorisnikId());
+			if(person.getName().equals(ime)) {
+				lista.add(t);
+			}
+		}
+		return lista;
+	}
+	
+
+	public List<Termin> findAllByPrezime(String prezime, Long centerId) {
+		List<Termin> lista= new ArrayList<>();
+		prezime = prezime.substring(0, 1).toUpperCase() + prezime.substring(1).toLowerCase();
+		
+		for(Termin t : getZauzetiTerminiByCenterId(centerId)){
+			Person person = new Person();
+			person = personRepository.getOne(t.getKorisnikId());
+			if(person.getSurname().equals(prezime)) {
+				lista.add(t);
+			}
+		}
+		return lista;
 	}
 }
