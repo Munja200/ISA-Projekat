@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'futureAppointments', component: FutureAppointmentsComponent,  canActivate: [AuthWelcomeService] },
   { path: 'createGrade', component: CreateGradeComponent,  canActivate: [AuthWelcomeService] },
   { path: 'occupiedCalendar', component: OccupiedCalendarAdminComponent,  canActivate: [AuthWelcomeService] },
+  { path: 'historyAppointments', component: HistoryTerminsComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
