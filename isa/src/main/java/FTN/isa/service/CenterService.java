@@ -135,6 +135,10 @@ public class CenterService {
 		                    LocalDateTime pocetak = t.getPocetakTermina();
 		                    LocalDateTime kraj = t.getKrajTermina();
 		                    
+		                    if(t.getKorisnikId() != null) {
+		                    	continue;
+		                    }
+		                    
 		                    // DateTime upada u vremenski interval slobodnog termina
 		                    if (dateTime.isAfter(pocetak) && dateTime.isBefore(kraj)) {
 		    		            //centers.add(c);
@@ -146,9 +150,9 @@ public class CenterService {
 		    		            list.setCenterDTO(centarDto);
 		    		            list.setTerminDTO(terminDto);
 		    			        lista.add(list);
-
 		    		            break;
 		                    }
+		                    
 		                } 
 		                break; 
 		            }

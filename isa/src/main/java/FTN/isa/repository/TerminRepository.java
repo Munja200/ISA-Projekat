@@ -12,6 +12,9 @@ public interface TerminRepository extends PagingAndSortingRepository<Termin, Lon
 
 	@Query(value = "SELECT * FROM termin t WHERE t.center_id =?1", nativeQuery = true)
 	List<Termin> getTerminiByCenterId(@Param("id") Long id);
+	
+	@Query(value = "SELECT * FROM termin t WHERE t.korisnik_id =?1", nativeQuery = true)
+	List<Termin> getTerminiByKorId(@Param("id") Long id);
 
 	@SuppressWarnings("unchecked")
 	public Termin save(Termin termin);
