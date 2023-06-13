@@ -42,11 +42,6 @@ export class GradeComponent implements OnInit {
     this.averageSort = false;
     this.nameSort = false;
     this.citySort = false;
-    /*
-    this.centerService.getCentersbyPage(this.page).subscribe(res => {
-      this.centers = res;
-    })
-    */
 
     const username = this.authService.getCurrentUserUsername();
     this.registerPersonService.getUserByUsername(username).subscribe(person => {
@@ -56,10 +51,7 @@ export class GradeComponent implements OnInit {
       this.centerService.getCentersRegUserHaveTermins(this.personId).subscribe(res => {
         this.centers = res;
       })
-      
     })
-
-
   }
 
   logout(){

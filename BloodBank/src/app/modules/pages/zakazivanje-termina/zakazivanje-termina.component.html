@@ -52,7 +52,7 @@
                       
 
                     <div class="d-flex justify-content-between mb-5">
-                        <button type="button" class="btn btn-outline-light" (click)="editTermin(centerWithTermin)">Schedule</button>
+                        <button type="button" class="btn btn-outline-light" (click)="editTermin(centerWithTermin)" [disabled]="!isQuestionFormFilled">Schedule</button>
                     </div>
                     
                 </div>
@@ -80,14 +80,26 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let question of questions;">
-                                <td class="text-center">{{question.question}}</td>
-
-                                <td class="text-center"> 
-                                    <input type="radio" (click)="radioButtonChange(question,'True')"  value="True"/>Yes
-                                    <input type="radio" (click)="radioButtonChange(question,'False')"  value="False"/>No
+                                <td class="text-center">{{ question.question }}</td>
+                                <td class="text-center">
+                                  <button
+                                    class="btn btn-outline-primary"
+                                    [ngClass]="{ 'btn-primary': isAnswerSelected(question, true) }"
+                                    (click)="selectAnswer(question, true)"
+                                  >
+                                    Yes
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary"
+                                    [ngClass]="{ 'btn-primary': isAnswerSelected(question, false) }"
+                                    (click)="selectAnswer(question, false)"
+                                  >
+                                    No
+                                  </button>
                                 </td>
-
-                            </tr>
+                              </tr>
+                              
+                              
                         </tbody><br>
                         <div class="d-flex justify-content-between mb-5">
                             <button type="button" class="btn btn-outline-light" (click)="createQuestionForm()">Question Filled</button>

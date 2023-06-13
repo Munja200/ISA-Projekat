@@ -27,6 +27,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { GradeComponent } from './grade/grade.component';
 import { RateCenterComponent } from './rate-center/rate-center.component';
 import { CreateGradeComponent } from './create-grade/create-grade.component';
+import { OccupiedCalendarAdminComponent } from './occupied-calendar-admin/occupied-calendar-admin.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'scheduleCenterAppointment', component: ZakazivanjeTerminaComponent,  canActivate: [AuthWelcomeService] },
   { path: 'futureAppointments', component: FutureAppointmentsComponent,  canActivate: [AuthWelcomeService] },
   { path: 'createGrade', component: CreateGradeComponent,  canActivate: [AuthWelcomeService] },
+  { path: 'occupiedCalendar', component: OccupiedCalendarAdminComponent,  canActivate: [AuthWelcomeService] },
 
 ];
 
@@ -62,7 +64,8 @@ const routes: Routes = [
     ChangePasswordComponent,
     GradeComponent,
     RateCenterComponent,
-    CreateGradeComponent
+    CreateGradeComponent,
+    OccupiedCalendarAdminComponent
   ],
   imports: [
     CommonModule,

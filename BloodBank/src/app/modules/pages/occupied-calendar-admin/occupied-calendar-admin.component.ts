@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Termin } from '../../hospital/model/termin';
+import { TerminDTO } from '../../hospital/model/terminDTO';
+import { CenterDTO } from '../../hospital/model/centerDTO';
+import { CenterAdministratorService } from '../../hospital/services/centerAdministrator.service';
+import { Center } from '../../hospital/model/center';
 import { Router } from '@angular/router';
+import { TerminService } from '../service/termin.service';
 import { CenterService } from '../service/center.service';
 import { AuthService } from '../../hospital/services/auth.service';
 import { RegisterPersonService } from '../../hospital/services/register-person.service';
-import { Termin } from '../../hospital/model/termin';
-import { TerminService } from '../service/termin.service';
-import { TerminDTO } from '../../hospital/model/terminDTO';
-import { CenterAdministratorService } from '../../hospital/services/centerAdministrator.service';
-import { Center } from '../../hospital/model/center';
-import { CenterDTO } from '../../hospital/model/centerDTO';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({
-  selector: 'app-calendar-admin',
-  templateUrl: './calendar-admin.component.html',
-  styleUrls: ['./calendar-admin.component.css']
+  selector: 'app-occupied-calendar-admin',
+  templateUrl: './occupied-calendar-admin.component.html',
+  styleUrls: ['./occupied-calendar-admin.component.css']
 })
-export class CalendarAdminComponent implements OnInit {
+export class OccupiedCalendarAdminComponent implements OnInit {
 
   public termini: TerminDTO[] = [];
   personId : number = 0;
@@ -51,14 +52,22 @@ export class CalendarAdminComponent implements OnInit {
           this.centerDTO = res;
           this.centerId = res.id
 
-          this.terminService.getSlobodniTerminiByCenterId(this.centerId).subscribe(res1 => {
+          this.terminService.getZauzetiTerminiByCenterId(this.centerId).subscribe(res1 => {
             this.termini = res1;
+
           })
         })
 
     })   
     }
   }
+  
+  getPerson(personId: number): Observable<string> {
+    return this.registerPersonService.getPerson(personId).pipe(
+      map(person => `${person.name}`)
+    );
+  }
+  
 
   logout(){
     this.authService.logout()
@@ -130,7 +139,5 @@ export class CalendarAdminComponent implements OnInit {
     }
     return true;
   }
-
-
 
 }

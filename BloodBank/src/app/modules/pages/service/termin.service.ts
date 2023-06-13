@@ -22,6 +22,14 @@ export class TerminService {
   getTerminiByCenterId(id: number): Observable<any> {
     return this.http.get<Termin[]>('api/termini/' + id, {headers: this.headers});
   }
+
+  getSlobodniTerminiByCenterId(id: number): Observable<any> {
+    return this.http.get<Termin[]>('api/termini/slobodni/' + id, {headers: this.headers});
+  }
+
+  getZauzetiTerminiByCenterId(id: number): Observable<any> {
+    return this.http.get<Termin[]>('api/termini/zauzeti/' + id, {headers: this.headers});
+  }
   
   createTermin(termini: any): Observable<any> {
     return this.http.post<any>('api/termini/add', termini, {headers: this.headers});

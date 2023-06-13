@@ -36,6 +36,8 @@ export class ZakazivanjeTerminaComponent implements OnInit {
   public terminDTO: TerminDTO = new TerminDTO();
   public korId: number = 0;
 
+  public isFormFilled: boolean = false;
+
 
   constructor(private terminService: TerminService , private registerPersonService: RegisterPersonService, private datePipe: DatePipe, private centerWithTerminService: CenterWithTerminServiceComponent, private centerService: CenterService, private questionService: QuestionService, private route: ActivatedRoute,  private router: Router, private authService: AuthService)
   {
@@ -97,7 +99,15 @@ export class ZakazivanjeTerminaComponent implements OnInit {
      pom.answer = false;
     } 
    }
-   
+
+   public selectAnswer(question: any, answer: boolean): void {
+    question.answer = answer;
+  }
+  
+  public isAnswerSelected(question: any, answer: boolean): boolean {
+    return question.answer === answer;
+  }
+  
 
   public createQuestionForm() {
     this.isQuestionFormFilled = true;

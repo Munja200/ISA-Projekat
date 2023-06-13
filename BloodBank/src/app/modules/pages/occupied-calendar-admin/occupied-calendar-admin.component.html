@@ -2,14 +2,13 @@
     <div class="w-90 h-100" style="background: #212529d8">
         <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
             <div class="d-flex">
-
-                <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/homeAdminCenter">Amdinistrator center</a></div>
-                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none small-font" href="/donors">Donors</a></div>
-                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none small-font" href="/calendar">Calendar</a></div>
-                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none small-font" href="/occupiedCalendar">Busy Calendar</a></div>
-                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none small-font" href="/profilOfRegisteredUser">Profile</a></div>
-                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none small-font" href="/bloods">Bloods</a></div>
-                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none small-font" href="/editCenter">My center</a></div>
+              <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/homeAdminCenter">Amdinistrator center</a></div>
+              <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/donors">Donors</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/calendar">Calendar</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/occupiedCalendar">Busy Calendar</a></div>
+                <div class="h5 pt-5 pb-3 p-5 px-0"><a class="text-white text-decoration-none small-font" href="/profilOfRegisteredUser">Profile</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/bloods">Bloods</a></div>
+                <div class="h5 pt-5 pb-3 p-5"><a class="text-white text-decoration-none small-font" href="/editCenter">My center</a></div>
             </div>
             <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none small-font" (click)="logout()" href="">Logout</a></div>
         </div>
@@ -19,14 +18,11 @@
                 <div class="w-90 pt-3 rounded" style="background: #212529d8">
 
                     <div class="h4 d-flex justify-content-center text-white">
-                        <div>
+                        <div class="my">
                             <h1 >Working calendar</h1>
-                            <h1 class="inline-heading">Free appointments</h1>
+                            <h1 class="inline-heading">Occupied appointments</h1>
                           </div>
 
-                            <button id="createPeriod" class="add-button" type="button" mat-mini-fab matTooltip="New appointment" matTooltipPosition="right" (click)="addPeriod()">
-                                <mat-icon>add</mat-icon>
-                            </button>
                     </div>
                     <table class="table table-light table-striped table-hover mx-auto mt-2 w-90">
                         <thead>
@@ -34,14 +30,19 @@
                                 <th scope="col" class="text-center"> Start Time Period </th>
                                 <th scope="col" class="text-center"> End Time Period </th>
                                 <th scope="col" class="text-center"> Duration of Period </th>
+                                <th scope="col" class="text-center"> User for Scheduling </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let termin of termini;">
                                 <td class="text-center">{{ termin.pocetakTermina | date:'dd.MM.yyyy HH:mm'}}</td>
                                 <td class="text-center">{{ termin.krajTermina | date:'dd.MM.yyyy HH:mm'}}</td>
-
                                 <td class="text-center">{{ termin.trajanje }}</td>
+                                <!--
+                                <td class="text-center">{{ getPerson(termin.korisnikId) | async }}</td>
+                                -->
+                                <td class="text-center">{{ termin.korisnikId}}</td>
+
                             </tr>
                         </tbody>
                     </table>

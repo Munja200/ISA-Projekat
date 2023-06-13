@@ -1,5 +1,6 @@
 package FTN.isa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,29 @@ public class TerminService {
 	
 	public List<Termin> getTerminiByCenterId(Long id) {
 		return terminRepository.getTerminiByCenterId(id);
+	}
+	
+	public List<Termin> getSlobodniTerminiByCenterId(Long id) {
+		
+		List<Termin> termini = new ArrayList<Termin>();
+
+		for(Termin t : getTerminiByCenterId(id)){
+			if(t.getKorisnikId() == null) {
+				termini.add(t);
+			}
+		}
+		return termini;
+	}
+	
+	public List<Termin> getZauzetiTerminiByCenterId(Long id) {
+		List<Termin> termini = new ArrayList<Termin>();
+
+		for(Termin t : getTerminiByCenterId(id)){
+			if(t.getKorisnikId() != null) {
+				termini.add(t);
+			}
+		}
+		return termini;	
 	}
 	
 	public Termin createTermin(Termin termin) {
