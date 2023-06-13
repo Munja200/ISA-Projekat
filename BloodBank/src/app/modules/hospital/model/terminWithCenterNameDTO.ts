@@ -1,5 +1,6 @@
 import { Center } from "./center";
 import { CenterDTO } from "./centerDTO";
+import { QuestionForm } from "./question-fotm";
 import { Report } from "./report";
 
 export class TerminWithCenterNameDTO {
@@ -11,6 +12,7 @@ export class TerminWithCenterNameDTO {
     centerName: string = '';
     korisnikId : number = 0;
     report : Report = new Report();
+    questionForm : QuestionForm = new QuestionForm();
 
     constructor(obj?: any) {
         if (obj) {
@@ -22,6 +24,8 @@ export class TerminWithCenterNameDTO {
           this.centerName = obj.centerName;
           this.korisnikId = obj.korisnikId;
           this.report = obj.report;
+          this.questionForm = obj.questionForm;
+
         }
       }
 }

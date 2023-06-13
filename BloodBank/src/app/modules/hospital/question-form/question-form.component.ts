@@ -24,7 +24,9 @@ export class QuestionFormComponent implements OnInit {
   public address: Address = new Address();
   public dataSource = new MatTableDataSource<Question>();
   private date: Date = new Date();
-  public qf : QuestionForm = new QuestionForm(0, '',this.date, this.answers);
+  //public qf : QuestionForm = new QuestionForm(0, '',this.date, this.answers);
+  public qf : QuestionForm = new QuestionForm();
+
   constructor(private questionService: QuestionService,private personService:RegisterPersonService,private router: Router) { }
 
   ngOnInit(): void {

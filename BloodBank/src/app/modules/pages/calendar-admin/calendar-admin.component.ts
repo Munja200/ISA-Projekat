@@ -31,6 +31,9 @@ export class CalendarAdminComponent implements OnInit {
   public centar : Center = new Center();
   public centerDTO : CenterDTO = new CenterDTO();
 
+  public appointmenti: TerminDTO[] = [];
+
+
   constructor(private router: Router, private centerAdministratorService: CenterAdministratorService, private terminService: TerminService, private centerService: CenterService, private authService: AuthService, private registerPersonService : RegisterPersonService) 
   {
     const today = new Date();
@@ -39,7 +42,7 @@ export class CalendarAdminComponent implements OnInit {
 
   
   ngOnInit(): void {
-
+    
     const username = this.authService.getCurrentUserUsername();
     if (username) {
       this.registerPersonService.getUserByUsername(username).subscribe(person => {
@@ -54,6 +57,11 @@ export class CalendarAdminComponent implements OnInit {
           this.terminService.getSlobodniTerminiByCenterId(this.centerId).subscribe(res1 => {
             this.termini = res1;
           })
+
+          this.terminService.getTerminiByCenterId(this.centerId).subscribe(appointmenti => {
+            this.appointmenti = appointmenti;
+          })
+
         })
 
     })   
@@ -80,9 +88,9 @@ export class CalendarAdminComponent implements OnInit {
     this.showForm = false;
   }
 
-  createPeriod() {
-    console.log(this.centerDTO);
-  
+  createPeriod() {  
+    console.log(this.appointmenti);
+
     this.termin.pocetakTermina = this.startDate;
     this.termin.krajTermina = this.endDate;
     this.termin.trajanje = this.duration;
@@ -102,14 +110,27 @@ export class CalendarAdminComponent implements OnInit {
       });
   
       if (isWithinWorkingHours) {
-        this.terminService.createTermin(this.termin).subscribe((res) => {
-          alert("You have successfully created period!");
-          this.cancel();
-          this.ngOnInit();
+        let isConflict = false;
+      
+        this.appointmenti.forEach((termin: TerminDTO) => {
+          if (this.startDate <= termin.krajTermina && this.endDate >= termin.pocetakTermina) {
+            alert("Already exists appointment which is scheduled in this time!");
+            isConflict = true;
+            return; // Prekida petlju ako se pronađe preklapanje
+          }
         });
+      
+        if (!isConflict) {
+          this.terminService.createTermin(this.termin).subscribe((res) => {
+            alert("Appointment is succesfully created!");
+            this.cancel();
+            this.ngOnInit();
+          });
+        }
       } else {
         alert("Selected period is not within working hours!");
       }
+      
     }
   }
 
