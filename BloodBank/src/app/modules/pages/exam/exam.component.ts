@@ -10,6 +10,10 @@ import { Report } from '../../hospital/model/report';
 import { BloodService } from '../../hospital/services/blood.service';
 import { TerminService } from '../service/termin.service';
 import { Termin } from '../../hospital/model/termin';
+import { QuestionForm } from '../../hospital/model/question-fotm';
+import { QuestionService } from '../../hospital/services/question.service';
+import { AnswerQuestion } from '../../hospital/model/ansqer-questtion';
+import { Question } from '../../hospital/model/question';
 
 @Component({
   selector: 'app-exam',
@@ -38,10 +42,16 @@ export class ExamComponent implements OnInit {
   public quantity : number = 0;
   public description : string = '';
   public bloodType : string = '';
+  public forma : QuestionForm = new QuestionForm();
 
   terminDTOpomoc : TerminDTO = new TerminDTO();
 
-  constructor(private bloodService: BloodService, private terminService: TerminService, private reportService: ReportService, private route: ActivatedRoute, private registerPersonService: RegisterPersonService, private router: Router, private authService: AuthService, ) { }
+  terminDTOpom : TerminDTO = new TerminDTO();
+  public questions : Question[] = [];
+  public randomQuestions: string[] = [];
+  public randomAnswers: string[] = [];
+
+  constructor(private questionService: QuestionService, private bloodService: BloodService, private terminService: TerminService, private reportService: ReportService, private route: ActivatedRoute, private registerPersonService: RegisterPersonService, private router: Router, private authService: AuthService, ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -53,6 +63,11 @@ export class ExamComponent implements OnInit {
       this.kraj = params['endDate'];
       this.centerId = params['center'];
     });
+
+    this.terminService.getById(this.terminId).subscribe(res => {
+      this.terminDTOpom = res;
+      this.terminDTOpom.questionForm = this.forma;
+    })
 
     this.registerPersonService.getPerson(this.korisnikId).subscribe( res => {
       this.registeredUserDto = res;
@@ -67,10 +82,10 @@ export class ExamComponent implements OnInit {
     this.report.bloodType = this.bloodType;
     this.report.description = this.description;
     this.report.quantity = this.quantity;
-    this.reportService.saveReport(this.report).subscribe( res3 => {
+    /*this.reportService.saveReport(this.report).subscribe( res3 => {
       alert('You have successfully examed patient');
   
-  })
+  })*/
 
     this.bloodService.changeBlood(this.centerId, this.quantity, this.bloodType).subscribe (krvv => {   
       alert('Blood quantity updated');
@@ -104,10 +119,24 @@ export class ExamComponent implements OnInit {
   })
 }
 
-  showForm3() {
-    this.showingForm1 = false;
-    this.showingForm3 = true;
-  }
+showForm3() {
+  this.showingForm1 = false;
+  this.showingForm3 = true;
+  this.questionService.getAll().subscribe(res => {
+    this.questions = res;
+
+    this.randomAnswers = this.questions.map((question, index) => {
+      return index % 4 === 0 ? 'No' : 'Yes';
+    });
+  });
+}
+
+rejectUser() {
+  alert('User is rejected');
+  this.router.navigate(['/homeAdminCenter']);
+}
+
+
 
   formatirajDatum(datum: string): string {
     const [godina, mesec, dan, sat, minut] = datum.split(',');

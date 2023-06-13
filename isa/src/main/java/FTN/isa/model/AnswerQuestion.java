@@ -28,16 +28,16 @@ public class AnswerQuestion {
 	@Column(name = "deleted")
 	private boolean deleted;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@Valid
-	private QuestionForm questionForm;
+	//@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	//@Valid
+	//private QuestionForm questionForm;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
-	@JoinTable(name = "answering", joinColumns = @JoinColumn(name = "answer_question_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "question_form_id", referencedColumnName = "id"))
-	@Valid
-	private Set<QuestionForm> questions = new HashSet<QuestionForm>();
+	//@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
+	//@JoinTable(name = "answering", joinColumns = @JoinColumn(name = "answer_question_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "question_form_id", referencedColumnName = "id"))
+	//@Valid
+	//private Set<QuestionForm> questions = new HashSet<QuestionForm>();
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "question_id")
 	@Valid
 	private Question question;
@@ -51,12 +51,11 @@ public class AnswerQuestion {
 		this.question = question;
 	}
  
-	public AnswerQuestion(int id, boolean answer, boolean deleted, QuestionForm questions, Question question) {
+	public AnswerQuestion(int id, boolean answer, boolean deleted, Question question) {
 		super();
 		Id = id;
 		this.answer = answer;
 		this.deleted = deleted;
-		this.questionForm = questions;
 		this.question = question;
 	}
 
@@ -92,13 +91,6 @@ public class AnswerQuestion {
 		this.question = question;
 	}
 
-	public QuestionForm getQuestions() {
-		return questionForm;
-	}
-
-	public void setQuestions(QuestionForm questions) {
-		this.questionForm = questions;
-	}
 	
 	
 	

@@ -68,11 +68,36 @@
             <div *ngIf="showingForm3" class="mt-3">
                     <form>
                       <div class="form-group">
-                        <label for="penal">Penal</label>
-                        <input type="text" class="form-control" id="penal" placeholder="Enter penal" style="width: 200px;">
-                      </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                        <table class="table table-light table-striped table-hover mx-auto mt-2 w-90">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm">
+                                        <b>Question</b>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <button class="btn btn-sm" >
+                                        <b>Question Answer</b>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let question of questions; let i = index;">
+                              <td class="text-center">{{ question.question }}</td>
+                              <td class="text-center">{{ randomAnswers[i] }}</td>
+                    
+                              </tr>
+                              
+                              
+                        </tbody><br>
+                        <div class="d-flex justify-content-between mb-5">
+                          <button type="button" class="btn btn-outline-light" (click)="rejectUser()">Reject User</button>
+                        </div>                        
+                    </table>
+                    </div>
+                  </form>
             </div>
           </div>
         </div>
