@@ -66,7 +66,7 @@ public class TerminController {
         List<Termin> termini = terminService.getTerminiByCenterId(id);
 		List<TerminDTO> terminiDTO = new ArrayList<TerminDTO>();
 
-        for(Termin t : termini){
+        for(Termin t : termini){ 
         	terminiDTO.add(new TerminDTO(t));
 		}
 
@@ -249,7 +249,7 @@ public class TerminController {
 				{
 			
 			List<Termin> lista = new ArrayList<Termin>();
-			
+			 
 			List<TerminWithExamDTO> terminDTOs = new ArrayList<TerminWithExamDTO>();
 			if(!ime.equals("none") && !prezime.equals("none"))
 				lista = terminService.findAllByImePrezime(ime, prezime, centerId);
