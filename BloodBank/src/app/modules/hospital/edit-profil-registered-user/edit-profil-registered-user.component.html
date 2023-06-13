@@ -1,97 +1,130 @@
-<div class="container">
-    <span> </span>
-    <table>
-       
-        <td></td>
-            <td colspan="3">
-                <p>Profile</p>
-                <p>informations:</p>
-
-            </td>
-    <td colspan="2">
-        <mat-form-field>
-            <th> Name: </th>
-            <tr><input type="text" name="name" matInput [(ngModel)]="registeredUserDto.name"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Surname </th>
-            <tr><input type="text" name="surname" matInput [(ngModel)]="registeredUserDto.surname"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Phone number </th>
-            <tr><input type="text" name="phoneNumber" matInput [(ngModel)]="registeredUserDto.phonNumber"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Jmbg </th>
-            <tr><input type="text" name="jmbg" matInput [(ngModel)]="registeredUserDto.jmbg"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-        <mat-form-field>
-            <th> Address </th>
-            <tr> Street: <input type="text" name="city" matInput [(ngModel)]="registeredUserDto.address.street"></tr>
-        </mat-form-field>
-        <mat-form-field>
-            <tr> City: <input type="text" name="city" matInput [(ngModel)]="registeredUserDto.address.city"></tr>
-        </mat-form-field>
-        <mat-form-field>
-            <tr> Latitude: <input type="number" name="latitude" matInput [(ngModel)]="registeredUserDto.address.latitude"></tr>
-        </mat-form-field>
-            
-        </mat-form-field>
-
-        <mat-form-field>
-            <button (click)="editProfile()"><b>Edit Profile</b></button>   
-        </mat-form-field>
-
-    </td>
-
-    <td>
-        <mat-form-field>
-        </mat-form-field>
-    </td>
-    <td>
-        <mat-form-field>
-            <th> Gender </th>
-            <tr><input type="text" name="surname" matInput [(ngModel)]="registeredUserDto.gender"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Date of Birth </th>
-            <tr><input type="datetime-local" name="dateOfBirth" matInput [(ngModel)]="registeredUserDto.dateOfBirth"></tr>
-        </mat-form-field>
+<div class="d-flex justify-content-center w-100 h-100" style="background: linear-gradient(165deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 78%, rgba(252,176,69,1) 100%);">
+    <div class="w-90 h-100" style="background: #212529d8">
+        <div class="d-flex justify-content-between m-3 rounded-5 h-15" style="background: #212529d8">
+            <div class="d-flex">
+                <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none" href="/home">Registered User</a></div>
+                <div class="h3 pt-5 pb-5 p-5 px-5"><a class="text-white text-decoration-none" href="/editProfilRegisteredUser">Profile</a></div>
+                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none" href="/schedulingAppointment">Scheduling appointment</a></div>
+                <div class="h3 pt-5 pb-3 p-5 px-5"><a class="text-white text-decoration-none" href="/grade">Rate center</a></div>
+            </div>
+            <div class="display-5 pt-4 pb-3 p-5"><a class="text-white text-decoration-none small-font" (click)="logout()" href="">Logout</a></div>
+        </div>
+  
+  
+  <body class="background-image">
+      <form class="container">
+  
+        <div class="container1">
+  
+          <div class="left-div">
+  
+        <mat-form-field class="example-full-width" style="color: white;">
+          <input matInput placeholder="Name" [formControl]="requiredNameControl"[(ngModel)]="registeredUserDto.name">
+          <mat-error *ngIf="requiredNameControl.hasError('required')">
+              Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field><br>
+  
+        <mat-form-field class="example-full-width" style="color: white;">
+          <input matInput placeholder="Surname" [formControl]="requiredSurnameControl" [(ngModel)]="registeredUserDto.surname">
+          <mat-error *ngIf="requiredSurnameControl.hasError('required')">
+              Surname is <strong>required</strong>
+          </mat-error>
+        </mat-form-field><br>
+  
+  
+        <mat-form-field class="example-full-width" style="color: white;">
+          <input matInput placeholder="Jmbg" [formControl]="requiredJmbgControl" [(ngModel)]="registeredUserDto.jmbg">
+          <mat-error *ngIf="requiredJmbgControl.hasError('required')">
+              Jmbg is <strong>required</strong>
+          </mat-error>
+        </mat-form-field><br>
+  
+        <mat-form-field class="example-full-width" style="color: white;">
+          <input matInput placeholder="PhoneNumber" [formControl]="requiredPhoneNumberControl" [(ngModel)]="registeredUserDto.phonNumber">
+          <mat-error *ngIf="requiredPhoneNumberControl.hasError('required')">
+              PhoneNumber is <strong>required</strong>
+          </mat-error>
+        </mat-form-field><br>
         
-        <mat-form-field>
-            <th> Occupation </th>
-            <tr><input type="text" name="occupation" matInput [(ngModel)]="registeredUserDto.occupation"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Information About Company </th>
-            <tr><input type="text" name="informationAboutCompany" matInput [(ngModel)]="registeredUserDto.informationAboutCompany"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <th> Blood Type </th>
-            <tr><input type="text" name="bloodType" matInput [(ngModel)]="registeredUserDto.bloodType"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-        <tr> Number: <input type="number" name="number" matInput [(ngModel)]="registeredUserDto.address.number"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <tr> Country: <input type="text" name="country" matInput [(ngModel)]="registeredUserDto.address.country"></tr>
-        </mat-form-field>
-
-        <mat-form-field>
-            <tr> Longitude: <input type="number" name="longitude" matInput [(ngModel)]="registeredUserDto.address.longitude"></tr>
-        </mat-form-field>
-
-    </td>
-    </table> 
-</div>
-<div>
+            
+  
+          <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="Country" [formControl]="requiredAddressControl"[(ngModel)]="registeredUserDto.address.country">
+              <mat-error *ngIf="requiredAddressControl.hasError('required')">
+                  Counrty is <strong>required</strong>
+              </mat-error>
+            </mat-form-field><br>
+  
+          
+  
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="City" [formControl]="requiredCityControl"[(ngModel)]="registeredUserDto.address.city">
+              <mat-error *ngIf="requiredCityControl.hasError('required')">
+                  City is <strong>required</strong>
+              </mat-error>
+            </mat-form-field><br>
+  
+          </div>
+            <div class="right-div">
+          
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="Street" [formControl]="requiredCountryControl"[(ngModel)]="registeredUserDto.address.street">
+              <mat-error *ngIf="requiredCountryControl.hasError('required')">
+                  Street is <strong>required</strong>
+              </mat-error>
+            </mat-form-field><br>
+  
+  
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="Number" [formControl]="requiredNumberControl"[(ngModel)]="registeredUserDto.address.number">
+              <mat-error *ngIf="requiredNumberControl.hasError('required')">
+                  Number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field><br>
+  
+  
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="Occupation" [formControl]="requiredOccupationControl"[(ngModel)]="registeredUserDto.occupation">
+              <mat-error *ngIf="requiredOccupationControl.hasError('required')">
+                  Occupation is <strong>required</strong>
+              </mat-error>
+            </mat-form-field><br>   
+  
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="BloodType" [formControl]="requiredBloodTypeControl" [(ngModel)]="registeredUserDto.bloodType" pattern="^(A|B|AB|O)[+-]$">
+              <mat-error *ngIf="requiredBloodTypeControl.hasError('required')">
+                BloodType is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="requiredBloodTypeControl.hasError('pattern')">
+                BloodType is invalid. Please enter a valid blood type (A, B, AB, O) followed by a + or - sign.
+              </mat-error>
+            </mat-form-field><br>
+            
+            <mat-form-field class="example-full-width" style="color: white;">
+              <input matInput placeholder="Password" type="password" [formControl]="requiredPasswordControl" [(ngModel)]="registeredUserDto.password">
+              <mat-error *ngIf="requiredPasswordControl.hasError('required')">
+                  Password is <strong>required</strong>!
+              </mat-error>
+            </mat-form-field><br>
+  
+            <div>
+              <button class="dugme" mat-stroked-button (click)="editProfile()"> 
+                Edit
+            </button>
+            </div>      
+  
+            </div>
+            
+            </div>
+          
+  
+            
+  
+          
+      </form> 
+      </body>
+    </div>
+  </div>
+  
+  
