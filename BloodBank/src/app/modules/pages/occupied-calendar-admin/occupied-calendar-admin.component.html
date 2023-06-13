@@ -30,7 +30,7 @@
                                 <th scope="col" class="text-center"> Start Time Period </th>
                                 <th scope="col" class="text-center"> End Time Period </th>
                                 <th scope="col" class="text-center"> Duration of Period </th>
-                                <th scope="col" class="text-center"> User for Scheduling </th>
+                                <th scope="col" class="text-center"> User</th>
                                 <th scope="col" class="text-center"> Exam </th>
                             </tr>
                         </thead>
@@ -40,7 +40,10 @@
                                 <td class="text-center">{{ termin.krajTermina | date:'dd.MM.yyyy HH:mm'}}</td>
                                 <td class="text-center">{{ termin.trajanje }}</td>
                                 <td class="text-center">{{ osobe[i].name }} {{ osobe[i].surname }}</td>
-                                <td class="text-center"> <button type="button" class="btn btn-dark" (click)="Appointments(termin.id)">Exam</button></td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-dark"
+                                      (click)="Appointments(termin.id, osobe[i].id, osobe[i].name, osobe[i].surname, termin.pocetakTermina, termin.krajTermina)">Exam</button>
+                                  </td>
                               </tr>
                         </tbody>
                     </table>

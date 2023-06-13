@@ -142,9 +142,9 @@ export class OccupiedCalendarAdminComponent implements OnInit {
     }
   }
 
-  public Appointments(id: any){
-    localStorage.setItem('termin_id', id);
-    this.router.navigate(['/centerAppointments']);
+  public Appointments(id: any, korId: any, name: string, surname: string, startDate: Date, endDate: Date) {
+    const queryParams = { termin_id: id, korId, name, surname, startDate, endDate };
+    this.router.navigate(['/exam'], { queryParams });
   }
 
   parseDate(date: Date): Date {
@@ -154,21 +154,7 @@ export class OccupiedCalendarAdminComponent implements OnInit {
   public reset(){
     this.ime = '';
     this.prezime = '';
-    this.terminService.getZauzetiTerminiByCenterId(this.centerId).subscribe(res => {
-      this.termini = res;
-      this.osobe = [];
-          
-            this.termini.forEach((termin: TerminDTO) => {
-              this.osobaId = termin.korisnikId;
-          
-              this.registerPersonService.getPerson(this.osobaId).subscribe(res2 => {
-                const osoba: Person = res2;
-                this.osobe.push(osoba);
-          
-                console.log(osoba);
-              });
-            });
-    })
+    this.ngOnInit();
   }
 
   private isInputValidButton(): boolean {

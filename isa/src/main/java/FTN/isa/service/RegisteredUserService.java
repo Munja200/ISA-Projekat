@@ -69,6 +69,7 @@ public class RegisteredUserService {
         	person.setDateOfBirth(registeredUser.getPerson().getDateOfBirth());
         	person.setBloodType(registeredUser.getPerson().getBloodType());
         	person.setAddress(registeredUser.getPerson().getAddress());
+        	person.setPenal(registeredUser.getPerson().getPenal());
         	
             ru.setPerson(person);
             registeredUserRepository.save(ru);

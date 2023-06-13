@@ -23,7 +23,7 @@ export class EditProfilRegisteredUserComponent implements OnInit {
   public registeredUser: RegisteredPerson = new RegisteredPerson(0, false, this.person);
   public id : number = 0;
   public personId : number = 0;
-  public registeredUserDto: RegisteredUserUpdateDTO = new RegisteredUserUpdateDTO(0, '', '', '', '', '', '', '', new Date(), '', this.address, '');
+  public registeredUserDto: RegisteredUserUpdateDTO = new RegisteredUserUpdateDTO(0, '', '', '', '', '', '', '', new Date(), '', this.address, '', 0);
   
 
   constructor(private authService: AuthService, private registerPersonService: RegisterPersonService, private router: Router) { }
@@ -35,6 +35,7 @@ export class EditProfilRegisteredUserComponent implements OnInit {
       this.registerPersonService.getUserByUsername(username).subscribe(osoba => {
           this.registeredUserDto = osoba;
           this.registeredUserDto.password = '';
+          console.log(this.registeredUserDto);
       });
     }
   }

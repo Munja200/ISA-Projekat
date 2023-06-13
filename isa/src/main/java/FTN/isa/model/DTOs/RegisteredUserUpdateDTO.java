@@ -2,6 +2,7 @@ package FTN.isa.model.DTOs;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -38,10 +39,12 @@ public class RegisteredUserUpdateDTO {
     @Valid
     private Address address;
     
+	private int penal;
+    
     public RegisteredUserUpdateDTO() { }
     
 	public RegisteredUserUpdateDTO(long id, String name, String surname, String phonNumber, String jmbg, String gender,
-			String occupation, String informationAboutCompany, Date dateOfBirth, String bloodType, Address address) {
+			String occupation, String informationAboutCompany, Date dateOfBirth, String bloodType, Address address, int penal) {
 		super();
 		Id = id;
 		this.name = name;
@@ -54,7 +57,9 @@ public class RegisteredUserUpdateDTO {
 		this.dateOfBirth = dateOfBirth;
 		this.bloodType = bloodType;
 		this.address = address;
+		this.penal = penal;
 	}
+	
 
 	public long getId() {
 		return Id;
@@ -122,6 +127,15 @@ public class RegisteredUserUpdateDTO {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	public int getPenal() {
+		return penal;
+	}
+
+	public void setPenal(int penal) {
+		this.penal = penal;
+	}
+	
     
     
     
