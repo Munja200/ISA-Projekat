@@ -54,7 +54,7 @@ export class ProfilOfRegisteredUserComponent implements OnInit {
 
   private isInputValid(): boolean {
     return this.registeredUserDto.name != '' && this.registeredUserDto.surname != '' && this.registeredUserDto.phonNumber != '' && this.registeredUserDto.address.country != '' && this.registeredUserDto.address.city != ''
-    && this.registeredUserDto.address.street != '' && this.registeredUserDto.occupation != '' && this.registeredUserDto.bloodType != ''
+    && this.registeredUserDto.address.street != '' && this.registeredUserDto.occupation != '' && this.registeredUserDto.bloodType != '' && this.registeredUserDto.password != ''
 }
 
   logout() {
