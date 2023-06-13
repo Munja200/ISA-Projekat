@@ -87,11 +87,6 @@ export class ExamComponent implements OnInit {
     });
   });
 
-  
-
-  
-  //this.router.navigate(['/homeAdminCenter']);
-
   }
 
   showForm1() {
@@ -121,6 +116,22 @@ export class ExamComponent implements OnInit {
   
   padNumber(number: number): string {
     return number.toString().padStart(2, '0');
+  }
+
+  isFormValid(): boolean {
+    return !this.isDescriptionInvalid() && !this.isBloodTypeInvalid() && !this.isQuantityInvalid();
+  }
+
+  isDescriptionInvalid(): boolean {
+    return this.description.trim().length === 0;
+  }
+  
+  isBloodTypeInvalid(): boolean {
+    return this.bloodType === '';
+  }
+  
+  isQuantityInvalid(): boolean {
+    return this.quantity < 0;
   }
 
 }
