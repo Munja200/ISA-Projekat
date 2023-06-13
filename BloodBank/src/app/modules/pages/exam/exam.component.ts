@@ -5,6 +5,9 @@ import { TerminDTO } from '../../hospital/model/terminDTO';
 import { Person } from '../../hospital/model/person';
 import { RegisterPersonService } from '../../hospital/services/register-person.service';
 import { RegisteredUserUpdateDTO } from '../../hospital/model/registeredUserUpdateDTO';
+import { ReportService } from '../service/report.service';
+import { Report } from '../../hospital/model/report';
+import { BloodService } from '../../hospital/services/blood.service';
 
 @Component({
   selector: 'app-exam',
@@ -24,8 +27,14 @@ export class ExamComponent implements OnInit {
 
   public registeredUserDto: RegisteredUserUpdateDTO = new RegisteredUserUpdateDTO(0, '', '', '', '', '', '', '', new Date(), '', null, '', 0);
   public korisnikId : number = 0;
+  public centerId : number = 0;
 
-  constructor(private route: ActivatedRoute, private registerPersonService: RegisterPersonService, private router: Router, private authService: AuthService, ) { }
+  public report: Report = new Report();
+  public quantity : number = 0;
+  public description : string = '';
+  public bloodType : string = '';
+
+  constructor(private bloodService: BloodService, private reportService: ReportService, private route: ActivatedRoute, private registerPersonService: RegisterPersonService, private router: Router, private authService: AuthService, ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -34,6 +43,7 @@ export class ExamComponent implements OnInit {
       this.surname = params['surname'];
       this.pocetak = params['startDate'];
       this.kraj = params['endDate'];
+      this.centerId = params['center'];
     });
 
     this.registerPersonService.getPerson(this.korisnikId).subscribe( res => {
@@ -43,6 +53,23 @@ export class ExamComponent implements OnInit {
 
   logout(){
     this.authService.logout()
+  }
+  
+  save() {
+    this.report.bloodType = this.bloodType;
+    this.report.description = this.description;
+    this.report.quantity = this.quantity;
+    this.reportService.saveReport(this.report).subscribe( res3 => {
+      alert('You have successfully examed patient');
+  
+  })
+
+    this.bloodService.changeBlood(this.centerId, this.quantity, this.bloodType).subscribe (krvv => {   
+      alert('Blood quantity updated');
+
+  })
+  this.router.navigate(['/homeAdminCenter']);
+
   }
 
   showForm1() {

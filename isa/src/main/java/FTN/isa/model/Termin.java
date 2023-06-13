@@ -1,6 +1,7 @@
 package FTN.isa.model;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PostLoad;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 
 @Entity
 public class Termin {
@@ -37,6 +40,11 @@ public class Termin {
 		
 	    @Transient
 	    private Long centerId;
+	    
+	    @OneToOne(cascade = CascadeType.ALL)
+		@JoinColumn(name = "report_id", referencedColumnName = "id")
+	    @Valid
+		private Report report;
 
 	    
 	    @PostLoad
@@ -64,17 +72,20 @@ public class Termin {
 		
 		*/
 
-		public Termin(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Long korisnikId, Center center,
-				Long centerId) {
+		public Termin(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Long korisnikId,
+				Center center, Long centerId, @Valid Report report) {
 			super();
 			Id = id;
 			this.pocetakTermina = pocetakTermina;
 			this.krajTermina = krajTermina;
 			this.trajanje = trajanje;
+			this.korisnikId = korisnikId;
 			this.center = center;
 			this.centerId = centerId;
-			this.korisnikId = korisnikId;
+			this.report = report;
 		}
+		
+		
 
 		public Long getId() {
 			return Id;
@@ -132,6 +143,15 @@ public class Termin {
 			this.centerId = centerId;
 		}
 
+		public Report getReport() {
+			return report;
+		}
+
+		public void setReport(Report report) {
+			this.report = report;
+		}
+
+		
 
 		
 	
