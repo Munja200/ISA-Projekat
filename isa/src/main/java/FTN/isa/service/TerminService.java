@@ -40,6 +40,19 @@ public class TerminService {
 		return termini;
 	}
 	
+	public List<Termin> getProsliTerminiByUser(Long id) {
+		
+		List<Termin> termini = new ArrayList<Termin>();
+		List<Termin> poUseru = terminRepository.getTerminiByUserId(id);
+
+		for(Termin t : poUseru) {
+			if(t.getReport() != null) {
+				termini.add(t);
+			}
+		}
+		return termini;
+	}
+	
 	//samo ovde kasnije dodas proveru, da je izvestaj null
 	public List<Termin> getTerminiByKorId(Long id) {
 		return terminRepository.getTerminiByKorId(id);
