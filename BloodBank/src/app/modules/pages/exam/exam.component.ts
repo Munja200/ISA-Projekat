@@ -8,6 +8,8 @@ import { RegisteredUserUpdateDTO } from '../../hospital/model/registeredUserUpda
 import { ReportService } from '../service/report.service';
 import { Report } from '../../hospital/model/report';
 import { BloodService } from '../../hospital/services/blood.service';
+import { TerminService } from '../service/termin.service';
+import { Termin } from '../../hospital/model/termin';
 
 @Component({
   selector: 'app-exam',
@@ -25,19 +27,25 @@ export class ExamComponent implements OnInit {
   public pocetak: Date = new Date();
   public kraj: Date = new Date();
 
+  public terminDTO : TerminDTO = new TerminDTO();
+
   public registeredUserDto: RegisteredUserUpdateDTO = new RegisteredUserUpdateDTO(0, '', '', '', '', '', '', '', new Date(), '', null, '', 0);
   public korisnikId : number = 0;
   public centerId : number = 0;
+  public terminId : number = 0;
 
   public report: Report = new Report();
   public quantity : number = 0;
   public description : string = '';
   public bloodType : string = '';
 
-  constructor(private bloodService: BloodService, private reportService: ReportService, private route: ActivatedRoute, private registerPersonService: RegisterPersonService, private router: Router, private authService: AuthService, ) { }
+  terminDTOpomoc : TerminDTO = new TerminDTO();
+
+  constructor(private bloodService: BloodService, private terminService: TerminService, private reportService: ReportService, private route: ActivatedRoute, private registerPersonService: RegisterPersonService, private router: Router, private authService: AuthService, ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      this.terminId = params['termin_id'];
       this.korisnikId = params['korId'];
       this.name = params['name'];
       this.surname = params['surname'];
@@ -68,7 +76,21 @@ export class ExamComponent implements OnInit {
       alert('Blood quantity updated');
 
   })
-  this.router.navigate(['/homeAdminCenter']);
+
+  this.terminService.getById(this.terminId).subscribe(res => {
+    this.terminDTOpomoc = res;
+    this.terminDTOpomoc.report = this.report;
+    this.terminService.editTermina(this.terminDTOpomoc).subscribe((res) => {
+      console.log(res)
+      alert("You have successfully scheduling appointment!");
+      this.router.navigate(['/homeAdminCenter']);
+    });
+  });
+
+  
+
+  
+  //this.router.navigate(['/homeAdminCenter']);
 
   }
 

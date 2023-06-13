@@ -143,7 +143,7 @@ export class OccupiedCalendarAdminComponent implements OnInit {
   }
 
   public Appointments(id: any, korId: any, name: string, surname: string, startDate: Date, endDate: Date, center: any) {
-    const queryParams = { termin_id: id, korId, name, surname, startDate, endDate, center };
+    const queryParams = { termin_id: id, korId, name, surname, startDate, endDate, center};
     this.router.navigate(['/exam'], { queryParams });
   }
 

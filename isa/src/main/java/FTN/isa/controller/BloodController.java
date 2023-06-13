@@ -73,7 +73,7 @@ public class BloodController {
     }
 	
 	
-	//"api/persons/bloods/changeBlood/{centerId}/{quantity}/{bloodType}"
+	//"api/bloods/changeBlood/{centerId}/{quantity}/{bloodType}"
 			@PreAuthorize("hasRole('ADMIN_CENTER')")
 			@Operation(summary = "Update blood", description = "Update blood", method="POST")
 			@ApiResponses(value = {

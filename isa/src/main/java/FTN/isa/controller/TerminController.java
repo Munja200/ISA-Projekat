@@ -230,6 +230,43 @@ public class TerminController {
         
 		return new ResponseEntity<List<TerminWithCenterNameDTO>>(terminiWithCenterNameDTOS, HttpStatus.OK);
 	}
+	
+	//api/termini/termin/get/{id}
+		@Operation(summary = "Get person by id", description = "Get person by id", method="GET")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found person by id",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+				@ApiResponse(responseCode = "404", description = "person not found", content = @Content)
+		})
+		@GetMapping(value = "/termin/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<TerminDTO> getById(@Parameter(name="id", description = "ID of a person to return", required = true) @PathVariable("id") Long id) {
+			Termin termin = terminService.getById(id);
+			TerminDTO terminDTO = new TerminDTO(termin);
+			
+			return new ResponseEntity<TerminDTO>(terminDTO, HttpStatus.OK);
+		}
+		
+		
+		
+		@PreAuthorize("hasRole('ADMIN_CENTER')")
+		@Operation(summary = "Update termin", description = "Update registered person", method="POST")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by page number",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "/izmenaTermina/{id}", method = RequestMethod.POST)
+		public boolean updateTermina(@PathVariable("id") long id, @RequestBody @Valid TerminDTO terminDTO) {
+			
+			try {
+				 return terminService.updateTermina(id, terminDTO);
+				
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    return false;
+			}
+		}
 
 	
 	
