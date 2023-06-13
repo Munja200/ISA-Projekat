@@ -10,7 +10,7 @@ import FTN.isa.model.Report;
 import FTN.isa.model.Termin;
 
 @JsonIgnoreProperties({"questionForm"})
-public class TerminWithCenterNameDTO {
+public class TerminWithExamDTO {
 
 	private Long id;
 	
@@ -21,41 +21,37 @@ public class TerminWithCenterNameDTO {
 	private LocalDateTime krajTermina;
 	private int trajanje;
 	private Long center;
-	private String centerName;
 	private Long korisnikId;
 	private Report report;
   	private QuestionForm questionForm;
-
-		
-	public TerminWithCenterNameDTO() {}
+  	
+  	public TerminWithExamDTO() {}
 	
-	public TerminWithCenterNameDTO(Termin t) {
-		super();
-		this.id = t.getId();
-		this.pocetakTermina = t.getPocetakTermina();
-		this.krajTermina = t.getKrajTermina();
-		this.trajanje = t.getTrajanje();
-		this.center = t.getCenter().getId();
-		this.centerName = t.getCenter().getName();
-		this.korisnikId = t.getKorisnikId();
-		this.report = t.getReport();
-		this.questionForm = t.getQuestionForm();
-	} 
-
-	public TerminWithCenterNameDTO(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje,
-			Long center, String centerName, Long korisnikId, Report report, QuestionForm questionForm) {
+	public TerminWithExamDTO(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Long center,
+			Long korisnikId, Report report, QuestionForm questionForm) {
 		super();
 		this.id = id;
 		this.pocetakTermina = pocetakTermina;
 		this.krajTermina = krajTermina;
 		this.trajanje = trajanje;
 		this.center = center;
-		this.centerName = centerName;
 		this.korisnikId = korisnikId;
 		this.report = report;
 		this.questionForm = questionForm;
 
 	}
+	
+	public TerminWithExamDTO(Termin t) {
+		super();
+		this.id = t.getId();
+		this.pocetakTermina = t.getPocetakTermina();
+		this.krajTermina = t.getKrajTermina();
+		this.trajanje = t.getTrajanje();
+		this.center = t.getCenter().getId();
+		this.korisnikId = t.getKorisnikId();
+		this.report = t.getReport();
+		this.questionForm = t.getQuestionForm();
+	} 
 
 	public Long getId() {
 		return id;
@@ -97,14 +93,6 @@ public class TerminWithCenterNameDTO {
 		this.center = center;
 	}
 
-	public String getCenterName() {
-		return centerName;
-	}
-
-	public void setCenterName(String centerName) {
-		this.centerName = centerName;
-	}
-
 	public Long getKorisnikId() {
 		return korisnikId;
 	}
@@ -131,4 +119,6 @@ public class TerminWithCenterNameDTO {
 	
 	
 	
+	
+
 }

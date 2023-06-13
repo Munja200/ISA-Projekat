@@ -28,7 +28,8 @@ export class ZakazivanjeTerminaComponent implements OnInit {
   public odgovor : boolean = false;
   public answers: AnswerQuestion[]=[];
   private date: Date = new Date();
-  public questionForm : QuestionForm = new QuestionForm(0, '',this.date, this.answers);
+  //public questionForm : QuestionForm = new QuestionForm(0, '',this.date, this.answers);
+  public questionForm : QuestionForm = new QuestionForm();
   public isQuestionFormFilled: boolean = false;
   public selectedAnswer: string = ""; 
 
@@ -81,11 +82,17 @@ export class ZakazivanjeTerminaComponent implements OnInit {
     console.log(this.korId)
     console.log(this.terminDTO)
 
-    this.terminService.editTermin(this.terminDTO, this.korId).subscribe((res) => {
-      console.log(res)
-      alert("You have successfully scheduling appointment!");
-      this.router.navigate(['/futureAppointments']);
-    });
+    if(this.terminDTO.questionForm == null){
+      alert("You must first filled the question Form!");
+    }else{
+      this.terminService.editTermin(this.terminDTO, this.korId).subscribe((res) => {
+        console.log(res)
+        alert("You have successfully scheduling appointment!");
+        this.router.navigate(['/futureAppointments']);
+      });
+    }
+
+   
   }
 
   
@@ -108,15 +115,25 @@ export class ZakazivanjeTerminaComponent implements OnInit {
   
 
   public createQuestionForm() {
+    this.terminDTO = this.centerWithTermin.terminDTO
+
     this.isQuestionFormFilled = true;
+    console.log(this.terminDTO)
 
     this.questionForm.questions = this.answers;
     console.log(this.questionForm)
+    
+    /*
     this.questionService.createQuestion(this.questionForm).subscribe(res => {
       alert("The Question Form has been successfully filled!")
     });
-    console.log(this.answers);
+    */
+
+    this.terminDTO.questionForm = this.questionForm;
+    console.log(this.terminDTO)
+    this.terminService.editTerminQF(this.terminDTO).subscribe((res) => {
+      alert("You have successfully added question form!");
+    });
+
 }
-
-
 }

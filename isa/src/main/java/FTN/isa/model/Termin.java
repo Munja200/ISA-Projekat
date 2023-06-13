@@ -45,6 +45,11 @@ public class Termin {
 		@JoinColumn(name = "report_id", referencedColumnName = "id")
 	    @Valid
 		private Report report;
+	    
+	    @OneToOne(cascade = CascadeType.ALL)
+	  	@JoinColumn(name = "question_form_id", referencedColumnName = "id")
+	  	@Valid
+	  	private QuestionForm questionForm;
 
 	    
 	    @PostLoad
@@ -73,7 +78,7 @@ public class Termin {
 		*/
 
 		public Termin(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Long korisnikId,
-				Center center, Long centerId, @Valid Report report) {
+				Center center, Long centerId, @Valid Report report, @Valid QuestionForm questionForm) {
 			super();
 			Id = id;
 			this.pocetakTermina = pocetakTermina;
@@ -83,6 +88,8 @@ public class Termin {
 			this.center = center;
 			this.centerId = centerId;
 			this.report = report;
+			this.questionForm = questionForm;
+
 		}
 		
 		
@@ -151,10 +158,14 @@ public class Termin {
 			this.report = report;
 		}
 
-		
+		public QuestionForm getQuestionForm() {
+			return questionForm;
+		}
 
-		
-	
+		public void setQuestionForm(QuestionForm questionForm) {
+			this.questionForm = questionForm;
+		}
+
 
 
 }

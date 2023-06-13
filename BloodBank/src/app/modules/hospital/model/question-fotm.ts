@@ -5,11 +5,11 @@ import { Person } from "./person";
 export class QuestionForm {
     id: number = 0;
     deleted: boolean = false;
-    registeredUser: Person;
-    date: Date ;
-    questions: AnswerQuestion[];
+    registeredUser: Person = new Person();
+    date: Date = new Date() ;
+    questions: AnswerQuestion[] = [];
     
-
+/*
     public constructor(id: any,
         registeredUser: any,
         date: any,
@@ -19,4 +19,14 @@ export class QuestionForm {
         this.date = date;
         this.questions = questions;
     }
+*/
+    constructor(obj?: any) {
+        if (obj) {
+          this.id = obj.id;
+          this.deleted = obj.deleted;
+          this.registeredUser = obj.registeredUser;
+          this.date = obj.date;
+          this.questions = obj.questions;
+        }
+      }
 }

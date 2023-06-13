@@ -30,6 +30,7 @@ import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.model.DTOs.RegisteredUserUpdateDTO;
 import FTN.isa.model.DTOs.TerminDTO;
 import FTN.isa.model.DTOs.TerminWithCenterNameDTO;
+import FTN.isa.model.DTOs.TerminWithExamDTO;
 import FTN.isa.service.EmailService;
 import FTN.isa.service.PersonService;
 import FTN.isa.service.TerminService;
@@ -88,6 +89,7 @@ public class TerminController {
 			try {
 				termin.setKorisnikId(null);
 				termin.setReport(null);
+				termin.setQuestionForm(null);
 			    terminService.createTermin(termin);
 
 			    return new ResponseEntity<Termin>(termin, HttpStatus.CREATED);
@@ -162,6 +164,7 @@ public class TerminController {
 		return new ResponseEntity<List<TerminDTO>>(terminiDTO, HttpStatus.OK);
 	}
 	
+	/*
 	@Operation(summary = "Get termini", description = "Get termini", method="GET")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found termini by center id",
@@ -178,8 +181,26 @@ public class TerminController {
 		}
 		return new ResponseEntity<List<TerminDTO>>(terminiDTO, HttpStatus.OK);
 	}
+	*/
 	
-
+	@Operation(summary = "Get termini", description = "Get termini", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found termini by center id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Termin.class))),
+			@ApiResponse(responseCode = "404", description = "termini not found", content = @Content)
+	})
+	@GetMapping(value = "/zauzeti/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TerminWithExamDTO>> getAllZauzetiTerminiByCenterId(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("id") Long id) {		
+		
+        List<Termin> termini = terminService.getZauzetiTerminiByCenterId(id);
+		List<TerminWithExamDTO> terminiDTO = new ArrayList<TerminWithExamDTO>();
+        for(Termin t : termini){
+        	terminiDTO.add(new TerminWithExamDTO(t));
+		}
+		return new ResponseEntity<List<TerminWithExamDTO>>(terminiDTO, HttpStatus.OK);
+	}
+	
+/*
 	//"api/termini/search/{ime}/{prezime}/{centerId}"
 		@Operation(summary = "Get centers by name and city", description = "Get centers by name and city", method="GET")
 		@ApiResponses(value = {
@@ -211,6 +232,39 @@ public class TerminController {
 				}
 			
 			return new ResponseEntity<List<TerminDTO>>(terminDTOs, HttpStatus.OK);
+		}
+		*/
+		
+		@Operation(summary = "Get centers by name and city", description = "Get centers by name and city", method="GET")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by page number",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@GetMapping(value = "/search/{ime}/{prezime}/{centerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<List<TerminWithExamDTO>> getAllbyNameCity(
+				@Parameter(name="ime", description = "Name of person (none to ignore)", required = false) @PathVariable("ime") String ime,
+				@Parameter(name="prezime", description = "Surname of person (none to ignore)", required = false) @PathVariable("prezime") String prezime,
+				@Parameter(name="centerId", description = "Id of center (none to ignore)", required = false) @PathVariable("centerId") Long centerId)
+				{
+			
+			List<Termin> lista = new ArrayList<Termin>();
+			
+			List<TerminWithExamDTO> terminDTOs = new ArrayList<TerminWithExamDTO>();
+			if(!ime.equals("none") && !prezime.equals("none"))
+				lista = terminService.findAllByImePrezime(ime, prezime, centerId);
+			else {
+				if(!ime.equals("none"))
+					lista = terminService.findAllByIme(ime, centerId);
+				if (!prezime.equals("none"))
+					lista = terminService.findAllByPrezime(prezime, centerId);
+			}
+			if(lista != null)
+				for(Termin t : lista){
+					terminDTOs.add(new TerminWithExamDTO(t));
+				}
+			
+			return new ResponseEntity<List<TerminWithExamDTO>>(terminDTOs, HttpStatus.OK);
 		}
 
 	@Operation(summary = "Get termini", description = "Get termini", method="GET")
@@ -268,7 +322,28 @@ public class TerminController {
 			    return false;
 			}
 		}
-
+		
+		
+		@PreAuthorize("hasRole('USER')")
+		@Operation(summary = "Update termin", description = "Update registered person", method="POST")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "found centers by page number",
+						content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
+				@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+		})
+		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(value = "/izmenaTermina/qf/{id}", method = RequestMethod.POST)
+		public boolean updateTerminaQF(@PathVariable("id") long id, @RequestBody @Valid TerminDTO terminDTO) {
+			
+			try {
+				 return terminService.updateTerminaQF(id, terminDTO);
+				
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    return false;
+			}
+		}  
+ 
 	
 	
 }

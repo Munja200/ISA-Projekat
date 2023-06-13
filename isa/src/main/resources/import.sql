@@ -61,16 +61,16 @@ insert into radno_vreme (vreme_otvaranja, vreme_zatvaranja, center_id) values ('
 
 ----------------------ZAKAZANI-TERMINI------------------------
 
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (1, '2023-08-20 09:00:00', '2023-08-20 08:00:00', 11, 1, null);
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (2, '2023-08-21 09:00:00', '2023-08-21 08:00:00', 10, 1, null);
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (1, '2023-08-21 09:00:00', '2023-08-21 08:00:00', 8, 2, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (1, '2023-08-20 09:00:00', '2023-08-20 08:00:00', 11, 1, null, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (2, '2023-08-21 09:00:00', '2023-08-21 08:00:00', 10, 1, null, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (1, '2023-08-21 09:00:00', '2023-08-21 08:00:00', 8, 2, null, null);
 
 
 ----------------------SLOBODNI-TERMINI------------------------
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:00:00', 4, 1, null);
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (null, '2023-06-22 09:00:00', '2023-06-22 08:00:00', 13, 1, null);
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (null, '2023-06-24 09:00:00', '2023-06-24 08:00:00', 10, 1, null);
-insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, report_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:30:00', 12, 2, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:00:00', 4, 1, null, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (null, '2023-06-22 09:00:00', '2023-06-22 08:00:00', 13, 1, null, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (null, '2023-06-24 09:00:00', '2023-06-24 08:00:00', 10, 1, null, null);
+insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center_id, question_form_id, report_id) values (null, '2023-06-20 09:00:00', '2023-06-20 08:30:00', 12, 2, null, null);
 
 ----------------------CENTER_ADMINISTRATOR------------------------
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);

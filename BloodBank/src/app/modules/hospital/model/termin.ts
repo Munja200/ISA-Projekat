@@ -1,5 +1,6 @@
 import { Center } from "./center";
 import { CenterDTO } from "./centerDTO";
+import { QuestionForm } from "./question-fotm";
 import { Report } from "./report";
 
 export class Termin {
@@ -11,6 +12,7 @@ export class Termin {
     centerId : number = 0;
     korisnikId : number = 0
     report : Report = new Report();
+    questionForm : QuestionForm = new QuestionForm();
 
     constructor(obj?: any) {
         if (obj) {
