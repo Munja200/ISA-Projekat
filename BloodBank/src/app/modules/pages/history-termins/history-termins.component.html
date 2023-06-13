@@ -23,6 +23,7 @@
                                 <th scope="col" class="text-center"> End Time Period </th>
                                 <th scope="col" class="text-center"> Duration of Period </th>
                                 <th scope="col" class="text-center"> Center Name </th>
+                                <th scope="col" class="text-center"> Report</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +32,7 @@
                                 <td class="text-center">{{ terminWithCenterName.krajTermina | date:'dd.MM.yyyy HH:mm'}}</td>
                                 <td class="text-center">{{ terminWithCenterName.trajanje }}</td>
                                 <td class="text-center">{{ terminWithCenterName.centerName }}</td>
+                                <td class="text-center">{{ terminWithCenterName.report.description }}</td>
                             </tr>
                         </tbody>
                     </table>
