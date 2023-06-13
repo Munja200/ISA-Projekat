@@ -56,4 +56,8 @@ export class TerminService {
     return this.http.get<TerminDTO>('api/termini/termin/get/' + id, {headers: this.headers});
   }
 
+  getTerminiByUserId(id: number): Observable<any> {
+    return this.http.get<Termin[]>('api/termini/prosli/' + id, {headers: this.headers});
+  }
+
 }

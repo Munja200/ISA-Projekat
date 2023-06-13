@@ -21,4 +21,7 @@ public interface TerminRepository extends PagingAndSortingRepository<Termin, Lon
 	
 	@Query(value="select * FROM termin t WHERE t.id =?1",nativeQuery = true)
 	Termin getOne(Long id);
+	
+	@Query(value = "SELECT * FROM termin t WHERE t.korisnik_id =?1", nativeQuery = true)
+	List<Termin> getTerminiByUserId(@Param("id") Long id);
 }

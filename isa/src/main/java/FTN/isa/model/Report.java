@@ -12,7 +12,7 @@ public class Report {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Id;
+	private Long Id;
 	
 	@Column(name = "bloodType", nullable = false)
 	private String bloodType;
@@ -25,7 +25,7 @@ public class Report {
 	
 	public Report() {}
 
-	public Report(long id, String bloodtype, String description, int quantity) {
+	public Report(Long id, String bloodtype, String description, int quantity) {
 		super();
 		Id = id;
 		this.bloodType = bloodtype;
@@ -33,11 +33,11 @@ public class Report {
 		this.quantity = quantity;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return Id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		Id = id;
 	}
 
