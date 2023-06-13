@@ -2,7 +2,7 @@
 insert into address (city, country, latitude, longitude, number, street) values ('Zrenjanin', 'Srbija', 73.09, 2.71, '3a', 'Zrenjaninska');
 insert into address (city, country, latitude, longitude, number, street) values ('Sombor', 'Srbija', 11.73, 63.94, '4b', 'Somborska');
 insert into address (city, country, latitude, longitude, number, street) values ('Vrsac', 'Srbija', 18.53, 40.48, '15a', 'Vrsacka');
-insert into address (city, country, latitude, longitude, number, street) values ('Novi Sad', 'Srbija', 9.89, 45.04, '26a', 'Novosadska');
+insert into address (city, country, latitude, longitude, number, street) values ('Beograd', 'Srbija', 9.89, 45.04, '26a', 'Novosadska');
 insert into address (city, country, latitude, longitude, number, street) values ('Bijeljina', 'Bosna i Hercegovina', 85.21, 28.72, '63b', 'Bijeljinska');
 
 ----------------------ROLE------------------------
@@ -73,7 +73,7 @@ insert into termin (korisnik_id, kraj_termina, pocetak_termina, trajanje, center
 ----------------------CENTER_ADMINISTRATOR------------------------
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 2);
 insert into administrator_center(deleted, center_id, person_id) values (false, 1, 3);
-insert into administrator_center(deleted, center_id, person_id) values (false, 1, 4);
+insert into administrator_center(deleted, center_id, person_id) values (false, 1, 4); 
 
 ----------------------COMPLAINT----------------------
 insert into complaint(id, answer, complaint, person_id) values (1, null, 'Los objekat skroz na skroz', 1);

@@ -85,7 +85,7 @@ public class TerminController {
 	public ResponseEntity<Termin> registerTermin(@RequestBody @Valid Termin termin)  {
 			//Termin termin = new Termin(terminDTO);
 			try {
-				
+				termin.setKorisnikId(null);
 			    terminService.createTermin(termin);
 
 			    return new ResponseEntity<Termin>(termin, HttpStatus.CREATED);
@@ -142,39 +142,40 @@ public class TerminController {
 		    return false;
 		}
 	}
-	 
 	
-	/*
-	@PreAuthorize("hasRole('USER')")
-	@Operation(summary = "Update termin", description = "Update registered person", method="POST")
+	@Operation(summary = "Get termini", description = "Get termini", method="GET")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "found centers by page number",
-					content = @Content(mediaType = "application/json", schema = @Schema(implementation = TerminDTO.class))),
-			@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+			@ApiResponse(responseCode = "200", description = "found termini by center id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Termin.class))),
+			@ApiResponse(responseCode = "404", description = "termini not found", content = @Content)
 	})
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@RequestMapping(value = "/izmena/{id}/{korId}", method = RequestMethod.POST)
-	public ResponseEntity<TerminDTO> updateTermin(@PathVariable("id") long id, @PathVariable("korId") long korId, @RequestBody @Valid TerminDTO terminDTO) {
-	  	
-		try {
-			terminService.updateTermin(id, korId, terminDTO);
-			/*
-			Person person =  new Person();
-			person = personService.getById(terminDTO.getKorisnikId());
-				    
-			mailService.sendMessage(person);
-			
-
-		    return new ResponseEntity<TerminDTO>(terminDTO, HttpStatus.CREATED);
-		} catch (Exception e) {
-		    e.printStackTrace();
-		    String errorMessage = e.getMessage(); 
-		    System.out.println(errorMessage); // Ispisivanje poruke greške u konzolu
-		    return new ResponseEntity<TerminDTO>(terminDTO, HttpStatus.CONFLICT);
+	@GetMapping(value = "/slobodni/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TerminDTO>> getAllSlobodniTerminiByCenterId(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("id") Long id) {		
+		
+        List<Termin> termini = terminService.getSlobodniTerminiByCenterId(id);
+		List<TerminDTO> terminiDTO = new ArrayList<TerminDTO>();
+        for(Termin t : termini){
+        	terminiDTO.add(new TerminDTO(t));
 		}
+		return new ResponseEntity<List<TerminDTO>>(terminiDTO, HttpStatus.OK);
 	}
-	*/
 	
+	@Operation(summary = "Get termini", description = "Get termini", method="GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found termini by center id",
+					content = @Content(mediaType = "application/json", schema = @Schema(implementation = Termin.class))),
+			@ApiResponse(responseCode = "404", description = "termini not found", content = @Content)
+	})
+	@GetMapping(value = "/zauzeti/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TerminDTO>> getAllZauzetiTerminiByCenterId(@Parameter(name="id", description = "Number of a page to return", required = true) @PathVariable("id") Long id) {		
+		
+        List<Termin> termini = terminService.getZauzetiTerminiByCenterId(id);
+		List<TerminDTO> terminiDTO = new ArrayList<TerminDTO>();
+        for(Termin t : termini){
+        	terminiDTO.add(new TerminDTO(t));
+		}
+		return new ResponseEntity<List<TerminDTO>>(terminiDTO, HttpStatus.OK);
+	}
 	
 	
 }
