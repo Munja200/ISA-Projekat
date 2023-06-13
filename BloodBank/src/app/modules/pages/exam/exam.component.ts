@@ -55,7 +55,7 @@ export class ExamComponent implements OnInit {
     this.showingForm3 = false;
     this.registeredUserDto.penal = this.registeredUserDto.penal + 1; 
     this.registerPersonService.updateRegisteredUser(this.registeredUserDto).subscribe( res2 => {
-      alert('Uspesno ste dodelili penal korisniku');
+      alert('You have successfully given a penalty to a user');
       this.router.navigate(['/homeAdminCenter']);
   })
 }
