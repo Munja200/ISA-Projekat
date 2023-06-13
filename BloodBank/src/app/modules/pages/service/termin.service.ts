@@ -48,4 +48,12 @@ export class TerminService {
     return this.http.get<Termin[]>('api/termini/buduci/' + id, {headers: this.headers});
   }
 
+  editTermina(terminDTO: TerminDTO): Observable<Termin> {
+    return this.http.post<Termin>('api/termini/izmenaTermina/' + terminDTO.id , terminDTO, {headers: this.headers});
+  }
+
+  getById(id: number): Observable<any> {
+    return this.http.get<TerminDTO>('api/termini/termin/get/' + id, {headers: this.headers});
+  }
+
 }

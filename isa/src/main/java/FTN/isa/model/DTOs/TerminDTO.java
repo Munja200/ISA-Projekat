@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import FTN.isa.model.Report;
 import FTN.isa.model.Termin;
 
 public class TerminDTO {
@@ -18,11 +19,12 @@ public class TerminDTO {
 	private int trajanje;
 	private Long center;
 	private Long korisnikId;
+	private Report report;
 		
 	public TerminDTO() {}
 	
 	public TerminDTO(Long id, LocalDateTime pocetakTermina, LocalDateTime krajTermina, int trajanje, Long center,
-			Long korisnikId) {
+			Long korisnikId, Report report) {
 		super();
 		this.id = id;
 		this.pocetakTermina = pocetakTermina;
@@ -30,6 +32,7 @@ public class TerminDTO {
 		this.trajanje = trajanje;
 		this.center = center;
 		this.korisnikId = korisnikId;
+		this.report = report;
 	}
 	
 	
@@ -41,6 +44,7 @@ public class TerminDTO {
 		this.trajanje = t.getTrajanje();
 		this.center = t.getCenter().getId();
 		this.korisnikId = t.getKorisnikId();
+		this.report = t.getReport();
 	} 
 	
 	
@@ -92,6 +96,16 @@ public class TerminDTO {
 	public void setCenter(Long center) {
 		this.center = center;
 	}
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
+	
+	
 	
 	
 	

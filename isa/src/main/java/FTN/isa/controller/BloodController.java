@@ -2,6 +2,8 @@ package FTN.isa.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import FTN.isa.model.Blood;
+import FTN.isa.model.Person;
 import FTN.isa.model.DTOs.BloodDTO;
 import FTN.isa.service.BloodService;
 import FTN.isa.service.CenterService;
@@ -68,6 +71,23 @@ public class BloodController {
 
         return new ResponseEntity<List<BloodDTO>>(bloodList, HttpStatus.OK);
     }
+	
+	
+	//"api/bloods/changeBlood/{centerId}/{quantity}/{bloodType}"
+			@PreAuthorize("hasRole('ADMIN_CENTER')")
+			@Operation(summary = "Update blood", description = "Update blood", method="POST")
+			@ApiResponses(value = {
+					@ApiResponse(responseCode = "200", description = "found bloods",
+							content = @Content(mediaType = "application/json", schema = @Schema(implementation = Blood.class))),
+					@ApiResponse(responseCode = "404", description = "centers not found", content = @Content)
+			})
+			@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+			@RequestMapping(value = "/changeBlood/{centerId}/{quantity}/{bloodType}", method = RequestMethod.POST)
+			public boolean updateBlood(@PathVariable("centerId") long centerId, @PathVariable("quantity") int quantity,
+					@PathVariable("bloodType") String bloodType) {
+				
+			    return bloodService.updateBlood(centerId, quantity, bloodType);
+			}
     
 
 }

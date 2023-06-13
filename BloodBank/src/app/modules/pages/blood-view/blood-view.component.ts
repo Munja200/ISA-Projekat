@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BloodDTO } from '../../hospital/model/blood';
+import { BloodDTO } from '../../hospital/model/bloodDto';
 import { BloodService } from '../../hospital/services/blood.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../hospital/services/auth.service';

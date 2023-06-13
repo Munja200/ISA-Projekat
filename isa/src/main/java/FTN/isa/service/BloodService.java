@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import FTN.isa.model.Blood;
 import FTN.isa.model.Center;
+import FTN.isa.model.Person;
 import FTN.isa.model.RegisteredUser;
+import FTN.isa.model.Role;
 import FTN.isa.model.DTOs.BloodDTO;
 import FTN.isa.model.DTOs.CenterDTO;
 import FTN.isa.model.DTOs.RegisteredUserDTO;
@@ -37,5 +39,25 @@ public class BloodService {
 	    return bloodDTOs;
 
 	 }
+	
+	public Blood create(Blood blood) {
+		return bloodRepository.save(blood);
+	}
+	
+	public Boolean updateBlood(long centerId, int quantity, String bloodType) {
+	    List<Blood> b = bloodRepository.findByCenterId(centerId);
+	    Blood krvvvv = new Blood();
+
+	    for (Blood krv : b) {
+	        if (krv.getBloodType().equals(bloodType)) {
+	            krv.setQuantity(krv.getQuantity() - quantity);
+	            bloodRepository.save(krv);
+	            return true;
+	            }
+	    }
+	    
+	    return false;
+	}
 
 }
+

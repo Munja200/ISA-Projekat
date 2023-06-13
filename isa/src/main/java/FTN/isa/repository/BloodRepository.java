@@ -13,5 +13,11 @@ public interface BloodRepository extends PagingAndSortingRepository<Blood, Long>
 	
 	@Query(value = "SELECT * FROM blood b JOIN center c ON c.id = b.center_id WHERE c.id =?1", nativeQuery = true)
 	List<Blood> findByCenterId(@Param("centerId") Long id);
+	
+	@SuppressWarnings("unchecked")
+	public Blood save(Blood blood);
+	
+	@Query(value="select * from blood b where b.id = ?1",nativeQuery = true)
+	public Blood findById(int bloodId);
 
 }

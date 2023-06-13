@@ -1,5 +1,6 @@
 import { Center } from "./center";
 import { CenterDTO } from "./centerDTO";
+import { Report } from "./report";
 
 export class TerminWithCenterNameDTO {
     id: number = 0;
@@ -8,7 +9,8 @@ export class TerminWithCenterNameDTO {
     trajanje : number = 0;
     center: number = 0;
     centerName: string = '';
-    korisnikId : number = 0
+    korisnikId : number = 0;
+    report : Report = new Report();
 
     constructor(obj?: any) {
         if (obj) {
@@ -19,6 +21,7 @@ export class TerminWithCenterNameDTO {
           this.center = obj.center;
           this.centerName = obj.centerName;
           this.korisnikId = obj.korisnikId;
+          this.report = obj.report;
         }
       }
 }

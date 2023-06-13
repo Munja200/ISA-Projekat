@@ -80,6 +80,23 @@ public class TerminService {
         }
 	}
 	
+   public Boolean updateTermina(Long id,TerminDTO terminDTO) {
+        
+        Termin termin = getById(id);
+        
+        if(termin != null) {
+        	
+        	//termin.setKorisnikId(korId);
+        	//termin.setKorisnikId(terminDTO.getKorisnikId());
+        	termin.setReport(terminDTO.getReport());
+
+        	terminRepository.save(termin);
+            return true;
+        } else { 
+            return false;
+        }
+	}
+	
 	public List<Termin> findAllByImePrezime(String ime, String prezime, Long centerId) {
 		List<Termin> lista= new ArrayList<>();
 		
