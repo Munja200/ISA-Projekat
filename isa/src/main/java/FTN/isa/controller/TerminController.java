@@ -87,6 +87,7 @@ public class TerminController {
 			//Termin termin = new Termin(terminDTO);
 			try {
 				termin.setKorisnikId(null);
+				termin.setReport(null);
 			    terminService.createTermin(termin);
 
 			    return new ResponseEntity<Termin>(termin, HttpStatus.CREATED);

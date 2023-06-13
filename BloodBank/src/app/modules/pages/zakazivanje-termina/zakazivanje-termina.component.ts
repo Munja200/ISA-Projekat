@@ -86,8 +86,6 @@ export class ZakazivanjeTerminaComponent implements OnInit {
       alert("You have successfully scheduling appointment!");
       this.router.navigate(['/futureAppointments']);
     });
-
-
   }
 
   
